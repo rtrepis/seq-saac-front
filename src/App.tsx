@@ -1,8 +1,16 @@
 import React from "react";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
+import { Navigate, Route, Routes } from "react-router-dom";
+import RegisterFormPage from "./pages/RegisterFormPage";
 
-const App = () => {
-  return <RegisterForm />;
+const App = (): JSX.Element => {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/register" element={<RegisterFormPage />} />
+      </Routes>
+    </>
+  );
 };
 
 export default App;
