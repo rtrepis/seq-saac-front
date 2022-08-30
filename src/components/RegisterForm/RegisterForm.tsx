@@ -21,16 +21,16 @@ const RegisterForm = () => {
           <Form.Label>Contrasenya</Form.Label>
           <Form.Control
             type="password"
-            className=" register-form__input"
+            className="register-form__input"
             placeholder="Introduïu la vostra contrasenyes"
           />
-          <Form.Text className="text-muted">
+          <Form.Text className="text-muted register-form__text">
             Introduïu una contrasenya entre 3 i 30 digits.
           </Form.Text>
         </Form.Group>
         <div className="register-form__footer">
           <Button
-            variant="success"
+            variant="primary"
             type="submit"
             className="register-form__button"
           >

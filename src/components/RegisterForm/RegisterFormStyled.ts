@@ -10,18 +10,21 @@ const RegisterFormStyled = styled.div`
   .register-form  {
     max-width: 335px;
     padding: 15px;
-    border: 2px green solid;
+    border: 2px #1b7d20 solid;
     border-radius: 15px;
 
     &__input {
-      background-color: #e9e9e9;
+      font-size: 20px;
+    }
+
+    &__text {
+      font-size: 16px;
     }
 
     &__button {
       font-family: inherit;
       font-size: inherit;
       font-weight: inherit;
-      background-color: green;
       width: 160px;
       height: 55px;
     }
