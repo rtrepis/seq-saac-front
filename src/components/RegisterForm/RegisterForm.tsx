@@ -22,7 +22,7 @@ const RegisterForm = () => {
           Introduïu un nom alfanumèric més llarg de 3 digits i menys de 30.
         </Form.Text>
       </Form.Group>
-      <Button variant="success" type="submit">
+      <Button variant="primary" type="submit">
         Regitra't
       </Button>
     </RegisterFormStyled>
