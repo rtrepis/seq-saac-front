@@ -4,7 +4,7 @@ import RegisterFormStyled from "./RegisterFormStyled";
 
 const RegisterForm = () => {
   return (
-    <RegisterFormStyled>
+    <RegisterFormStyled data-testid="registerForm">
       <Form.Group className="mb-3" controlId="userName">
         <Form.Label>Nom usari</Form.Label>
         <Form.Control type="text" placeholder="Introduïu el vostre nom" />
