@@ -6,7 +6,7 @@ describe("Give a RegisterForm Component", () => {
     test("Then should show this component", () => {
       render(<RegisterForm />);
 
-      const userName = screen.getByLabelText("Nom usari");
+      const userName = screen.getByLabelText("Usari");
       const password = screen.getByLabelText("Contrasenya");
 
       expect(userName).toBeInTheDocument();
