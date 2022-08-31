@@ -13,14 +13,6 @@ const RegisterFormStyled = styled.div`
     border: 2px #1b7d20 solid;
     border-radius: 15px;
 
-    &__input {
-      font-size: 20px;
-    }
-
-    &__text {
-      font-size: 16px;
-    }
-
     &__button {
       font-family: inherit;
       font-size: inherit;

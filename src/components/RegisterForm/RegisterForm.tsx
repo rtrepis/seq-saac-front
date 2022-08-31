@@ -13,7 +13,7 @@ const RegisterForm = () => {
             className=" register-form__input"
             placeholder="Introduïu el vostre nom"
           />
-          <Form.Text className="text-muted">
+          <Form.Text className="text-muted register-form__text">
             Introduïu un nom alfanumèric entre 3 i 30 digits
           </Form.Text>
         </Form.Group>
