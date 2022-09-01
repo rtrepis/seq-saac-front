@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import useUser from "../../hooks/useUser";
+import InitialUserData from "../../types/userInterface";
 import RegisterFormStyled from "./RegisterFormStyled";
 
-interface InitialUserData {
-  userName: "";
-  password: "";
-}
-
 const RegisterForm = () => {
+  const { postRegister } = useUser();
   const initialUserData: InitialUserData = {
     userName: "",
     password: "",
@@ -17,20 +15,32 @@ const RegisterForm = () => {
   const [userData, setUserData] = useState(initialUserData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserData({ ...userData, [event.target.name]: event.target.value });
+    setUserData({
+      ...userData,
+      [event.target.id]: event.target.value,
+    });
   };
+
+  const handleSubmit = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    await postRegister(userData);
+    setUserData(initialUserData);
+  };
+
+  const hasEmptyFields =
+    userData.userName.length < 3 || userData.password.length < 3;
 
   return (
     <RegisterFormStyled>
-      <Form className="register-form">
+      <Form className="register-form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="userName">
           <Form.Label>Usuari</Form.Label>
           <Form.Control
-            name="userName"
             type="text"
             className=" register-form__input"
             placeholder="Introduïu el vostre nom"
             onChange={handleChange}
+            autoComplete="off"
           />
           <Form.Text className="text-muted register-form__text">
             Introduïu un nom alfanumèric entre 3 i 30 digits
@@ -39,11 +49,11 @@ const RegisterForm = () => {
         <Form.Group className="mb-3" controlId="password">
           <Form.Label>Contrasenya</Form.Label>
           <Form.Control
-            name="password"
             type="password"
             className="register-form__input"
             placeholder="Introduïu la vostra contrasenyes"
             onChange={handleChange}
+            autoComplete="off"
           />
           <Form.Text className="text-muted register-form__text">
             Introduïu una contrasenya entre 3 i 30 digits.
@@ -54,6 +64,7 @@ const RegisterForm = () => {
             variant="primary"
             type="submit"
             className="register-form__button"
+            disabled={hasEmptyFields}
           >
             Regitra't
           </Button>
