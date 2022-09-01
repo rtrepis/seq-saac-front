@@ -9,7 +9,7 @@ jest.mock("../../hooks/useUser", () => () => ({
 }));
 
 describe("Give a RegisterForm Component", () => {
-  describe("When its instantiated with inputs name and passwords", () => {
+  describe("When its rendering with inputs name and passwords", () => {
     test("Then should show this component", () => {
       render(<RegisterForm />);
 

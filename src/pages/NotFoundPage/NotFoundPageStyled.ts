@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const UrlNotFoundStyled = styled.div`
+const NotFoundPageStyled = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,4 +8,4 @@ const UrlNotFoundStyled = styled.div`
   justify-content: center;
 `;
 
-export default UrlNotFoundStyled;
+export default NotFoundPageStyled;

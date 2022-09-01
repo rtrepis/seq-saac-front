@@ -1,17 +1,15 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import RegisterFormPage from "./pages/RegisterFormPage";
-import "./App.css";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import RegisterFormPage from "./pages/RegisterFormPage/RegisterFormPage";
 
 const App = (): JSX.Element => {
   return (
     <>
-      <div className="title">
-        <h1>SEQ-SAAC</h1>
-      </div>
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/register" element={<RegisterFormPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
