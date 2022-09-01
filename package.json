@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
+    "axios": "^0.27.2",
     "husky": "^8.0.0",
     "sass": "^1.54.6"
   },
