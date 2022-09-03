@@ -4,11 +4,16 @@ const UrlNotFound = (): JSX.Element => {
       <img
         height={150}
         width={150}
-        src={"/img/pagina-web.png"}
+        src={"/img/pagenotfound/pagina-web.png"}
         alt="Pàgina web"
       />
-      <img height={150} width={150} src={"/img/no.png"} alt="No" />
-      <img height={150} width={150} src={"/img/trobar.png"} alt="Trobar" />
+      <img height={150} width={150} src={"/img/pagenotfound/no.png"} alt="No" />
+      <img
+        height={150}
+        width={150}
+        src={"/img/pagenotfound/trobar.png"}
+        alt="Trobar"
+      />
     </>
   );
 };
