@@ -3,8 +3,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 interface NavigationProps {
-  page: "Registrar-se" | "SEQ-SAAC";
-  linkPage: "register" | "home";
+  page: "Registrar-se" | "SEQ-SAAC" | "Inicia sessió";
+  linkPage: "register" | "home" | "login";
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
@@ -31,6 +31,14 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
           ) : (
             <Nav>
               <Nav.Link href="/home">Inici</Nav.Link>
+            </Nav>
+          )}
+          <Nav className="me-auto"></Nav>
+          {linkPage === "login" ? (
+            ""
+          ) : (
+            <Nav>
+              <Nav.Link href="/login">Inicia sessió</Nav.Link>
             </Nav>
           )}
         </Navbar.Collapse>
