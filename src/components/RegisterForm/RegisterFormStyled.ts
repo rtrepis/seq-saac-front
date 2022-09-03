@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const RegisterFormStyled = styled.div`
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
