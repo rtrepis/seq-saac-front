@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InitialUserData from "../../types/userInterface";
-import RegisterFormStyled from "./LoginFormStyled";
+import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = () => {
   const initialUserData: InitialUserData = {
@@ -23,7 +23,7 @@ const LoginForm = () => {
     userData.userName.length < 3 || userData.password.length < 3;
 
   return (
-    <RegisterFormStyled>
+    <LoginFormStyled>
       <Form className="register-form">
         <Form.Group className="mb-3" controlId="userName">
           <Form.Label>Usuari</Form.Label>
@@ -62,7 +62,7 @@ const LoginForm = () => {
           </Button>
         </div>
       </Form>
-    </RegisterFormStyled>
+    </LoginFormStyled>
   );
 };
 

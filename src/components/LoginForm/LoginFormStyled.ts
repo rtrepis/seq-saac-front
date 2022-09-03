@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const RegisterFormStyled = styled.div`
+const LoginFormStyled = styled.div`
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -28,4 +28,4 @@ const RegisterFormStyled = styled.div`
   }
 `;
 
-export default RegisterFormStyled;
+export default LoginFormStyled;

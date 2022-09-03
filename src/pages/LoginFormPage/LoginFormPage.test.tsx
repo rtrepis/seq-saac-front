@@ -1,23 +1,23 @@
 import { render, screen } from "@testing-library/react";
-import RegisterFormPage from "./RegisterFormPage";
+import LoginFormPage from "./LoginFormPage";
 
-describe("Give a page register form", () => {
-  describe("When its rendering register form with input 'Usuari'", () => {
+describe("Give a page login form", () => {
+  describe("When its rendering login form with input 'Usuari'", () => {
     test("Then should show this register form", () => {
       const expectLabelText = "Usuari";
 
-      render(<RegisterFormPage />);
-      const registerForm = screen.getByLabelText("Usuari");
+      render(<LoginFormPage />);
+      const registerForm = screen.getByLabelText(expectLabelText);
 
       expect(registerForm).toBeInTheDocument();
     });
   });
   describe("When its rendering with component navigation and title page", () => {
     test("Then should show this component and title", () => {
-      const pageTitle = "Registrar-se";
+      const pageTitle = "Inicia sessió";
       const expectNavigation = "";
 
-      render(<RegisterFormPage />);
+      render(<LoginFormPage />);
       const title = screen.getByRole("heading", { level: 1, name: pageTitle });
       const navigation = screen.getByRole("navigation", {
         name: expectNavigation,
