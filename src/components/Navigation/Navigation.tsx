@@ -13,7 +13,7 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
       <Container className="d-flex justify-content-start">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Brand href={`/${linkPage}`} className="ms-3">
-          <h1>{page}</h1>
+          <h1 className="mb-0">{page}</h1>
         </Navbar.Brand>
 
         <Navbar.Collapse id="responsive-navbar-nav">
