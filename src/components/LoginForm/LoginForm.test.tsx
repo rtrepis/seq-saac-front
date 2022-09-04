@@ -46,12 +46,12 @@ describe("Give a LoginForm Component", () => {
       };
       render(<LoginForm />);
 
-      const userName = screen.getByLabelText("Usuari");
-      const password = screen.getByLabelText("Contrasenya");
+      const userNameCorrect = screen.getByLabelText("Usuari");
+      const passwordCorrect = screen.getByLabelText("Contrasenya");
       const button = screen.getByRole("button", { name: "Inicia sessió" });
 
-      await userEvent.type(userName, textType);
-      await userEvent.type(password, textType);
+      await userEvent.type(userNameCorrect, textType);
+      await userEvent.type(passwordCorrect, textType);
 
       await userEvent.click(button);
 
@@ -64,12 +64,12 @@ describe("Give a LoginForm Component", () => {
       const textType = "In";
       render(<LoginForm />);
 
-      const userName = screen.getByLabelText("Usuari");
-      const password = screen.getByLabelText("Contrasenya");
+      const userNameIncorrect = screen.getByLabelText("Usuari");
+      const passwordIncorrect = screen.getByLabelText("Contrasenya");
       const button = screen.getByRole("button", { name: "Inicia sessió" });
 
-      await userEvent.type(userName, textType);
-      await userEvent.type(password, textType);
+      await userEvent.type(userNameIncorrect, textType);
+      await userEvent.type(passwordIncorrect, textType);
 
       await userEvent.click(button);
 
