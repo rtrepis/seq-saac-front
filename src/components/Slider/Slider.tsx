@@ -4,7 +4,7 @@ import "./Slider.css";
 
 const Slider = (): JSX.Element => {
   return (
-    <Carousel fade>
+    <Carousel>
       <Carousel.Item interval={3000}>
         <SliderStyleIMG
           className="d-block w-100"

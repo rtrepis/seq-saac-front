@@ -2,16 +2,16 @@ import { SyntheticEvent, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useUser from "../../hooks/useUser";
-import InitialUserData from "../../types/userInterface";
+import NamePasswordUserData from "../../types/userInterface";
 import RegisterFormStyled from "./RegisterFormStyled";
 
 const RegisterForm = () => {
   const { postRegister } = useUser();
-  const initialUserData: InitialUserData = {
+
+  const initialUserData: NamePasswordUserData = {
     userName: "",
     password: "",
   };
-
   const [userData, setUserData] = useState(initialUserData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +23,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
+
     await postRegister(userData);
     setUserData(initialUserData);
   };

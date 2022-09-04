@@ -1,11 +1,12 @@
 import axios from "axios";
-import InitialUserData from "../types/userInterface";
+import NamePasswordUserData from "../types/userInterface";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const useUser = () => {
-  const postRegister = async (dataForm: InitialUserData) => {
+  const postRegister = async (dataForm: NamePasswordUserData) => {
     let isUserCreate;
+
     try {
       await axios.post(`${apiUrl}users/register`, dataForm);
       isUserCreate = true;
@@ -15,7 +16,22 @@ const useUser = () => {
     }
     return isUserCreate;
   };
-  return { postRegister };
+
+  const postLogin = async (dataForm: NamePasswordUserData) => {
+    let isUserLogin;
+
+    try {
+      await axios.post(`${apiUrl}users/login`, dataForm);
+      isUserLogin = true;
+    } catch (error) {
+      isUserLogin = false;
+      return isUserLogin;
+    }
+
+    return isUserLogin;
+  };
+
+  return { postRegister, postLogin };
 };
 
 export default useUser;

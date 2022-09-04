@@ -20,6 +20,7 @@ describe("Give a RegisterForm Component", () => {
       expect(password).toBeInTheDocument();
     });
   });
+
   describe("When the user types any value on the fields", () => {
     test("Then should show this type in fields", async () => {
       const textType = "Friend";
@@ -36,7 +37,7 @@ describe("Give a RegisterForm Component", () => {
     });
   });
 
-  describe("When user type the correct userName, password and submit form", () => {
+  describe("When register user type the correct userName, password and submit form", () => {
     test("Then should submit form", async () => {
       const textType = "Correct";
       const userCorret = {
@@ -49,15 +50,16 @@ describe("Give a RegisterForm Component", () => {
       const password = screen.getByLabelText("Contrasenya");
       const button = screen.getByRole("button", { name: "Regitra't" });
 
-      await userEvent.type(userName, textType);
-      await userEvent.type(password, textType);
+      await userEvent.type(userName, userCorret.userName);
+      await userEvent.type(password, userCorret.password);
 
       await userEvent.click(button);
 
       expect(mockPostRegister).toHaveBeenCalledWith(userCorret);
     });
   });
-  describe("When user type incorrect userName, password try submit form", () => {
+
+  describe("When register user type incorrect userName, password try submit form", () => {
     test("Then should cannot submit form", async () => {
       const textType = "In";
       render(<RegisterForm />);
