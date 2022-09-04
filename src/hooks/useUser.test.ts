@@ -71,4 +71,18 @@ describe("Given the useUser hook", () => {
       expect(resultPost).toBe(expectIsUserLogin);
     });
   });
+
+  describe("When userLogout it's called", () => {
+    test("Then should localStorage is empty", async () => {
+      const { result } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
+      localStorage.setItem("userToken", "UserNameTest");
+
+      await result.current.userLogout();
+      const localStoreState = localStorage.getItem("userToken");
+
+      expect(localStoreState).toBe(null);
+    });
+  });
 });
