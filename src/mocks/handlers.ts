@@ -8,4 +8,11 @@ export const handlers = [
     const status = userName === "" ? 400 : 201;
     return res(ctx.status(status));
   }),
+
+  rest.post(`${apiUrl}users/login`, async (req, res, ctx) => {
+    const { userName, password } = await req.json();
+
+    const status = userName === "Test" && password === "1234" ? 200 : 400;
+    return res(ctx.status(status), ctx.json("token"));
+  }),
 ];

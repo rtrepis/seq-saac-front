@@ -20,6 +20,7 @@ describe("Give a RegisterForm Component", () => {
       expect(password).toBeInTheDocument();
     });
   });
+
   describe("When the user types any value on the fields", () => {
     test("Then should show this type in fields", async () => {
       const textType = "Friend";
@@ -57,6 +58,7 @@ describe("Give a RegisterForm Component", () => {
       expect(mockPostRegister).toHaveBeenCalledWith(userCorret);
     });
   });
+
   describe("When user type incorrect userName, password try submit form", () => {
     test("Then should cannot submit form", async () => {
       const textType = "In";

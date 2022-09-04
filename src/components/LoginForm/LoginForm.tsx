@@ -6,7 +6,7 @@ import NamePasswordUserData from "../../types/userInterface";
 import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = () => {
-  const { postLogIn } = useUser();
+  const { postLogin } = useUser();
 
   const initialUserData: NamePasswordUserData = {
     userName: "",
@@ -27,7 +27,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    await postLogIn(userData);
+    await postLogin(userData);
   };
 
   return (

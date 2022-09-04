@@ -17,7 +17,7 @@ const useUser = () => {
     return isUserCreate;
   };
 
-  const postLogIn = async (dataForm: NamePasswordUserData) => {
+  const postLogin = async (dataForm: NamePasswordUserData) => {
     let isUserLogin;
 
     try {
@@ -25,11 +25,13 @@ const useUser = () => {
       isUserLogin = true;
     } catch (error) {
       isUserLogin = false;
+      return isUserLogin;
     }
+
     return isUserLogin;
   };
 
-  return { postRegister, postLogIn };
+  return { postRegister, postLogin };
 };
 
 export default useUser;
