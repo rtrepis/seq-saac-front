@@ -37,7 +37,7 @@ describe("Give a LoginForm Component", () => {
     });
   });
 
-  describe("When user type the correct userName, password and submit form", () => {
+  describe("When login user type the correct userName, password and submit form", () => {
     test("Then should submit form", async () => {
       const textType = "Correct";
       const userCorret = {
@@ -46,12 +46,12 @@ describe("Give a LoginForm Component", () => {
       };
       render(<LoginForm />);
 
-      const userNameCorrect = screen.getByLabelText("Usuari");
-      const passwordCorrect = screen.getByLabelText("Contrasenya");
+      const userName = screen.getByLabelText("Usuari");
+      const password = screen.getByLabelText("Contrasenya");
       const button = screen.getByRole("button", { name: "Inicia sessió" });
 
-      await userEvent.type(userNameCorrect, textType);
-      await userEvent.type(passwordCorrect, textType);
+      await userEvent.type(userName, userCorret.userName);
+      await userEvent.type(password, userCorret.password);
 
       await userEvent.click(button);
 
@@ -59,7 +59,7 @@ describe("Give a LoginForm Component", () => {
     });
   });
 
-  describe("When user type incorrect userName, password try submit form", () => {
+  describe("When login user type incorrect userName, password try submit form", () => {
     test("Then should cannot submit form", async () => {
       const textType = "In";
       render(<LoginForm />);
