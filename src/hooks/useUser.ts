@@ -19,6 +19,8 @@ const useUser = () => {
 
     try {
       await axios.post(`${apiUrl}users/register`, dataForm);
+      navigate("/login");
+
       isUserCreate = true;
     } catch (error) {
       isUserCreate = false;
@@ -50,9 +52,9 @@ const useUser = () => {
     return isUserLogin;
   };
 
-  const userLogout = () => {
-    localStorage.clear();
+  const userLogout = async () => {
     dispatch(userLogOutActionCreator);
+    await localStorage.clear();
     navigate("/home");
   };
 

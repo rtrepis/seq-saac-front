@@ -28,35 +28,34 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
 
         {userName === "" ? (
           <Navbar.Collapse id="responsive-navbar-nav ">
-            <Nav className="justify-content-end">
-              {linkPage === "register" ? (
-                ""
-              ) : (
-                <Nav.Item>
-                  <Nav.Link onClick={() => navigate("/register")}>
-                    Registrar-se
-                  </Nav.Link>
-                </Nav.Item>
-              )}
-              <Nav className="me-auto"></Nav>
-              {linkPage === "home" ? (
-                ""
-              ) : (
-                <Nav.Item>
-                  <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
-                </Nav.Item>
-              )}
-              <Nav className="me-auto"></Nav>
-              {linkPage === "login" ? (
-                ""
-              ) : (
-                <Nav.Item>
-                  <Nav.Link onClick={() => navigate("/login")}>
-                    Inicia sessió
-                  </Nav.Link>
-                </Nav.Item>
-              )}
-            </Nav>
+            <Nav className="me-auto"></Nav>
+            {linkPage === "register" ? (
+              ""
+            ) : (
+              <Nav>
+                <Nav.Link href="" onClick={() => navigate("/register")}>
+                  Registrar-se
+                </Nav.Link>
+              </Nav>
+            )}
+            <Nav className="me-auto"></Nav>
+            {linkPage === "home" ? (
+              ""
+            ) : (
+              <Nav>
+                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
+              </Nav>
+            )}
+            <Nav className="me-auto"></Nav>
+            {linkPage === "login" ? (
+              ""
+            ) : (
+              <Nav>
+                <Nav.Link onClick={() => navigate("/login")}>
+                  Inicia sessió
+                </Nav.Link>
+              </Nav>
+            )}
           </Navbar.Collapse>
         ) : (
           <Navbar.Collapse id="responsive-navbar-nav ">
@@ -69,7 +68,9 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
                 </Nav.Item>
               )}
               <Nav.Item>
-                <Nav.Link onClick={userLogout}>Tanca sessió</Nav.Link>
+                <Nav.Link href="/home" onClick={userLogout}>
+                  Tanca sessió
+                </Nav.Link>
               </Nav.Item>
               <NavDropdown
                 title={userName}
