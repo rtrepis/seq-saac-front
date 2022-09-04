@@ -7,7 +7,7 @@ const LoginFormStyled = styled.div`
   align-items: center;
   justify-content: center;
 
-  .register-form  {
+  .login-form  {
     max-width: 335px;
     padding: 15px;
     border: 2px #1b7d20 solid;

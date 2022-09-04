@@ -1,6 +1,6 @@
-interface InitialUserData {
+interface NamePasswordUserData {
   userName: string;
   password: string;
 }
 
-export default InitialUserData;
+export default NamePasswordUserData;

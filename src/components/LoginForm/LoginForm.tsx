@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import InitialUserData from "../../types/userInterface";
+import useUser from "../../hooks/useUser";
+import NamePasswordUserData from "../../types/userInterface";
 import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = () => {
-  const initialUserData: InitialUserData = {
+  const { postLogIn } = useUser();
+
+  const initialUserData: NamePasswordUserData = {
     userName: "",
     password: "",
   };
@@ -22,19 +25,24 @@ const LoginForm = () => {
   const hasEmptyFields =
     userData.userName.length < 3 || userData.password.length < 3;
 
+  const handleSubmit = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    await postLogIn(userData);
+  };
+
   return (
     <LoginFormStyled>
-      <Form className="register-form">
+      <Form className="login-form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="userName">
           <Form.Label>Usuari</Form.Label>
           <Form.Control
             type="text"
-            className=" register-form__input"
+            className=" login-form__input"
             placeholder="Introduïu el vostre nom"
             onChange={handleChange}
             autoComplete="off"
           />
-          <Form.Text className="text-muted register-form__text">
+          <Form.Text className="text-muted login-form__text">
             Introduïu un nom alfanumèric entre 3 i 30 digits
           </Form.Text>
         </Form.Group>
@@ -42,20 +50,20 @@ const LoginForm = () => {
           <Form.Label>Contrasenya</Form.Label>
           <Form.Control
             type="password"
-            className="register-form__input"
+            className="login-form__input"
             placeholder="Introduïu la vostra contrasenyes"
             onChange={handleChange}
             autoComplete="off"
           />
-          <Form.Text className="text-muted register-form__text">
+          <Form.Text className="text-muted login-form__text">
             Introduïu una contrasenya entre 3 i 30 digits.
           </Form.Text>
         </Form.Group>
-        <div className="register-form__footer">
+        <div className="login-form__footer">
           <Button
             variant="primary"
             type="submit"
-            className="register-form__button"
+            className="login-form__button"
             disabled={hasEmptyFields}
           >
             Inicia sessió
