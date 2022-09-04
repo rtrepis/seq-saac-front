@@ -1,9 +1,14 @@
-import axios from "axios";
-import NamePasswordUserData from "../types/userInterface";
+import axios, { AxiosResponse } from "axios";
+import { useDispatch } from "react-redux";
+import { userLoginActionCreator } from "../app/userSlice";
+import { NamePasswordUserData } from "../models/userInterface";
+import { decodeToken } from "../utils/auth";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const useUser = () => {
+  const dispatch = useDispatch();
+
   const postRegister = async (dataForm: NamePasswordUserData) => {
     let isUserCreate;
 
@@ -21,7 +26,14 @@ const useUser = () => {
     let isUserLogin;
 
     try {
-      await axios.post(`${apiUrl}users/login`, dataForm);
+      const {
+        data: { user },
+      }: AxiosResponse = await axios.post(`${apiUrl}users/login`, dataForm);
+
+      localStorage.setItem("userToken", user.token);
+
+      const userLogged = decodeToken(user.token);
+      dispatch(userLoginActionCreator(userLogged));
       isUserLogin = true;
     } catch (error) {
       isUserLogin = false;

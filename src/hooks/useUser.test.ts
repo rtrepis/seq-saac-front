@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
-import NamePasswordUserData from "../types/userInterface";
+import { NamePasswordUserData } from "../models/userInterface";
 import useUser from "./useUser";
+import { Wrapper } from "../utils/test-utils";
 
 describe("Given the useUser hook", () => {
   describe("When postRegister it's called with a correct userHook", () => {
@@ -9,7 +10,9 @@ describe("Given the useUser hook", () => {
         userName: "Test",
         password: "1234",
       };
-      const { result } = renderHook(() => useUser());
+      const { result } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
       const expectIsUserCreate = true;
 
       const resultPost = await result.current.postRegister(userHook);
@@ -24,7 +27,9 @@ describe("Given the useUser hook", () => {
         userName: "",
         password: "",
       };
-      const { result } = renderHook(() => useUser());
+      const { result } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
       const expectIsUserCreate = false;
 
       const resultPost = await result.current.postRegister(userHook);
@@ -39,7 +44,9 @@ describe("Given the useUser hook", () => {
         userName: "Test",
         password: "1234",
       };
-      const { result } = renderHook(() => useUser());
+      const { result } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
       const expectIsUserLogin = true;
 
       const resultPost = await result.current.postLogin(userHook);
@@ -54,7 +61,9 @@ describe("Given the useUser hook", () => {
         userName: "",
         password: "",
       };
-      const { result } = renderHook(() => useUser());
+      const { result } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
       const expectIsUserLogin = false;
 
       const resultPost = await result.current.postLogin(userHook);
