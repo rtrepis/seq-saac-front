@@ -52,9 +52,9 @@ const useUser = () => {
     return isUserLogin;
   };
 
-  const userLogout = async () => {
+  const userLogout = () => {
     dispatch(userLogOutActionCreator);
-    await localStorage.clear();
+    localStorage.clear();
     navigate("/home");
   };
 

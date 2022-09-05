@@ -8,7 +8,7 @@ describe("Give a page register form", () => {
       const expectLabelText = "Usuari";
 
       render(<RegisterFormPage />);
-      const registerForm = screen.getByLabelText("Usuari");
+      const registerForm = screen.getByLabelText(expectLabelText);
 
       expect(registerForm).toBeInTheDocument();
     });
