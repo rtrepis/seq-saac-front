@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { render } from "../../utils/test-utils";
+import { render, renderUser } from "../../utils/test-utils";
 import userEvent from "@testing-library/user-event";
 import Navigation from "./Navigation";
 
@@ -64,6 +64,23 @@ describe("Given a navigation component", () => {
 
       expect(linkClick_1).toBeInTheDocument();
       expect(mockedUsedNavigate).toHaveBeenCalled();
+    });
+  });
+
+  describe("When user Logged to be home page", () => {
+    test("Then should show links logged and navigate", () => {
+      const pageTitle = "SEQ-SAAC";
+      const pageLink = "home";
+      const expectLink_1 = "Tanca sessió";
+      const expectLink_2 = "UserTest";
+
+      renderUser(<Navigation page={pageTitle} linkPage={pageLink} />);
+
+      const link1 = screen.getByRole("button", { name: expectLink_1 });
+      const link2 = screen.getByRole("button", { name: expectLink_2 });
+
+      expect(link1).toBeInTheDocument();
+      expect(link2).toBeInTheDocument();
     });
   });
 });
