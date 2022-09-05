@@ -1,11 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { uiModalShowActionCreator } from "../app/uiSlice";
 import {
   userLoginActionCreator,
   userLogOutActionCreator,
 } from "../app/userSlice";
 import { NamePasswordUserData } from "../models/userInterface";
+import { ModalPayload, ModalType } from "../Types/interface";
 import { decodeToken } from "../utils/auth";
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -14,15 +16,30 @@ const useUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const modalShow = (
+    setShow: boolean,
+    setMessage: string,
+    setType: ModalType
+  ) => {
+    const modal: ModalPayload = {
+      show: setShow,
+      message: setMessage,
+      type: setType,
+    };
+
+    dispatch(uiModalShowActionCreator(modal));
+  };
+
   const postRegister = async (dataForm: NamePasswordUserData) => {
     let isUserCreate;
 
     try {
       await axios.post(`${apiUrl}users/register`, dataForm);
       navigate("/login");
-
       isUserCreate = true;
+      modalShow(true, "Usuari creat correctament", "ok");
     } catch (error) {
+      modalShow(true, "Usuari o contrasenya invàlids", "error");
       isUserCreate = false;
       return isUserCreate;
     }
@@ -45,6 +62,7 @@ const useUser = () => {
       isUserLogin = true;
       navigate("/home");
     } catch (error) {
+      modalShow(true, "Usuari o contrasenya invàlids", "error");
       isUserLogin = false;
       return isUserLogin;
     }
@@ -53,7 +71,7 @@ const useUser = () => {
   };
 
   const userLogout = () => {
-    dispatch(userLogOutActionCreator);
+    dispatch(userLogOutActionCreator());
     localStorage.clear();
     navigate("/home");
   };
