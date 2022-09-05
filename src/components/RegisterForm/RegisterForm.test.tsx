@@ -11,23 +11,27 @@ jest.mock("../../hooks/useUser", () => () => ({
 describe("Give a RegisterForm Component", () => {
   describe("When its rendering with inputs name and passwords", () => {
     test("Then should show this component", () => {
-      render(<RegisterForm />);
+      const labelUserNameRegister = "Usuari";
+      const labelPasswordRegister = "Contrasenya";
 
-      const userName = screen.getByLabelText("Usuari");
-      const password = screen.getByLabelText("Contrasenya");
+      render(<RegisterForm />);
+      const userName = screen.getByLabelText(labelUserNameRegister);
+      const password = screen.getByLabelText(labelPasswordRegister);
 
       expect(userName).toBeInTheDocument();
       expect(password).toBeInTheDocument();
     });
   });
 
-  describe("When the user types any value on the fields", () => {
+  describe("When the user types any value on the fields register", () => {
     test("Then should show this type in fields", async () => {
-      const textType = "Friend";
-      render(<RegisterForm />);
+      const textType = "Register";
+      const labelUserNameRegister = "Usuari";
+      const labelPasswordRegister = "Contrasenya";
 
-      const userName = screen.getByLabelText("Usuari");
-      const password = screen.getByLabelText("Contrasenya");
+      render(<RegisterForm />);
+      const userName = screen.getByLabelText(labelUserNameRegister);
+      const password = screen.getByLabelText(labelPasswordRegister);
 
       await userEvent.type(userName, textType);
       await userEvent.type(password, textType);
@@ -39,16 +43,19 @@ describe("Give a RegisterForm Component", () => {
 
   describe("When register user type the correct userName, password and submit form", () => {
     test("Then should submit form", async () => {
-      const textType = "Correct";
+      const textType = "CorrectRegister";
       const userCorret = {
         userName: textType,
         password: textType,
       };
-      render(<RegisterForm />);
+      const labelUserNameRegister = "Usuari";
+      const labelPasswordRegister = "Contrasenya";
+      const buttonRegister = "Regitra't";
 
-      const userName = screen.getByLabelText("Usuari");
-      const password = screen.getByLabelText("Contrasenya");
-      const button = screen.getByRole("button", { name: "Regitra't" });
+      render(<RegisterForm />);
+      const userName = screen.getByLabelText(labelUserNameRegister);
+      const password = screen.getByLabelText(labelPasswordRegister);
+      const button = screen.getByRole("button", { name: buttonRegister });
 
       await userEvent.type(userName, userCorret.userName);
       await userEvent.type(password, userCorret.password);
@@ -62,15 +69,17 @@ describe("Give a RegisterForm Component", () => {
   describe("When register user type incorrect userName, password try submit form", () => {
     test("Then should cannot submit form", async () => {
       const textType = "In";
-      render(<RegisterForm />);
+      const labelUserNameRegister = "Usuari";
+      const labelPasswordRegister = "Contrasenya";
+      const buttonRegister = "Regitra't";
 
-      const userName = screen.getByLabelText("Usuari");
-      const password = screen.getByLabelText("Contrasenya");
-      const button = screen.getByRole("button", { name: "Regitra't" });
+      render(<RegisterForm />);
+      const userName = screen.getByLabelText(labelUserNameRegister);
+      const password = screen.getByLabelText(labelPasswordRegister);
+      const button = screen.getByRole("button", { name: buttonRegister });
 
       await userEvent.type(userName, textType);
       await userEvent.type(password, textType);
-
       await userEvent.click(button);
 
       expect(mockPostRegister).not.toHaveBeenCalled();

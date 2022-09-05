@@ -5,7 +5,11 @@ import { userReducer } from "../app/userSlice";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "../app/store";
 
-function render(
+interface WrapperProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+const render = (
   ui: JSX.Element,
   {
     preloadedState,
@@ -15,20 +19,16 @@ function render(
     }),
     ...renderOptions
   }: { preloadedState?: any; store?: any } = {}
-) {
-  function Wrapper({ children }: { children: JSX.Element }) {
+) => {
+  const Wrapper = ({ children }: WrapperProps): JSX.Element => {
     return (
       <Provider store={store}>
         <BrowserRouter>{children}</BrowserRouter>
       </Provider>
     );
-  }
+  };
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
-}
-
-interface WrapperProps {
-  children: JSX.Element | JSX.Element[];
-}
+};
 
 const Wrapper = ({ children }: WrapperProps): JSX.Element => {
   return (
