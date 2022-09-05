@@ -41,5 +41,31 @@ const Wrapper = ({ children }: WrapperProps): JSX.Element => {
 
 export default Wrapper;
 
+const renderUser = (
+  ui: JSX.Element,
+  {
+    store = configureStore({
+      reducer: { user: userReducer, ui: uiReducer },
+      preloadedState: {
+        user: {
+          id: "",
+          userName: "UserTest",
+          token: "456356",
+        },
+      },
+    }),
+    ...renderOptions
+  }: { preloadedState?: any; store?: any } = {}
+) => {
+  const Wrapper = ({ children }: WrapperProps): JSX.Element => {
+    return (
+      <Provider store={store}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    );
+  };
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+};
+
 export * from "@testing-library/react";
-export { render, Wrapper };
+export { render, Wrapper, renderUser };
