@@ -1,4 +1,4 @@
-export interface Modal {
+export interface ModalPayload {
   show: boolean;
   type: ModalType;
   message: string;

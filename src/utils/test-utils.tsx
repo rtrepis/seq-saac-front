@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { userReducer } from "../app/userSlice";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "../app/store";
+import { uiReducer } from "../app/uiSlice";
 
 interface WrapperProps {
   children: JSX.Element | JSX.Element[];
@@ -14,7 +15,7 @@ const render = (
   {
     preloadedState,
     store = configureStore({
-      reducer: { user: userReducer },
+      reducer: { user: userReducer, ui: uiReducer },
       preloadedState,
     }),
     ...renderOptions

@@ -1,15 +1,22 @@
 import { Button, Modal } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { uiModalCloseActionCreator } from "../../app/uiSlice";
 import { ModalType } from "../../Types/interface";
 import "./ModalCenter.css";
 
 interface ModalCenterProps {
   show: boolean;
-  onHide: () => void;
   type: ModalType;
   message: string;
 }
 
 const ModalCenter = (ModalCenterProps: ModalCenterProps) => {
+  const dispatch = useDispatch();
+
+  const handlerModalClose = () => {
+    dispatch(uiModalCloseActionCreator());
+  };
+
   return (
     <Modal
       {...ModalCenterProps}
@@ -34,7 +41,7 @@ const ModalCenter = (ModalCenterProps: ModalCenterProps) => {
         }`}
       >
         <Button
-          onClick={ModalCenterProps.onHide}
+          onClick={handlerModalClose}
           variant="outline-primary"
           className="center"
         >
