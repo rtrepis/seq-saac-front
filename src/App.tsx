@@ -6,7 +6,7 @@ import RegisterFormPage from "./pages/RegisterFormPage/RegisterFormPage";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginActionCreator } from "./app/userSlice";
 import { decodeToken } from "./utils/auth";
-import VerticallyCenteredModal from "./components/Modal/Modal";
+import ModalCenter from "./components/Modal/ModalCenter";
 import { RootState } from "./app/store";
 import { uiModalCloseActionCreator } from "./app/uiSlice";
 
@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
 
   return (
     <>
-      <VerticallyCenteredModal
+      <ModalCenter
         show={show}
         onHide={handlerModalClose}
         type={type}
