@@ -68,9 +68,7 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
                 </Nav.Item>
               )}
               <Nav.Item>
-                <Nav.Link href="/home" onClick={userLogout}>
-                  Tanca sessió
-                </Nav.Link>
+                <Nav.Link onClick={userLogout}>Tanca sessió</Nav.Link>
               </Nav.Item>
               <NavDropdown
                 title={userName}
