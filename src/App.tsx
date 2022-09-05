@@ -6,7 +6,7 @@ import RegisterFormPage from "./pages/RegisterFormPage/RegisterFormPage";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginActionCreator } from "./app/userSlice";
 import { decodeToken } from "./utils/auth";
-import ModalCenter from "./components/Modal/ModalCenter";
+import ModalCenter from "./components/ModalCenter/ModalCenter";
 import { RootState } from "./app/store";
 import { uiModalCloseActionCreator } from "./app/uiSlice";
 
