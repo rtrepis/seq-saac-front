@@ -33,7 +33,7 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
               ""
             ) : (
               <Nav>
-                <Nav.Link href="" onClick={() => navigate("/register")}>
+                <Nav.Link onClick={() => navigate("/register")}>
                   Registrar-se
                 </Nav.Link>
               </Nav>
