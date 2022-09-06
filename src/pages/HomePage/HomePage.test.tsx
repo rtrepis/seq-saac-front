@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import HomePage from "./HomePage";
-import { render } from "../../utils/test-utils";
+import { render } from "../../utils/test/test-utils-Loggout";
 
 describe("Given a HomePage component", () => {
   describe("When rendered it should", () => {
