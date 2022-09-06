@@ -17,7 +17,12 @@ $carousel-control-color: #252525;
 $carousel-indicator-active-bg: #252525;
 $carousel-caption-color: #252525;
 
+$h2-font-size: 20px;
+
 $theme-colors: (
   "primary": #1b7d20,
 );
+
+$card-height: 175px;
+
 @import "bootstrap/scss/bootstrap.scss";
