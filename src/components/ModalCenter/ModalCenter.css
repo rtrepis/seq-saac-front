@@ -1,10 +1,10 @@
 .Modal-body--error {
-  border: 2px solid red;
+  border: 2px solid #a70808;
   border-bottom: 0px;
 }
 
 .Modal-footer--error {
-  border: 2px solid red;
+  border: 2px solid #a70808;
   border-top: 0px;
   border-radius: 0px;
 }
