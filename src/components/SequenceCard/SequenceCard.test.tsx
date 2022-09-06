@@ -6,8 +6,11 @@ describe("Give a component SequenceCard", () => {
     test("Then display title", () => {
       const expectTitle = "Rentar mans";
       const expectImages = "obrir l'aixta";
+      const expectPictogramsArray = [11737, 8975, 35729];
 
-      render(<SequenceCard />);
+      render(
+        <SequenceCard name={expectTitle} pictograms={expectPictogramsArray} />
+      );
       const title = screen.getByRole("heading", { name: expectTitle });
       const image = screen.getAllByRole("img", { name: expectImages });
 
