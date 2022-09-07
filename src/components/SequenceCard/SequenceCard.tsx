@@ -11,7 +11,7 @@ const SequenceCard = ({ name, pictograms }: SequenceCardProps): JSX.Element => {
     <Col className="container justify-content-center align-items-center">
       <Card style={{ width: "20.5rem" }} border="primary" className="m-2">
         <Card.Header className="p-2 ps-3">
-          <h2 className="mb-0">{name}</h2>
+          <h3 className="mb-0">{name}</h3>
         </Card.Header>
         <Card.Body>
           {pictograms.slice(0, 3).map((pictogram) => (

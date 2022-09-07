@@ -11,7 +11,7 @@ describe("Give a component SequencesCardList", () => {
   describe("When it instantiate whit a array of objects", () => {
     test("Then we will have as many h2 as the length of the array", () => {
       render(<SequencesCardList />);
-      const expectTitles = screen.getAllByRole("heading", { level: 2 });
+      const expectTitles = screen.getAllByRole("heading", { level: 3 });
 
       expect(expectTitles).toHaveLength(mockSequenceArray.length);
     });
