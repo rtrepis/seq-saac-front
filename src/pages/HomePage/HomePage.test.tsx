@@ -1,6 +1,12 @@
 import { screen } from "@testing-library/react";
 import HomePage from "./HomePage";
 import { render } from "../../utils/test/test-utils-Loggout";
+import mockSequenceArray from "../../mocks/mockSequenceArray";
+
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useSelector: () => mockSequenceArray,
+}));
 
 describe("Given a HomePage component", () => {
   describe("When rendered it should", () => {

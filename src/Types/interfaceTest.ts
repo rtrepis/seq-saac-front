@@ -15,6 +15,11 @@ export interface PreloadedState {
     type: ModalType;
     message: string;
   };
+  sequences?: {
+    id: string;
+    name: string;
+    pictograms: number[];
+  };
 }
 
 export interface WrapperProps {

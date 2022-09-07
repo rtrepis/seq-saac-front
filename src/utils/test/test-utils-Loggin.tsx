@@ -1,9 +1,9 @@
 import { render as rtlRender } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import { userReducer } from "../../app/userSlice";
+import { userReducer } from "../../app/slice/userSlice";
 import { BrowserRouter } from "react-router-dom";
-import { uiReducer } from "../../app/uiSlice";
+import { uiReducer } from "../../app/slice/uiSlice";
 import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
 
 const renderUser = (

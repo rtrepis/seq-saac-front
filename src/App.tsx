@@ -4,7 +4,7 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import LoginFormPage from "./pages/LoginFormPage/LoginFormPage";
 import RegisterFormPage from "./pages/RegisterFormPage/RegisterFormPage";
 import { useDispatch, useSelector } from "react-redux";
-import { userLoginActionCreator } from "./app/userSlice";
+import { userLoginActionCreator } from "./app/slice/userSlice";
 import { decodeToken } from "./utils/auth";
 import ModalCenter from "./components/ModalCenter/ModalCenter";
 import { RootState } from "./app/store";

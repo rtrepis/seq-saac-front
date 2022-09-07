@@ -1,4 +1,4 @@
-import { ModalPayload } from "../Types/interface";
+import { ModalPayload } from "../../Types/interface";
 import { uiReducer } from "./uiSlice";
 
 describe("Given the uiSlicer", () => {
@@ -13,7 +13,7 @@ describe("Given the uiSlicer", () => {
       const uiPayload = {
         type: "ui/uiModalClose",
       };
-      const expectedUi = {
+      const expectUi = {
         show: false,
         type: "error",
         message: "Message Error",
@@ -21,7 +21,7 @@ describe("Given the uiSlicer", () => {
 
       const newUI = uiReducer(previousUiPayload, uiPayload);
 
-      expect(newUI).toStrictEqual(expectedUi);
+      expect(newUI).toStrictEqual(expectUi);
     });
   });
 });

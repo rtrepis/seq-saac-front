@@ -1,5 +1,5 @@
 import Navigation from "../../components/Navigation/Navigation";
-import SequenceCard from "../../components/SequenceCard/SequenceCard";
+import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
 import Slider from "../../components/Slider/Slider";
 
 const HomePage = (): JSX.Element => {
@@ -7,7 +7,7 @@ const HomePage = (): JSX.Element => {
     <>
       <Navigation page="SEQ-SAAC" linkPage="home" />
       <Slider />
-      <SequenceCard />
+      <SequencesCardList />
     </>
   );
 };
