@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { uiModalShowActionCreator } from "../app/uiSlice";
+import { uiModalShowActionCreator } from "../app/slice/uiSlice";
 import {
   userLoginActionCreator,
   userLogOutActionCreator,
-} from "../app/userSlice";
+} from "../app/slice/userSlice";
 import { NamePasswordUserData } from "../models/userInterface";
 import { ModalPayload, ModalType } from "../Types/interface";
 import { decodeToken } from "../utils/auth";
