@@ -16,7 +16,7 @@ const SequencesCardList = (): JSX.Element => {
 
   return (
     <ul className="container justify-content-center m-0 p-0 mt-3 ">
-      <Row xs={1} md={2} lg={3} className="g-3">
+      <Row xs={1} md={2} lg={3} xl={4} className="g-3">
         {sequencePublic.map((sequence) => (
           <li key={sequence.id} className="outstyle">
             <SequenceCard
