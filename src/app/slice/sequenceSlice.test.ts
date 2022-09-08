@@ -7,6 +7,8 @@ describe("Given the sequencesSlicer", () => {
       id: "",
       name: "",
       pictograms: [0, 0],
+      private: true,
+      owner: "235",
     },
   ];
   describe("When call loadSequences reducer with previousState and payload", () => {
@@ -16,6 +18,8 @@ describe("Given the sequencesSlicer", () => {
           id: "2354634t",
           name: "Rentar mans",
           pictograms: [1234, 1245, 6788, 4322],
+          private: true,
+          owner: "235",
         },
       ];
       const sequencesPayLoad = loadSequencesActionCreator(expectSequences);

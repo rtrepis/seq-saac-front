@@ -1,10 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import axios from "axios";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
-import {
-  uiModalCloseActionCreator,
-  uiModalShowActionCreator,
-} from "../app/slice/uiSlice";
+import { uiModalShowActionCreator } from "../app/slice/uiSlice";
 import { Sequences } from "../models/sequencesInterface";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
 import useApi from "./useApi";
@@ -19,20 +16,23 @@ jest.mock("react-redux", () => ({
 describe("Given a useApi hook", () => {
   describe("When getAllPublicSequence it's called with correct sequencesHook", () => {
     test("Then should return sequences array", async () => {
-      const sequencesHook = [
-        {
-          id: "",
-          name: "",
-          pictograms: [0, 0],
-        },
-      ];
+      const sequencesHook = {
+        payload: [
+          {
+            id: "",
+            name: "",
+            pictograms: [0, 0],
+            private: true,
+            owner: "235",
+          },
+        ],
+        type: "sequences/loadSequences",
+      };
       const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
 
       await result.current.getAllPublicSequence();
 
-      expect(mockDispatch).toHaveBeenCalledWith(
-        loadSequencesActionCreator(sequencesHook)
-      );
+      expect(mockDispatch).toHaveBeenCalledWith(sequencesHook);
     });
 
     describe("When getAllPublicSequence it's called with incorrect sequencesHook", () => {

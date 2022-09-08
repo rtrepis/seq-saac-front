@@ -30,6 +30,8 @@ export const handlers = [
         id: "",
         name: "",
         pictograms: [0, 0],
+        private: true,
+        owner: "235",
       },
     ];
     const headerTestError = req.headers.get("Error");
