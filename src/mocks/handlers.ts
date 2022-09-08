@@ -68,7 +68,6 @@ export const handlers = [
         })
       );
     }
-    debugger;
     return res(ctx.status(200), ctx.json({ sequencesCreate }));
   }),
 ];

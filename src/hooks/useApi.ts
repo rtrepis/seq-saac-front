@@ -41,8 +41,6 @@ const useApi = () => {
   }, [dispatch]);
 
   const getSequencesOwner = useCallback(async (): Promise<void> => {
-    debugger;
-
     const modalShow = (
       setShow: boolean,
       setMessage: string,
