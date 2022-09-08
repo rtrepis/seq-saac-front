@@ -9,7 +9,7 @@ const Slider = (): JSX.Element => {
         <Carousel.Item interval={3000}>
           <SliderStyleIMG
             className="d-block w-100"
-            src="/img/slider/banner_2_1600_1000.jpeg"
+            src="/img/slider/banner_2_1000.jpeg"
             alt="Pictogrames en ús"
           />
           <Carousel.Caption className="position">
@@ -19,7 +19,7 @@ const Slider = (): JSX.Element => {
         <Carousel.Item interval={3000}>
           <SliderStyleIMG
             className="d-block w-100"
-            src="/img/slider/banner_6_1600_1000.jpeg"
+            src="/img/slider/banner_6_1000.jpeg"
             alt="Pictogrames en ús"
           />
           <Carousel.Caption className="position">
@@ -29,7 +29,7 @@ const Slider = (): JSX.Element => {
         <Carousel.Item interval={3000}>
           <SliderStyleIMG
             className="d-block w-100"
-            src="/img/slider/banner_7_1600_1000.jpeg"
+            src="/img/slider/banner_7_1000.jpeg"
             alt="Pictogrames en ús"
           />
           <Carousel.Caption className="position">

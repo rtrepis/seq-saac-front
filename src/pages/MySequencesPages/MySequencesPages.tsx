@@ -4,6 +4,7 @@ import { RootState } from "../../app/store";
 import Navigation from "../../components/Navigation/Navigation";
 import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
 import useApi from "../../hooks/useApi";
+import MySequencesPagesStyled from "./MySecuencesPagesStyled";
 
 const MySequencePage = (): JSX.Element => {
   const { getSequencesOwner } = useApi();
@@ -16,7 +17,9 @@ const MySequencePage = (): JSX.Element => {
   return (
     <>
       <Navigation page="Les meves seqüències" linkPage="my-sequences" />
-      <SequencesCardList sequences={sequenceOwner} />
+      <MySequencesPagesStyled>
+        <SequencesCardList sequences={sequenceOwner} />
+      </MySequencesPagesStyled>
     </>
   );
 };
