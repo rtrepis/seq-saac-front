@@ -1,19 +1,23 @@
-import mockSequenceArray from "../../mocks/mockSequenceArray";
 import { render, screen } from "../../utils/test/test-utils-Loggout";
 import SequencesCardList from "./SequencesCardList";
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockSequenceArray,
-}));
-
 describe("Give a component SequencesCardList", () => {
-  describe("When it instantiate whit a array of objects", () => {
-    test("Then we will have as many h2 as the length of the array", () => {
-      render(<SequencesCardList />);
+  describe("When it receive whit a array for props", () => {
+    test("Then we will have as many h3 as the length of the array", () => {
+      const expectSequences = [
+        {
+          id: "2354634t",
+          name: "Rentar mans",
+          pictograms: [1234, 1245, 6788, 4322],
+          private: true,
+          owner: "235",
+        },
+      ];
+
+      render(<SequencesCardList sequences={expectSequences} />);
       const expectTitles = screen.getAllByRole("heading", { level: 3 });
 
-      expect(expectTitles).toHaveLength(mockSequenceArray.length);
+      expect(expectTitles).toHaveLength(expectSequences.length);
     });
   });
 });
