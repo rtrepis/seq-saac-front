@@ -47,4 +47,28 @@ export const handlers = [
 
     return res(ctx.status(200), ctx.json({ sequences }));
   }),
+
+  rest.get(`${apiUrl}sequences/owner`, async (req, res, ctx) => {
+    const sequences = [
+      {
+        id: "",
+        name: "",
+        pictograms: [0, 0],
+        private: true,
+        owner: "235",
+      },
+    ];
+    const headerTestError = req.headers.get("Error");
+
+    if (headerTestError) {
+      return res(
+        ctx.status(500),
+        ctx.json({
+          error: "Something server error",
+        })
+      );
+    }
+
+    return res(ctx.status(200), ctx.json({ sequences }));
+  }),
 ];

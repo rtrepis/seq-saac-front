@@ -8,6 +8,7 @@ import { userLoginActionCreator } from "./app/slice/userSlice";
 import { decodeToken } from "./utils/auth";
 import ModalCenter from "./components/ModalCenter/ModalCenter";
 import { RootState } from "./app/store";
+import MySequencePage from "./pages/MySequencesPages/MySequencesPages";
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const App = (): JSX.Element => {
         <Route path="/home" element={<HomePage />} />
         <Route path="/register" element={<RegisterFormPage />} />
         <Route path="/login" element={<LoginFormPage />} />
+        <Route path="/mySequences" element={<MySequencePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

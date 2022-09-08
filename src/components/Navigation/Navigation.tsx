@@ -8,8 +8,8 @@ import { RootState } from "../../app/store";
 import useUser from "../../hooks/useUser";
 
 interface NavigationProps {
-  page: "Registrar-se" | "SEQ-SAAC" | "Inicia sessió";
-  linkPage: "register" | "home" | "login";
+  page: "Registrar-se" | "SEQ-SAAC" | "Inicia sessió" | "Les meves seqüències";
+  linkPage: "register" | "home" | "login" | "mySequences";
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {

@@ -39,8 +39,45 @@ const useApi = () => {
       );
     }
   }, [dispatch]);
+
+  const getSequencesOwner = useCallback(async (): Promise<void> => {
+    const modalShow = (
+      setShow: boolean,
+      setMessage: string,
+      setType: ModalType
+    ) => {
+      const modal: ModalPayload = {
+        show: setShow,
+        message: setMessage,
+        type: setType,
+      };
+
+      dispatch(uiModalShowActionCreator(modal));
+    };
+
+    const token = localStorage.getItem("userToken");
+    try {
+      const {
+        data: { sequences },
+      } = await axios.get(`${apiURL}sequences/owner`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+
+      const { sequencesCreate } = sequences;
+
+      dispatch(loadSequencesActionCreator(sequencesCreate));
+    } catch {
+      modalShow(
+        true,
+        "error en la lectura del servidor. Torna ha provar-ho més tard",
+        "error"
+      );
+    }
+  }, [dispatch]);
+
   return {
     getAllPublicSequence: getAllPublicSequences,
+    getSequencesOwner: getSequencesOwner,
   };
 };
 
