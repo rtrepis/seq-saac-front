@@ -54,7 +54,6 @@ const useApi = () => {
 
       dispatch(uiModalShowActionCreator(modal));
     };
-
     const token = localStorage.getItem("userToken");
     try {
       const {
@@ -62,7 +61,6 @@ const useApi = () => {
       } = await axios.get(`${apiURL}sequences/owner`, {
         headers: { authorization: `Bearer ${token}` },
       });
-
       const { sequencesCreate } = sequences;
 
       dispatch(loadSequencesActionCreator(sequencesCreate));

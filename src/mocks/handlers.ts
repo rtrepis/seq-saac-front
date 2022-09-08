@@ -49,7 +49,7 @@ export const handlers = [
   }),
 
   rest.get(`${apiUrl}sequences/owner`, async (req, res, ctx) => {
-    const sequences = [
+    const sequencesCreate = [
       {
         id: "",
         name: "",
@@ -68,7 +68,6 @@ export const handlers = [
         })
       );
     }
-
-    return res(ctx.status(200), ctx.json({ sequences }));
+    return res(ctx.status(200), ctx.json({ sequencesCreate }));
   }),
 ];
