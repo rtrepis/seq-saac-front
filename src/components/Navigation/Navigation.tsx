@@ -9,7 +9,7 @@ import useUser from "../../hooks/useUser";
 
 interface NavigationProps {
   page: "Registrar-se" | "SEQ-SAAC" | "Inicia sessió" | "Les meves seqüències";
-  linkPage: "register" | "home" | "login" | "mySequences";
+  linkPage: "register" | "home" | "login" | "my-sequences";
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
@@ -73,11 +73,16 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
               <NavDropdown
                 title={userName}
                 id="nav-dropdown"
-                align={{ lg: "end" }}
+                align={{ lg: "start" }}
               >
-                <NavDropdown.Item>Link_1</NavDropdown.Item>
+                {linkPage === "my-sequences" ? (
+                  ""
+                ) : (
+                  <NavDropdown.Item onClick={() => navigate("/my-sequences")}>
+                    Les meves seqüències
+                  </NavDropdown.Item>
+                )}
                 <NavDropdown.Item>Link_2</NavDropdown.Item>
-                <NavDropdown.Item>Link_3</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

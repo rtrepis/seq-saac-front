@@ -69,19 +69,47 @@ describe("Given a navigation component", () => {
   });
 
   describe("When user Logged to be home page", () => {
-    test("Then should show links logged and navigate", () => {
+    test("Then should show links logged and navigate", async () => {
       const pageTitle = "SEQ-SAAC";
       const pageLink = "home";
       const expectLink_1 = "Tanca sessió";
       const expectLink_2 = "UserTest";
+      const expectLink_3_click = "Les meves seqüències";
 
       renderUser(<Navigation page={pageTitle} linkPage={pageLink} />);
 
       const link1 = screen.getByRole("button", { name: expectLink_1 });
-      const link2 = screen.getByRole("button", { name: expectLink_2 });
+      const linkDrop = screen.getByRole("button", { name: expectLink_2 });
+
+      await userEvent.click(linkDrop);
+
+      const link3 = screen.getByRole("button", { name: expectLink_3_click });
+      await userEvent.click(link3);
+
+      expect(link1).toBeInTheDocument();
+      expect(linkDrop).toBeInTheDocument();
+      expect(link3).toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalled();
+    });
+  });
+
+  describe("When user Logged to be mySequence page", () => {
+    test("Then should show links logged and navigate", async () => {
+      const pageTitle = "Les meves seqüències";
+      const pageLink = "my-sequences";
+      const expectLink_1 = "Tanca sessió";
+      const expectLink_2_Click = "Inici";
+
+      renderUser(<Navigation page={pageTitle} linkPage={pageLink} />);
+
+      const link1 = screen.getByRole("button", { name: expectLink_1 });
+      const link2 = screen.getByRole("button", { name: expectLink_2_Click });
+
+      await userEvent.click(link2);
 
       expect(link1).toBeInTheDocument();
       expect(link2).toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 });
