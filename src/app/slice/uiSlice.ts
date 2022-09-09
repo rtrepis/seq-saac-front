@@ -3,8 +3,8 @@ import { ModalPayload } from "../../Types/interface";
 
 export const modalInitialState: ModalPayload = {
   show: false,
-  type: "error",
-  message: "Nom d'usuari o contrasenya invàlids",
+  type: "ok",
+  message: "",
 };
 
 const uiSlice = createSlice({

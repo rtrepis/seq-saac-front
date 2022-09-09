@@ -3,28 +3,20 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
-import { ModalPayload, ModalType } from "../Types/interface";
+import { ModalPayload } from "../Types/interface";
 
 const apiURL = process.env.REACT_APP_API_URL;
+
+const errorMessage: ModalPayload = {
+  show: true,
+  message: "error en la lectura del servidor. Torna ha provar-ho més tard",
+  type: "error",
+};
 
 const useApi = () => {
   const dispatch = useDispatch();
 
   const getAllPublicSequences = useCallback(async (): Promise<void> => {
-    const modalShow = (
-      setShow: boolean,
-      setMessage: string,
-      setType: ModalType
-    ) => {
-      const modal: ModalPayload = {
-        show: setShow,
-        message: setMessage,
-        type: setType,
-      };
-
-      dispatch(uiModalShowActionCreator(modal));
-    };
-
     try {
       const {
         data: { sequences },
@@ -32,28 +24,11 @@ const useApi = () => {
 
       dispatch(loadSequencesActionCreator(sequences));
     } catch {
-      modalShow(
-        true,
-        "error en la lectura del servidor. Torna ha provar-ho més tard",
-        "error"
-      );
+      dispatch(uiModalShowActionCreator(errorMessage));
     }
   }, [dispatch]);
 
   const getSequencesOwner = useCallback(async (): Promise<void> => {
-    const modalShow = (
-      setShow: boolean,
-      setMessage: string,
-      setType: ModalType
-    ) => {
-      const modal: ModalPayload = {
-        show: setShow,
-        message: setMessage,
-        type: setType,
-      };
-
-      dispatch(uiModalShowActionCreator(modal));
-    };
     const token = localStorage.getItem("userToken");
     try {
       const {
@@ -65,11 +40,7 @@ const useApi = () => {
 
       dispatch(loadSequencesActionCreator(sequencesCreate));
     } catch {
-      modalShow(
-        true,
-        "error en la lectura del servidor. Torna ha provar-ho més tard",
-        "error"
-      );
+      dispatch(uiModalShowActionCreator(errorMessage));
     }
   }, [dispatch]);
 
