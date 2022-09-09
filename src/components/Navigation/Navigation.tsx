@@ -7,8 +7,21 @@ import { RootState } from "../../app/store";
 import useUser from "../../hooks/useUser";
 
 interface NavigationProps {
-  page: "Registrar-se" | "SEQ-SAAC" | "Inicia sessió" | "Les meves seqüències";
-  linkPage: "register" | "home" | "login" | "my-sequences";
+  page:
+    | "Registrar-se"
+    | "SEQ-SAAC"
+    | "Inicia sessió"
+    | "Les meves seqüències"
+    | "Seqüència"
+    | "";
+
+  linkPage:
+    | "register"
+    | "home"
+    | "login"
+    | "my-sequences"
+    | "details-sequence"
+    | "";
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
