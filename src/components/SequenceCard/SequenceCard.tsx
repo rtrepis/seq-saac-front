@@ -8,8 +8,8 @@ interface SequenceCardProps {
 
 const SequenceCard = ({ name, pictograms }: SequenceCardProps): JSX.Element => {
   return (
-    <Col className="container justify-content-center align-items-center">
-      <Card style={{ width: "20.5rem" }} border="primary" className="m-2">
+    <Col className="mx-auto">
+      <Card style={{ width: "20.5rem" }} border="primary" className="mx-auto">
         <Card.Header className="p-2 ps-3">
           <h3 className="mb-0">{name}</h3>
         </Card.Header>
