@@ -23,8 +23,7 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
       expand="md"
       bg="primary"
       variant="dark"
-      className="display-flex justify-content-start
-       p-2 ps-3"
+      className="display-flex justify-content-start p-2 ps-3"
     >
       <Navbar.Toggle
         aria-controls="responsive-navbar-nav"
