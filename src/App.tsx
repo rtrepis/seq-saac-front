@@ -9,6 +9,7 @@ import { decodeToken } from "./utils/auth";
 import ModalCenter from "./components/ModalCenter/ModalCenter";
 import { RootState } from "./app/store";
 import MySequencePage from "./pages/MySequencesPages/MySequencesPages";
+import DetailsSequencePage from "./pages/DetailsSequencePage/DetailsSequencePage";
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const App = (): JSX.Element => {
         <Route path="/register" element={<RegisterFormPage />} />
         <Route path="/login" element={<LoginFormPage />} />
         <Route path="/my-sequences" element={<MySequencePage />} />
+        <Route path="/details-sequence" element={<DetailsSequencePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
