@@ -19,10 +19,8 @@ describe("Given a navigation component", () => {
 
       render(<Navigation page={pageTitle} linkPage={pageLink} />);
       const title = screen.getByRole("heading", { name: pageTitle });
-      const link = screen.getByRole("link", { name: pageTitle });
 
       expect(title).toBeInTheDocument();
-      expect(link).toBeInTheDocument();
     });
   });
 
