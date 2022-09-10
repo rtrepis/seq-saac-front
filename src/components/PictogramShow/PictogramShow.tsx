@@ -10,9 +10,8 @@ const PictogramShow = ({ pictogram }: PictogramShowProps): JSX.Element => {
       src={`https://api.arasaac.org/api/pictograms/${pictogram.toString()}`}
       className=""
       alt="obrir l'aixta"
-      height="300px"
-      width="300px"
-      key={pictogram}
+      height="200px"
+      width="200px"
     />
   );
 };

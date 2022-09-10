@@ -18,6 +18,7 @@ const SequencesCardList = ({
             <SequenceCard
               name={sequence.name}
               pictograms={sequence.pictograms}
+              id={sequence.id}
             />
           </li>
         ))}
