@@ -4,7 +4,9 @@ import {
   SequenceInitialState,
 } from "../../models/sequencesInterface";
 
-const sequenceInitialState: SequenceInitialState = [];
+const sequenceInitialState: SequenceInitialState = [
+  { id: "", name: "", owner: "", pictograms: [], private: false },
+];
 
 const sequenceSlice = createSlice({
   name: "sequences",

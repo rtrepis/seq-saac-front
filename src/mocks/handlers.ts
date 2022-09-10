@@ -49,15 +49,20 @@ export const handlers = [
   }),
 
   rest.get(`${apiUrl}sequences/owner`, async (req, res, ctx) => {
-    const sequencesCreate = [
-      {
-        id: "",
-        name: "",
-        pictograms: [0, 0],
-        private: true,
-        owner: "235",
-      },
-    ];
+    const sequences = {
+      userName: "",
+      sequencesCreate: [
+        {
+          id: "345",
+          name: "owner",
+          pictograms: [0, 0],
+          private: true,
+          owner: "235",
+        },
+      ],
+      id: "2345",
+    };
+
     const headerTestError = req.headers.get("Error");
 
     if (headerTestError) {
@@ -68,6 +73,29 @@ export const handlers = [
         })
       );
     }
-    return res(ctx.status(200), ctx.json({ sequencesCreate }));
+    return res(ctx.status(200), ctx.json({ sequences }));
+  }),
+
+  rest.get(
+    `${apiUrl}sequences/63199e9c8aa067d2f0931a4e`,
+    async (req, res, ctx) => {
+      const sequenceId = {
+        sequences: [
+          {
+            id: "63199e9c8aa067d2f0931a4e",
+            name: "",
+            pictograms: [0, 0],
+            private: true,
+            owner: "235",
+          },
+        ],
+      };
+
+      return res(ctx.status(200), ctx.json(sequenceId));
+    }
+  ),
+
+  rest.get(`${apiUrl}sequences/63199e9`, async (req, res, ctx) => {
+    return res(ctx.status(404));
   }),
 ];
