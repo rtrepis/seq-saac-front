@@ -5,12 +5,17 @@ import { userReducer } from "../../app/slice/userSlice";
 import { BrowserRouter } from "react-router-dom";
 import { uiReducer } from "../../app/slice/uiSlice";
 import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
+import { sequencesReducer } from "../../app/slice/sequencesSlice";
 
 const renderUser = (
   ui: JSX.Element,
   {
     store = configureStore({
-      reducer: { user: userReducer, ui: uiReducer },
+      reducer: {
+        user: userReducer,
+        ui: uiReducer,
+        sequences: sequencesReducer,
+      },
       preloadedState: {
         user: {
           id: "",
@@ -33,4 +38,4 @@ const renderUser = (
 };
 
 export * from "@testing-library/react";
-export { renderUser };
+export { renderUser, rtlRender };

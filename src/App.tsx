@@ -31,7 +31,7 @@ const App = (): JSX.Element => {
         <Route path="/register" element={<RegisterFormPage />} />
         <Route path="/login" element={<LoginFormPage />} />
         <Route path="/my-sequences" element={<MySequencePage />} />
-        <Route path="/details-sequence" element={<DetailsSequencePage />} />
+        <Route path="/details-sequence/:id" element={<DetailsSequencePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

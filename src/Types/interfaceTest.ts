@@ -15,13 +15,15 @@ export interface PreloadedState {
     type: ModalType;
     message: string;
   };
-  sequences?: {
-    id: string;
-    name: string;
-    pictograms: number[];
-    private: boolean;
-    owner: string;
-  };
+  sequence?: [
+    {
+      id: string;
+      name: string;
+      pictograms: number[];
+      private: boolean;
+      owner: string;
+    }
+  ];
 }
 
 export interface WrapperProps {

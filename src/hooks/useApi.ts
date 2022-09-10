@@ -30,6 +30,7 @@ const useApi = () => {
 
   const getSequencesOwner = useCallback(async (): Promise<void> => {
     const token = localStorage.getItem("userToken");
+
     try {
       const {
         data: { sequences },
@@ -44,9 +45,26 @@ const useApi = () => {
     }
   }, [dispatch]);
 
+  const getSequence = useCallback(
+    async (id: string): Promise<void> => {
+      try {
+        const {
+          data: { sequences },
+        } = await axios.get(`${apiURL}sequences/${id}`);
+        const sequencesArray = [sequences];
+
+        dispatch(loadSequencesActionCreator(sequencesArray));
+      } catch {
+        dispatch(uiModalShowActionCreator(errorMessage));
+      }
+    },
+    [dispatch]
+  );
+
   return {
     getAllPublicSequence: getAllPublicSequences,
     getSequencesOwner: getSequencesOwner,
+    getSequence: getSequence,
   };
 };
 
