@@ -42,7 +42,7 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
         aria-controls="responsive-navbar-nav"
         className="border-3"
       />
-      <Navbar.Brand href={`/${linkPage}`} className="ms-3">
+      <Navbar.Brand className="ms-3">
         <h1 className="mb-0">{page}</h1>
       </Navbar.Brand>
 
