@@ -6,7 +6,7 @@ const CreateSequencePage = () => {
     <>
       <Navigation
         linkPage="create-sequence"
-        page="Crea la seqüència"
+        page="Crear la seqüència"
       ></Navigation>
       <CreateSequenceForm />
     </>

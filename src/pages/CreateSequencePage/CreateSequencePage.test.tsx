@@ -5,7 +5,7 @@ import CreateSequencePage from "./CreateSequencePage";
 describe("Give a page create sequence form", () => {
   describe("When its rendering with component navigation and title page", () => {
     test("Then should show this component and title", () => {
-      const pageTitle = "Crea la seqüència";
+      const pageTitle = "Crear la seqüència";
       const expectNavigation = "";
 
       renderUser(<CreateSequencePage />);
