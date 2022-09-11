@@ -12,10 +12,22 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Given a navigation component", () => {
-  describe("When it is rendered with props page title", () => {
+  describe("When it is rendered with props page title 'Regisrar-se'", () => {
     test("then it will display this title and your link", () => {
       const pageTitle = "Registrar-se";
       const pageLink = "register";
+
+      render(<Navigation page={pageTitle} linkPage={pageLink} />);
+      const title = screen.getByRole("heading", { name: pageTitle });
+
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered with props page title 'SEQ-SAAC", () => {
+    test("then it will display this title and your link", () => {
+      const pageTitle = "SEQ-SAAC";
+      const pageLink = "home";
 
       render(<Navigation page={pageTitle} linkPage={pageLink} />);
       const title = screen.getByRole("heading", { name: pageTitle });
@@ -97,16 +109,52 @@ describe("Given a navigation component", () => {
       const pageLink = "my-sequences";
       const expectLink_1 = "Tanca sessió";
       const expectLink_2_Click = "Inici";
+      const expectLink_3_Click = "Crear la seqüència";
+      const expectLink_2 = "UserTest";
 
       renderUser(<Navigation page={pageTitle} linkPage={pageLink} />);
 
       const link1 = screen.getByRole("button", { name: expectLink_1 });
       const link2 = screen.getByRole("button", { name: expectLink_2_Click });
+      const linkDrop = screen.getByRole("button", { name: expectLink_2 });
 
       await userEvent.click(link2);
+      await userEvent.click(linkDrop);
+      const link3 = screen.getByRole("button", { name: expectLink_3_Click });
+
+      await userEvent.click(link3);
 
       expect(link1).toBeInTheDocument();
       expect(link2).toBeInTheDocument();
+      expect(link3).toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalled();
+    });
+  });
+
+  describe("When user Logged to be create sequence page", () => {
+    test("Then should show links logged and navigate", async () => {
+      const pageTitle = "Crea la seqüència";
+      const pageLink = "create-sequence";
+      const expectLink_1 = "Tanca sessió";
+      const expectLink_2_Click = "Inici";
+      const expectLink_3_Click = "Les meves seqüències";
+      const expectLink_2 = "UserTest";
+
+      renderUser(<Navigation page={pageTitle} linkPage={pageLink} />);
+
+      const link1 = screen.getByRole("button", { name: expectLink_1 });
+      const link2 = screen.getByRole("button", { name: expectLink_2_Click });
+      const linkDrop = screen.getByRole("button", { name: expectLink_2 });
+
+      await userEvent.click(link2);
+      await userEvent.click(linkDrop);
+      const link3 = screen.getByRole("button", { name: expectLink_3_Click });
+
+      await userEvent.click(link3);
+
+      expect(link1).toBeInTheDocument();
+      expect(link2).toBeInTheDocument();
+      expect(link3).toBeInTheDocument();
       expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
