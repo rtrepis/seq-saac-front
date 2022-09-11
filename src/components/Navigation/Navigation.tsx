@@ -13,8 +13,7 @@ interface NavigationProps {
     | "Inicia sessió"
     | "Les meves seqüències"
     | "Seqüència"
-    | ""
-    | "Crea la seqüència";
+    | "Crear la seqüència";
 
   linkPage:
     | "register"
@@ -22,7 +21,6 @@ interface NavigationProps {
     | "login"
     | "my-sequences"
     | "details-sequence"
-    | ""
     | "create-sequence";
 }
 
