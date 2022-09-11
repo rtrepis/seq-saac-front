@@ -41,7 +41,7 @@ describe("Given a Details component", () => {
   describe("When pass through an arraypictogramsmock", () => {
     test("Then the past sequences are rendered", () => {
       const pictogramsMockProperty = [0, 0];
-      const altImages = "obrir l'aixta";
+      const altImages = "pictograma";
 
       render(<DetailsSequencePage />);
       const images = screen.getAllByRole("img", { name: altImages });
