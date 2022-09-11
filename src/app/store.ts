@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { sequencesReducer } from "./slice/sequencesSlice";
+import { showPictogramsReducer } from "./slice/showPictogramsSlice";
 import { uiReducer } from "./slice/uiSlice";
 import { userReducer } from "./slice/userSlice";
 
@@ -8,6 +9,7 @@ export const store = configureStore({
     user: userReducer,
     ui: uiReducer,
     sequences: sequencesReducer,
+    showPictograms: showPictogramsReducer,
   },
 });
 
