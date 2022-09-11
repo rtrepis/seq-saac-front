@@ -1,6 +1,7 @@
 import { rest } from "msw";
 
 const apiUrl = process.env.REACT_APP_API_URL;
+const apiAraSaacUrl = process.env.REACT_APP_API_ARASAAC_URL;
 
 export const handlers = [
   rest.post(`${apiUrl}users/register`, async (req, res, ctx) => {
@@ -98,4 +99,13 @@ export const handlers = [
   rest.get(`${apiUrl}sequences/63199e9`, async (req, res, ctx) => {
     return res(ctx.status(404));
   }),
+
+  rest.get(
+    `${apiAraSaacUrl}pictograms/ca/search/avi`,
+    async (req, res, ctx) => {
+      const pictograms = [{ _id: 234 }, { _id: 567 }];
+
+      return res(ctx.status(200), ctx.json(pictograms));
+    }
+  ),
 ];

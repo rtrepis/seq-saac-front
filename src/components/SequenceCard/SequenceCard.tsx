@@ -29,7 +29,7 @@ const SequenceCard = ({
               <img
                 src={`https://api.arasaac.org/api/pictograms/${pictogram.toString()}`}
                 className="img-thumbnail me-1"
-                alt="obrir l'aixta"
+                alt="pictograma"
                 height="92px"
                 width="92px"
                 key={pictogram}

@@ -13,7 +13,7 @@ interface NavigationProps {
     | "Inicia sessió"
     | "Les meves seqüències"
     | "Seqüència"
-    | "";
+    | "Crear la seqüència";
 
   linkPage:
     | "register"
@@ -21,7 +21,7 @@ interface NavigationProps {
     | "login"
     | "my-sequences"
     | "details-sequence"
-    | "";
+    | "create-sequence";
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
@@ -102,7 +102,13 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
                   Les meves seqüències
                 </NavDropdown.Item>
               )}
-              <NavDropdown.Item>Link_2</NavDropdown.Item>
+              {linkPage === "create-sequence" ? (
+                ""
+              ) : (
+                <NavDropdown.Item onClick={() => navigate("/create-sequence")}>
+                  Crear la seqüència
+                </NavDropdown.Item>
+              )}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

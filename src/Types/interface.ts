@@ -5,3 +5,7 @@ export interface ModalPayload {
 }
 
 export type ModalType = "error" | "ok";
+
+export type Pictogram = number;
+
+export type Pictograms = [Pictogram];

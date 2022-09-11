@@ -5,7 +5,7 @@ describe("Given a Pictogram Show component", () => {
   describe("When we pass a pictogram number to it", () => {
     test("Then we expect it to render this pictogram", () => {
       const pictogramProps = 11737;
-      const altImages = "obrir l'aixta";
+      const altImages = "pictograma";
 
       render(<PictogramShow pictogram={pictogramProps} />);
       const images = screen.getByRole("img", { name: altImages });

@@ -13,7 +13,7 @@ describe("Give a component SequenceCard", () => {
   describe("When rendered it should", () => {
     test("Then display title pictograms and link navegate", async () => {
       const expectTitle = "Rentar mans";
-      const expectImages = "obrir l'aixta";
+      const expectImages = "pictograma";
       const expectPictogramsArray = [11737, 8975, 35729, 35729];
       const expectId = "63199e9c8aa067d2f0931a4e";
 
