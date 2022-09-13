@@ -75,8 +75,6 @@ const CreateSequenceForm = () => {
       ...amountPictograms,
       index: indexArray,
     });
-
-    console.log();
   };
 
   return (
