@@ -22,6 +22,8 @@ jest.mock("../../hooks/useApi", () => () => ({
   postCreateSequence: mockPostCreate,
 }));
 
+beforeEach(() => jest.clearAllMocks());
+
 describe("Give a CreateSequenceForm component", () => {
   describe("When its rendering with inputs name, private, amountPictograms, button", () => {
     test("Then should show this component", () => {
@@ -67,7 +69,7 @@ describe("Give a CreateSequenceForm component", () => {
     });
   });
 
-  describe("When user type name and checked pirviate", () => {
+  describe("When user type name and checked private", () => {
     test("Then should show changes in form", async () => {
       const textType = "New name sequence";
 
@@ -88,7 +90,7 @@ describe("Give a CreateSequenceForm component", () => {
   });
 
   describe("When user completed form can click submit", () => {
-    test("Then should called useApi", async () => {
+    test("Then should called useAraSaac", async () => {
       const expectSubmitButton = "Desar la seqüència";
 
       render(<CreateSequenceForm />);
