@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Pictogram, Pictograms } from "../../Types/interface";
+import { Pictogram } from "../../Types/interface";
 
-const showPictogramsInitialState: Pictograms = [];
+const showPictogramsInitialState: Pictogram[] = [];
 
 const showPictogramsSlice = createSlice({
   name: "showPictograms",
@@ -9,7 +9,7 @@ const showPictogramsSlice = createSlice({
   reducers: {
     loadShowPictograms: (
       previousShowPictograms,
-      action: PayloadAction<[Pictogram]>
+      action: PayloadAction<Pictogram[]>
     ) => [...action.payload],
   },
 });

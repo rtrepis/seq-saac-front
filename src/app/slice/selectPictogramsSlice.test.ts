@@ -1,6 +1,7 @@
 import { SelectPictogram } from "../../models/sequencesInterface";
 import {
   addSelectPictogramActionCreator,
+  deleteSelectPictogramActionCreator,
   selectPictogramsReducer,
   updateSelectPictogramActionCreator,
 } from "./selectPictogramsSlice";
@@ -76,6 +77,26 @@ describe("Given the slice selectPictogramsSlice", () => {
       );
 
       expect(newSelectPictogram).not.toStrictEqual([expectSelectPictogram]);
+    });
+  });
+
+  describe("When call deteleSelectPictogram with previousState", () => {
+    test("Then should return previousSequence length -1", () => {
+      const previousSequencesPayload: SelectPictogram[] = [
+        {
+          index: 1,
+          pictogram: 123,
+        },
+      ];
+
+      const selectPictogramPayLoad = deleteSelectPictogramActionCreator();
+
+      const newSelectPictogram = selectPictogramsReducer(
+        previousSequencesPayload,
+        selectPictogramPayLoad
+      );
+
+      expect(newSelectPictogram).toHaveLength(0);
     });
   });
 });
