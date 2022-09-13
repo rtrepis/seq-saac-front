@@ -2,6 +2,7 @@ import axios from "axios";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
+import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
 import { ModalPayload } from "../Types/interface";
@@ -77,6 +78,7 @@ const useApi = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        dispatch(loadShowPictogramsActionCreator([]));
         dispatch(uiModalShowActionCreator(createMessage));
       } catch (error) {
         dispatch(uiModalShowActionCreator(errorMessage));

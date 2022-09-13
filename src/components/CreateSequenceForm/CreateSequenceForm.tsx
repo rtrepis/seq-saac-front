@@ -2,7 +2,10 @@ import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks";
-import { addSelectPictogramActionCreator } from "../../app/slice/selectPictogramsSlice";
+import {
+  addSelectPictogramActionCreator,
+  deleteSelectPictogramActionCreator,
+} from "../../app/slice/selectPictogramsSlice";
 import { RootState } from "../../app/store";
 import useApi from "../../hooks/useApi";
 import { ProtoSequences } from "../../models/sequencesInterface";
@@ -65,12 +68,14 @@ const CreateSequenceForm = () => {
       amount: amountPictograms.amount + operator,
     });
 
-    dispatch(
-      addSelectPictogramActionCreator({
-        index: amountPictograms.amount,
-        pictogram: 0,
-      })
-    );
+    operator > 0
+      ? dispatch(
+          addSelectPictogramActionCreator({
+            index: amountPictograms.amount,
+            pictogram: 26527,
+          })
+        )
+      : dispatch(deleteSelectPictogramActionCreator());
   };
 
   const handleSelectPictogram = (indexArray: number) => {
@@ -139,7 +144,7 @@ const CreateSequenceForm = () => {
               <>
                 <Button
                   className="m-2"
-                  key={`${index}_button`}
+                  key={`button${index}`}
                   onClick={() => handleSelectPictogram(index)}
                 >
                   Pictograma {index + 1}
@@ -147,7 +152,7 @@ const CreateSequenceForm = () => {
                 {isVisible && (
                   <PictogramShow
                     pictogram={selectPictograms[index].pictogram}
-                    key={`${selectPictograms[index].index}_pictogram`}
+                    key={`${selectPictograms[index].index}${selectPictograms[index].pictogram}`}
                     size="small"
                   />
                 )}
