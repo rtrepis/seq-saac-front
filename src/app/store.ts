@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { selectPictogramsReducer } from "./slice/selectPictogramsSlice";
 import { sequencesReducer } from "./slice/sequencesSlice";
 import { showPictogramsReducer } from "./slice/showPictogramsSlice";
 import { uiReducer } from "./slice/uiSlice";
@@ -10,6 +11,7 @@ export const store = configureStore({
     ui: uiReducer,
     sequences: sequencesReducer,
     showPictograms: showPictogramsReducer,
+    selectPictograms: selectPictogramsReducer,
   },
 });
 

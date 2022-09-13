@@ -24,7 +24,7 @@ const DetailsSequencePage = (): JSX.Element => {
       <DetailsSequencePageStyled>
         <h2 className="mb-4">{sequences[0].name}</h2>
         {sequences[0].pictograms.map((element: number) => (
-          <PictogramShow pictogram={element} key={element} />
+          <PictogramShow pictogram={element} key={element} size="big" />
         ))}
       </DetailsSequencePageStyled>
     </>
