@@ -4,10 +4,6 @@ import {
   selectPictogramsReducer,
   updateSelectPictogramActionCreator,
 } from "./selectPictogramsSlice";
-import {
-  createSequencesActionCreator,
-  sequencesReducer,
-} from "./sequencesSlice";
 
 describe("Given the slice selectPictogramsSlice", () => {
   describe("When call addSelectPictogram reducer with previousState and payload", () => {
@@ -54,6 +50,32 @@ describe("Given the slice selectPictogramsSlice", () => {
       );
 
       expect(newSelectPictogram).toStrictEqual([expectSelectPictogram]);
+    });
+  });
+
+  describe("When call updateSelectPictogram with previousState and different payload", () => {
+    test("Then should not return changes in previousSequencePayload property", () => {
+      const previousSequencesPayload: SelectPictogram[] = [
+        {
+          index: 1,
+          pictogram: 123,
+        },
+      ];
+      const expectSelectPictogram: SelectPictogram = {
+        index: 2,
+        pictogram: 444,
+      };
+
+      const selectPictogramPayLoad = updateSelectPictogramActionCreator(
+        expectSelectPictogram
+      );
+
+      const newSelectPictogram = selectPictogramsReducer(
+        previousSequencesPayload,
+        selectPictogramPayLoad
+      );
+
+      expect(newSelectPictogram).not.toStrictEqual([expectSelectPictogram]);
     });
   });
 });
