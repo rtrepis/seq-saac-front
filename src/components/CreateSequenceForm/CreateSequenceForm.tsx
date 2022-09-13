@@ -80,6 +80,8 @@ const CreateSequenceForm = () => {
     });
   };
 
+  const isVisible = selectPictograms.length > 0;
+
   return (
     <>
       <Form className="create-sequence-form p-3" onSubmit={handleSubmit}>
@@ -142,14 +144,12 @@ const CreateSequenceForm = () => {
                 >
                   Pictograma {index + 1}
                 </Button>
-                {selectPictograms.length > 0 ? (
+                {isVisible && (
                   <PictogramShow
                     pictogram={selectPictograms[index].pictogram}
                     key={`${selectPictograms[index].index}_pictogram`}
                     size="small"
                   />
-                ) : (
-                  ""
                 )}
               </>
             ))

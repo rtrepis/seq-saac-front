@@ -3,7 +3,10 @@ import { renderUser } from "../../utils/test/test-utils-Loggin";
 import CreateSequencePage from "./CreateSequencePage";
 
 const mockDispatch = jest.fn();
-const mockPictograms = { showPictograms: [2, 5, 6] };
+const mockPictograms = {
+  showPictograms: [2, 5, 6],
+  selectPictograms: [{ index: 1, pictogram: 1 }],
+};
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
