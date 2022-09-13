@@ -153,7 +153,9 @@ const CreateSequenceForm = () => {
               </>
             ))
           : ""}
-        <Button type="submit">Desar</Button>
+        <div className="text-center m-3">
+          <Button type="submit">Desar la seqüència</Button>
+        </div>
       </Form>
       <SelectPictogram indexArrayPictograms={amountPictograms.index} />
     </>
