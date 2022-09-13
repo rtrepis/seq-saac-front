@@ -7,10 +7,12 @@ import useApi from "./useApi";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
 
 const mockDispatch = jest.fn();
+const mockedUsedNavigate = jest.fn();
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockDispatch,
+  useNavigate: () => mockedUsedNavigate,
 }));
 
 jest.spyOn(Storage.prototype, "setItem");

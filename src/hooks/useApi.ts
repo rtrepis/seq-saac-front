@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
-import { ProtoSequences, Sequences } from "../models/sequencesInterface";
+import { ProtoSequences } from "../models/sequencesInterface";
 import { ModalPayload } from "../Types/interface";
 
 const apiURL = process.env.REACT_APP_API_URL;
@@ -23,7 +22,6 @@ const createMessage: ModalPayload = {
 
 const useApi = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const getAllPublicSequences = useCallback(async (): Promise<void> => {
     try {
@@ -72,20 +70,18 @@ const useApi = () => {
   const postCreateSequence = useCallback(
     async (formSequenceData: ProtoSequences) => {
       const token = localStorage.getItem("userToken");
-
       try {
         await axios.post(`${apiURL}sequences/create/`, formSequenceData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        navigate("/my-sequences");
         dispatch(uiModalShowActionCreator(createMessage));
       } catch (error) {
         dispatch(uiModalShowActionCreator(errorMessage));
       }
     },
-    [dispatch, navigate]
+    [dispatch]
   );
 
   return {
