@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import App from "./App";
 import { renderUser } from "./utils/test/test-utils-Loggin";
 

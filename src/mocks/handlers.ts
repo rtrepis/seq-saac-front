@@ -100,12 +100,20 @@ export const handlers = [
     return res(ctx.status(404));
   }),
 
-  rest.get(
-    `${apiAraSaacUrl}pictograms/ca/search/avi`,
-    async (req, res, ctx) => {
-      const pictograms = [{ _id: 234 }, { _id: 567 }];
+  rest.get(`${apiAraSaacUrl}pictograms/ca/search/pa`, async (req, res, ctx) => {
+    const pictograms = [{ _id: 234 }, { _id: 567 }];
 
-      return res(ctx.status(200), ctx.json(pictograms));
-    }
-  ),
+    return res(ctx.status(200), ctx.json(pictograms));
+  }),
+
+  rest.get(`${apiAraSaacUrl}pictograms/ca/search/`, async (req, res, ctx) => {
+    return res(ctx.status(500));
+  }),
+
+  rest.post(`${apiUrl}sequences/create/`, async (req, res, ctx) => {
+    const { name } = await req.json();
+    let status = name === "" ? 500 : 201;
+
+    return res(ctx.status(status));
+  }),
 ];

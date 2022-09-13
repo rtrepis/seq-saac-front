@@ -70,6 +70,7 @@ const useApi = () => {
   const postCreateSequence = useCallback(
     async (formSequenceData: ProtoSequences) => {
       const token = localStorage.getItem("userToken");
+
       try {
         await axios.post(`${apiURL}sequences/create/`, formSequenceData, {
           headers: {
