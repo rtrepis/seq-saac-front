@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import SelectPictogramShow from "./SelectPictogramShow";
+import userEvent from "@testing-library/user-event";
 
 const mockDispatch = jest.fn();
 const mockPictograms = { showPictograms: [2, 5, 6] };
@@ -25,6 +26,24 @@ describe("Given a Pictogram Show component", () => {
       const images = screen.getByRole("img", { name: altImages });
 
       expect(images).toBeInTheDocument();
+    });
+  });
+  describe("When user click on pictogram", () => {
+    test("Then we expect called dispatch", async () => {
+      const pictogramProps = 11737;
+      const altImages = "pictograma";
+
+      render(
+        <SelectPictogramShow
+          pictogram={pictogramProps}
+          indexArrayPictograms={1}
+        />
+      );
+      const images = screen.getByRole("img", { name: altImages });
+
+      await userEvent.click(images);
+
+      expect(mockDispatch).toBeCalled();
     });
   });
 });
