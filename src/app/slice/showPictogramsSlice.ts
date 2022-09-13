@@ -11,16 +11,10 @@ const showPictogramsSlice = createSlice({
       previousShowPictograms,
       action: PayloadAction<[Pictogram]>
     ) => [...action.payload],
-    createShowPictograms: (
-      previousShowPictograms,
-      action: PayloadAction<Pictogram>
-    ) => [...previousShowPictograms, action.payload],
   },
 });
 
 export const showPictogramsReducer = showPictogramsSlice.reducer;
 
-export const {
-  loadShowPictograms: loadShowPictogramsActionCreator,
-  createShowPictograms: createShowPictogramsActionCreator,
-} = showPictogramsSlice.actions;
+export const { loadShowPictograms: loadShowPictogramsActionCreator } =
+  showPictogramsSlice.actions;

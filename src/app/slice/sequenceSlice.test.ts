@@ -1,5 +1,9 @@
 import { SequenceInitialState } from "../../models/sequencesInterface";
-import { loadSequencesActionCreator, sequencesReducer } from "./sequencesSlice";
+import {
+  createSequencesActionCreator,
+  loadSequencesActionCreator,
+  sequencesReducer,
+} from "./sequencesSlice";
 
 describe("Given the sequencesSlicer", () => {
   const previousSequencesPayload: SequenceInitialState = [
@@ -30,6 +34,36 @@ describe("Given the sequencesSlicer", () => {
       );
 
       expect(newSequences).toStrictEqual(expectSequences);
+    });
+  });
+
+  describe("When call createSequence reducer with protoSequence and payload", () => {
+    test("Then should return same previousSequencePayload with show new property", () => {
+      const previousSequencePayload = {
+        id: "",
+        name: "",
+        owner: "235",
+        pictograms: [0, 0],
+        private: true,
+      };
+
+      const expectSequences = {
+        id: "2354634t",
+        name: "Rentar mans",
+        pictograms: [1234, 1245, 6788, 4322],
+        private: true,
+        owner: "235",
+      };
+      const arrayExpect = [previousSequencePayload, expectSequences];
+
+      const sequencesPayLoad = createSequencesActionCreator(expectSequences);
+
+      const newSequences = sequencesReducer(
+        previousSequencesPayload,
+        sequencesPayLoad
+      );
+
+      expect(newSequences).toStrictEqual(arrayExpect);
     });
   });
 });

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../../app/hooks";
 import { addSelectPictogramActionCreator } from "../../app/slice/selectPictogramsSlice";
 import { RootState } from "../../app/store";
 import useApi from "../../hooks/useApi";
@@ -10,7 +11,7 @@ import SelectPictogram from "../SelectPictogram/SelectPictogram";
 
 const CreateSequenceForm = () => {
   const { selectPictograms } = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { postCreateSequence } = useApi();
 
   const initialAmountPictogram = {
@@ -32,7 +33,7 @@ const CreateSequenceForm = () => {
     initialCreateSequence
   );
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     const addPictograms: number[] = [];
@@ -41,7 +42,7 @@ const CreateSequenceForm = () => {
     );
 
     const newSequence = { ...createSequenceData, pictograms: addPictograms };
-    postCreateSequence(newSequence);
+    await postCreateSequence(newSequence);
   };
 
   const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
