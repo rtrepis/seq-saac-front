@@ -16,7 +16,7 @@ const SelectPictogramShow = ({
 
   const selectPictogramIndexArray = () => {
     let addPictograms: SelectPictogram = {
-      index: indexArrayPictograms + 1,
+      index: indexArrayPictograms,
       pictogram: pictogram,
     };
 

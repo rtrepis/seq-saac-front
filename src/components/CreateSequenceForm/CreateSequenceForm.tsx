@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addSelectPictogramActionCreator } from "../../app/slice/selectPictogramsSlice";
 import { RootState } from "../../app/store";
+import useApi from "../../hooks/useApi";
 import { ProtoSequences } from "../../models/sequencesInterface";
 import PictogramShow from "../PictogramShow/PictogramShow";
 import SelectPictogram from "../SelectPictogram/SelectPictogram";
 
 const CreateSequenceForm = () => {
   const { selectPictograms } = useSelector((state: RootState) => state);
-  const { id } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+  const { postCreateSequence } = useApi();
 
   const initialAmountPictogram = {
     amount: 0,
@@ -25,52 +26,62 @@ const CreateSequenceForm = () => {
     name: "",
     pictograms: [],
     private: false,
-    owner: id,
   };
 
-  const [createSequence, setCreateSequence] = useState(initialCreateSequence);
+  const [createSequenceData, setCreateDataSequence] = useState(
+    initialCreateSequence
+  );
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+
+    const addPictograms: number[] = [];
+    selectPictograms.map((element) => addPictograms.push(element.pictogram));
+
+    const newSequence = { ...createSequenceData, pictograms: addPictograms };
+    postCreateSequence(newSequence);
+  };
+
+  const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCreateDataSequence({
+      ...createSequenceData,
+      [event.target.id]: event.target.value,
+    });
+  };
+
+  const handleCheckPrivate = (event: any) => {
+    setCreateDataSequence({
+      ...createSequenceData,
+      [event.target.id]: event.target.checked,
+    });
+  };
+
+  const handleChangesAmountPictograms = (operator: number) => {
+    setAmountPictograms({
+      ...amountPictograms,
+      amount: amountPictograms.amount + operator,
+    });
+
+    dispatch(
+      addSelectPictogramActionCreator({
+        index: amountPictograms.amount,
+        pictogram: 0,
+      })
+    );
+  };
 
   const handleSelectPictogram = (indexArray: number) => {
     setAmountPictograms({
       ...amountPictograms,
       index: indexArray,
     });
+
+    console.log();
   };
 
-  const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCreateSequence({
-      ...createSequence,
-      [event.target.id]: event.target.value,
-    });
-  };
-
-  const handleCheckPrivate = (event: any) => {
-    setCreateSequence({
-      ...createSequence,
-      [event.target.id]: event.target.checked,
-    });
-  };
-
-  const handleChangesAmountPictograms = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    dispatch(
-      addSelectPictogramActionCreator({
-        index: +event.target.value,
-        pictogram: 0,
-      })
-    );
-
-    setAmountPictograms({
-      ...amountPictograms,
-      [event.target.id]: +event.target.value,
-    });
-  };
-
-  console.log(selectPictograms);
   return (
     <>
-      <Form className="create-sequence-form p-3">
+      <Form className="create-sequence-form p-3" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Nom</Form.Label>
           <Form.Control
@@ -93,39 +104,60 @@ const CreateSequenceForm = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="amount">
           <Form.Label>Quantitat de pictogrames</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder={amountPictograms.amount!.toString()}
-            autoComplete="off"
-            onChange={handleChangesAmountPictograms}
-          />
+          <InputGroup className="mb-3">
+            <Button
+              variant="primary"
+              id="button-addon1"
+              onClick={() => handleChangesAmountPictograms(-1)}
+            >
+              -
+            </Button>
+            <Form.Control
+              type="number"
+              placeholder={amountPictograms.amount!.toString()}
+              autoComplete="off"
+              disabled
+            />
+            <Button
+              variant="primary"
+              id="button-addon1"
+              onClick={() => handleChangesAmountPictograms(+1)}
+            >
+              +
+            </Button>
+          </InputGroup>
         </Form.Group>
         <Form.Label>
           Selecciona cada un dels pictogrames de la teva seqüència
         </Form.Label>
 
-        {[...Array(amountPictograms.amount)].map((element, index) => (
-          <>
-            <Button
-              className="m-2"
-              key={index}
-              onClick={() => handleSelectPictogram(index)}
-            >
-              Pictograma {index + 1}
-            </Button>
-            {selectPictograms !== undefined ? (
-              <PictogramShow
-                pictogram={selectPictograms[index].pictogram}
-                key={`${index}_${selectPictograms[index].index}`}
-              />
-            ) : (
-              <PictogramShow pictogram={0} key={index} />
-            )}
-          </>
-        ))}
+        {amountPictograms.amount > 0
+          ? [...Array(amountPictograms.amount)].map((element, index) => (
+              <>
+                <Button
+                  className="m-2"
+                  key={`${index}_button`}
+                  onClick={() => handleSelectPictogram(index)}
+                >
+                  Pictograma {index + 1}
+                </Button>
+                {selectPictograms.length > 0 ? (
+                  <PictogramShow
+                    pictogram={selectPictograms[index].pictogram}
+                    key={`${selectPictograms[index].index}_pictogram`}
+                    size="small"
+                  />
+                ) : (
+                  ""
+                )}
+              </>
+            ))
+          : ""}
+        <Button type="submit">Desar</Button>
       </Form>
       <SelectPictogram indexArrayPictograms={amountPictograms.index} />
     </>
   );
 };
+
 export default CreateSequenceForm;

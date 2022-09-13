@@ -2,6 +2,15 @@ import { screen } from "@testing-library/react";
 import { renderUser } from "../../utils/test/test-utils-Loggin";
 import CreateSequencePage from "./CreateSequencePage";
 
+const mockDispatch = jest.fn();
+const mockPictograms = { showPictograms: [2, 5, 6] };
+
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
+  useSelector: () => mockPictograms,
+}));
+
 describe("Give a page create sequence form", () => {
   describe("When its rendering with component navigation and title page", () => {
     test("Then should show this component and title", () => {

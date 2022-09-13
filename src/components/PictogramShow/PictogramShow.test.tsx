@@ -6,8 +6,9 @@ describe("Given a Pictogram Show component", () => {
     test("Then we expect it to render this pictogram", () => {
       const pictogramProps = 11737;
       const altImages = "pictograma";
+      const size = "big";
 
-      render(<PictogramShow pictogram={pictogramProps} />);
+      render(<PictogramShow pictogram={pictogramProps} size={size} />);
       const images = screen.getByRole("img", { name: altImages });
 
       expect(images).toBeInTheDocument();

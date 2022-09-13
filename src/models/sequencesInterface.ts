@@ -1,11 +1,7 @@
-export interface PictogramsSequence {
-  pictograms: number[];
-}
-
-export interface ProtoSequences extends PictogramsSequence {
+export interface ProtoSequences {
   name: string;
   private: boolean;
-  owner: string;
+  pictograms: number[];
 }
 
 export interface Sequences extends ProtoSequences {
