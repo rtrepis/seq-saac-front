@@ -36,7 +36,9 @@ const CreateSequenceForm = () => {
     event.preventDefault();
 
     const addPictograms: number[] = [];
-    selectPictograms.map((element) => addPictograms.push(element.pictogram));
+    selectPictograms.forEach((element) =>
+      addPictograms.push(element.pictogram)
+    );
 
     const newSequence = { ...createSequenceData, pictograms: addPictograms };
     postCreateSequence(newSequence);
@@ -112,7 +114,7 @@ const CreateSequenceForm = () => {
             </Button>
             <Form.Control
               type="number"
-              placeholder={amountPictograms.amount!.toString()}
+              placeholder={amountPictograms.amount.toString()}
               autoComplete="off"
               disabled
             />
