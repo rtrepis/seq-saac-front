@@ -15,9 +15,6 @@ jest.mock("react-redux", () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-jest.spyOn(Storage.prototype, "setItem");
-Storage.prototype.setItem = jest.fn().mockReturnValue("ValidateToken");
-
 beforeEach(() => jest.clearAllMocks());
 
 describe("Given a useApi hook", () => {
@@ -164,6 +161,61 @@ describe("Given a useApi hook", () => {
           type: "error",
         })
       );
+    });
+  });
+
+  describe("When postCreateSequences it's called with sequence error", () => {
+    test("Then should return modal ok create", async () => {
+      axios.defaults.headers.get["Error"] = true;
+
+      const sequenceCreateMock = {
+        name: "",
+        pictograms: [1, 2],
+        private: false,
+      };
+      const expectModal = {
+        payload: {
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
+        },
+        type: "ui/uiModalShow",
+      };
+
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.postCreateSequence(sequenceCreateMock);
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectModal);
+    });
+  });
+
+  describe("When postCreateSequences it's called with sequence corret", () => {
+    test("Then should return modal ok create", async () => {
+      const mockToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzEwODYxYzk5MGM3MDlhNmNlYjk0NWQiLCJ1c2VyTmFtZSI6InRlc3RpbmciLCJpYXQiOjE2NjIxMzk1Mzd9.EKxxxoIKOLRRPDR4Uuh-_QmFM8khGF4_-mxbIxjrOpE";
+
+      window.localStorage.setItem("userToken", mockToken);
+
+      const sequenceCreateMock = {
+        name: "Test Name",
+        pictograms: [1, 2],
+        private: false,
+      };
+      const expectModal = {
+        payload: {
+          message: "seqüència creada",
+          show: true,
+          type: "ok",
+        },
+        type: "ui/uiModalShow",
+      };
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.postCreateSequence(sequenceCreateMock);
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectModal);
     });
   });
 });
