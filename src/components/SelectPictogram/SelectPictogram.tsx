@@ -49,6 +49,7 @@ const SelectPictogram = ({
             autoComplete="off"
             onChange={handleChange}
           />
+          <Form.Text className="mt-3">Buscador de pictogrames</Form.Text>
         </Form.Group>
       </Form>
       <SelectPictogramsListShow indexArrayPictograms={indexArrayPictograms} />
