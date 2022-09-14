@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks";
@@ -36,7 +36,7 @@ const CreateSequenceForm = () => {
     initialCreateSequence
   );
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
 
     const addPictograms: number[] = [];
@@ -55,7 +55,7 @@ const CreateSequenceForm = () => {
     });
   };
 
-  const handleCheckPrivate = (event: any) => {
+  const handleCheckPrivate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCreateDataSequence({
       ...createSequenceData,
       [event.target.id]: event.target.checked,
@@ -84,8 +84,6 @@ const CreateSequenceForm = () => {
       index: indexArray,
     });
   };
-
-  const isVisible = selectPictograms.length > 0;
 
   return (
     <>
@@ -139,26 +137,24 @@ const CreateSequenceForm = () => {
           Selecciona cada un dels pictogrames de la teva seqüència
         </Form.Label>
 
-        {amountPictograms.amount > 0
-          ? [...Array(amountPictograms.amount)].map((element, index) => (
-              <>
-                <Button
-                  className="m-2"
-                  key={`button${index}`}
-                  onClick={() => handleSelectPictogram(index)}
-                >
-                  Pictograma {index + 1}
-                </Button>
-                {isVisible && (
-                  <PictogramShow
-                    pictogram={selectPictograms[index].pictogram}
-                    key={`${selectPictograms[index].index}${selectPictograms[index].pictogram}`}
-                    size="small"
-                  />
-                )}
-              </>
-            ))
-          : ""}
+        {amountPictograms.amount > 0 &&
+          [...Array(amountPictograms.amount)].map((element, index) => (
+            <>
+              <Button
+                className="m-2"
+                key={`button${index}`}
+                onClick={() => handleSelectPictogram(index)}
+              >
+                Pictograma {index + 1}
+              </Button>
+
+              <PictogramShow
+                pictogram={selectPictograms[index].pictogram}
+                key={`${selectPictograms[index].index}${selectPictograms[index].pictogram}`}
+                size="small"
+              />
+            </>
+          ))}
         <div className="text-center m-3">
           <Button type="submit">Desar la seqüència</Button>
         </div>
