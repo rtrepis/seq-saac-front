@@ -92,7 +92,7 @@ const CreateSequenceForm = () => {
       index: indexArray,
     });
 
-    console.log(document.getElementById("searchPictogramWord")?.focus());
+    document.getElementById("searchPictogramWord")?.focus();
   };
 
   return (
@@ -154,6 +154,7 @@ const CreateSequenceForm = () => {
                 className="m-2"
                 key={`button${index}`}
                 onClick={() => handleSelectPictogram(index)}
+                id={`button-select-${index}`}
               >
                 Pictograma {index + 1}
               </Button>
