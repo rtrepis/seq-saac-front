@@ -76,11 +76,12 @@ const CreateSequenceForm = () => {
       amount: amountPictograms.amount + operator,
     });
 
+    const pictogramEmpty = 26527;
     operator > 0
       ? dispatch(
           addSelectPictogramActionCreator({
             index: amountPictograms.amount,
-            pictogram: 26527,
+            pictogram: pictogramEmpty,
           })
         )
       : dispatch(deleteSelectPictogramActionCreator());
@@ -152,7 +153,6 @@ const CreateSequenceForm = () => {
             <>
               <Button
                 className="m-2"
-                key={`button${index}`}
                 onClick={() => handleSelectPictogram(index)}
                 id={`button-select-${index}`}
               >
@@ -160,7 +160,6 @@ const CreateSequenceForm = () => {
               </Button>
               <PictogramShow
                 pictogram={selectPictograms[index].pictogram}
-                key={`${selectPictograms[index].index}${selectPictograms[index].pictogram}`}
                 size="small"
               />
             </>
