@@ -50,7 +50,6 @@ const CreateSequenceForm = () => {
     const newSequence = { ...createSequenceData, pictograms: addPictograms };
     await postCreateSequence(newSequence);
     navigate("/my-sequences");
-    dispatch(restSelectPictogramsActionCreator());
   };
 
   const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
