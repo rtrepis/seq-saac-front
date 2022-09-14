@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Sequences } from "../../models/sequencesInterface";
 
-const sequenceInitialState: Sequences[] = [];
+const sequenceInitialState: Sequences[] = [
+  { id: "", name: "", owner: "", pictograms: [], private: false },
+];
 
 const sequenceSlice = createSlice({
   name: "sequences",

@@ -58,6 +58,7 @@ const useApi = () => {
         const {
           data: { sequences },
         } = await axios.get(`${apiURL}sequences/${id}`);
+
         const sequencesArray = [sequences];
 
         dispatch(loadSequencesActionCreator(sequencesArray));
@@ -78,6 +79,7 @@ const useApi = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+
         dispatch(loadShowPictogramsActionCreator([]));
         dispatch(uiModalShowActionCreator(createMessage));
       } catch (error) {

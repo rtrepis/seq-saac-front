@@ -14,6 +14,7 @@ const SequenceCard = ({
   id,
 }: SequenceCardProps): JSX.Element => {
   const navigate = useNavigate();
+
   return (
     <Nav.Link
       className="sequence-link"
