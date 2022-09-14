@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderUser } from "../../utils/test/test-utils-Loggin";
 import CreateSequenceForm from "./CreateSequenceForm";
 
 const mockDispatch = jest.fn();
@@ -9,11 +10,14 @@ const mockPictograms = {
 };
 const mockApi = jest.fn();
 
+const mockedUsedNavigate = jest.fn();
+
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockDispatch,
   useSelector: () => mockPictograms,
   useApi: () => mockApi,
+  useNavigate: () => mockedUsedNavigate,
 }));
 
 const mockPostCreate = jest.fn();
@@ -31,7 +35,7 @@ describe("Give a CreateSequenceForm component", () => {
       const labelPrivate = "Privada";
       const labelAmountPictograms = "Quantitat de pictogrames";
 
-      render(<CreateSequenceForm />);
+      renderUser(<CreateSequenceForm />);
       const name = screen.getByLabelText(labelName);
       const privateSequence = screen.getByLabelText(labelPrivate);
       const amountPictograms = screen.getByLabelText(labelAmountPictograms);
@@ -47,7 +51,7 @@ describe("Give a CreateSequenceForm component", () => {
       const labelAmountPictograms = "Quantitat de pictogrames";
       const amount = 4;
 
-      render(<CreateSequenceForm />);
+      renderUser(<CreateSequenceForm />);
       const amountPictograms = screen.getByRole("spinbutton", {
         name: labelAmountPictograms,
       });
@@ -76,7 +80,7 @@ describe("Give a CreateSequenceForm component", () => {
       const labelName = "Nom";
       const labelPrivate = "Privada";
 
-      render(<CreateSequenceForm />);
+      renderUser(<CreateSequenceForm />);
 
       const name = screen.getByLabelText(labelName);
       const privateInput = screen.getByLabelText(labelPrivate);
@@ -93,7 +97,7 @@ describe("Give a CreateSequenceForm component", () => {
     test("Then should called useAraSaac", async () => {
       const expectSubmitButton = "Desar la seqüència";
 
-      render(<CreateSequenceForm />);
+      renderUser(<CreateSequenceForm />);
 
       const submit = screen.getByRole("button", { name: expectSubmitButton });
 

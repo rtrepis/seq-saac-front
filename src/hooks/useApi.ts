@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
@@ -58,6 +59,7 @@ const useApi = () => {
         const {
           data: { sequences },
         } = await axios.get(`${apiURL}sequences/${id}`);
+
         const sequencesArray = [sequences];
 
         dispatch(loadSequencesActionCreator(sequencesArray));
@@ -78,6 +80,7 @@ const useApi = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+
         dispatch(loadShowPictogramsActionCreator([]));
         dispatch(uiModalShowActionCreator(createMessage));
       } catch (error) {

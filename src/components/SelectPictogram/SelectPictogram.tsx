@@ -32,10 +32,10 @@ const SelectPictogram = ({
   };
 
   return (
-    <>
+    <div className="shadow-lg p-3 mb-5 bg-body rounded">
       <h2 className="text-center mt-3">
         Pictograma{" "}
-        <span className="bg-primary rounded-circle p-2 text-white">
+        <span className="bg-primary rounded-circle p-2 ps-3 pe-3 text-white">
           {indexArrayPictograms + 1}
         </span>
       </h2>
@@ -52,7 +52,7 @@ const SelectPictogram = ({
         </Form.Group>
       </Form>
       <SelectPictogramsListShow indexArrayPictograms={indexArrayPictograms} />
-    </>
+    </div>
   );
 };
 

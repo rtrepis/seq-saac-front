@@ -13,6 +13,7 @@ const DetailsSequencePage = (): JSX.Element => {
   const { id } = useParams();
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
     (async () => {
       await getSequence(id!);
     })();

@@ -1,10 +1,12 @@
 import { SyntheticEvent, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import {
   addSelectPictogramActionCreator,
   deleteSelectPictogramActionCreator,
+  restSelectPictogramsActionCreator,
 } from "../../app/slice/selectPictogramsSlice";
 import { RootState } from "../../app/store";
 import useApi from "../../hooks/useApi";
@@ -16,6 +18,7 @@ const CreateSequenceForm = () => {
   const { selectPictograms } = useSelector((state: RootState) => state);
   const dispatch = useAppDispatch();
   const { postCreateSequence } = useApi();
+  const navigate = useNavigate();
 
   const initialAmountPictogram = {
     amount: 0,
@@ -46,6 +49,8 @@ const CreateSequenceForm = () => {
 
     const newSequence = { ...createSequenceData, pictograms: addPictograms };
     await postCreateSequence(newSequence);
+    navigate("/my-sequences");
+    dispatch(restSelectPictogramsActionCreator());
   };
 
   const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +92,7 @@ const CreateSequenceForm = () => {
 
   return (
     <>
-      <Form className="create-sequence-form p-3" onSubmit={handleSubmit}>
+      <Form className="create-sequence-form p-3">
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Nom</Form.Label>
           <Form.Control
@@ -113,7 +118,7 @@ const CreateSequenceForm = () => {
           <InputGroup className="mb-3">
             <Button
               variant="primary"
-              id="button-addon1"
+              id="button-amount-rest"
               onClick={() => handleChangesAmountPictograms(-1)}
             >
               -
@@ -126,7 +131,7 @@ const CreateSequenceForm = () => {
             />
             <Button
               variant="primary"
-              id="button-addon1"
+              id="button-amount-plus"
               onClick={() => handleChangesAmountPictograms(+1)}
             >
               +
@@ -147,7 +152,6 @@ const CreateSequenceForm = () => {
               >
                 Pictograma {index + 1}
               </Button>
-
               <PictogramShow
                 pictogram={selectPictograms[index].pictogram}
                 key={`${selectPictograms[index].index}${selectPictograms[index].pictogram}`}
@@ -155,8 +159,11 @@ const CreateSequenceForm = () => {
               />
             </>
           ))}
+
         <div className="text-center m-3">
-          <Button type="submit">Desar la seqüència</Button>
+          <Button type="button" onClick={handleSubmit}>
+            Desar la seqüència
+          </Button>
         </div>
       </Form>
       <SelectPictogram indexArrayPictograms={amountPictograms.index} />
