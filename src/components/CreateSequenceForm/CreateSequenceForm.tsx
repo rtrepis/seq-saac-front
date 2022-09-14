@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,10 @@ const CreateSequenceForm = () => {
   const dispatch = useAppDispatch();
   const { postCreateSequence } = useApi();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(restSelectPictogramsActionCreator());
+  }, [dispatch]);
 
   const initialAmountPictogram = {
     amount: 0,
