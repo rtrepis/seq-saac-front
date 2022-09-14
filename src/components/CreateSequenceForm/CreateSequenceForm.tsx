@@ -91,6 +91,8 @@ const CreateSequenceForm = () => {
       ...amountPictograms,
       index: indexArray,
     });
+
+    console.log(document.getElementById("searchPictogramWord")?.focus());
   };
 
   return (
@@ -113,7 +115,7 @@ const CreateSequenceForm = () => {
           />
 
           <Form.Text className="text-muted login-form__text">
-            clicar, si no voleu compartir la seqüència
+            Clicar, si no voleu compartir la seqüència
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="amount">
