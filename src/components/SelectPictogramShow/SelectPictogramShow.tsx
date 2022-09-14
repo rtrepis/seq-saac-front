@@ -21,6 +21,9 @@ const SelectPictogramShow = ({
     };
 
     dispatch(updateSelectPictogramActionCreator(addPictograms));
+    const nextSelectPictogram = indexArrayPictograms + 1;
+
+    document.getElementById(`button-select-${nextSelectPictogram}`)?.focus();
   };
 
   return (
