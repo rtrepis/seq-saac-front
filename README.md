@@ -15,7 +15,7 @@ Proyecto final del Bootcamp ISDI Coders
       - jwt-decode
       - husky
       
-   - Workflows
-     - Code audi - eslint
-     - Testing - jest
-     - SonarCloud - coverage
+  - Workflows
+    - Code audi (eslint)
+    - Testing (jest)  
+    - SonarCloud (coverage)
