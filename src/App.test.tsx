@@ -14,10 +14,10 @@ beforeEach(() => jest.clearAllMocks());
 
 describe("Given a App component", () => {
   describe("When user is not logged", () => {
-    test("Then should not called dispatch", () => {
+    test("Then should called dispatch", () => {
       renderUser(<App />);
 
-      expect(mockDispatch).not.toHaveBeenCalled();
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 

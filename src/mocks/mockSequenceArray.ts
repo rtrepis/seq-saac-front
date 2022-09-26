@@ -1,6 +1,4 @@
-import { SequenceInitialState } from "../models/sequencesInterface";
-
-const mockSequenceArray: SequenceInitialState = [
+const mockSequenceArray = [
   {
     name: "Rentar mans",
     pictograms: [11737, 8975, 35729, 2443, 11739],

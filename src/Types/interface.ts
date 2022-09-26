@@ -1,7 +1,10 @@
-export interface ModalPayload {
-  show: boolean;
-  type: ModalType;
-  message: string;
+export interface UiPayload {
+  modal: {
+    show: boolean;
+    type: ModalType;
+    message: string;
+  };
+  loading: boolean;
 }
 
 export type ModalType = "error" | "ok";

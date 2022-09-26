@@ -12,8 +12,6 @@ export interface Sequences extends ProtoSequences {
   owner: string;
 }
 
-export type SequenceInitialState = Sequences[];
-
 export interface SelectPictogram {
   index: number;
   pictogram: number;

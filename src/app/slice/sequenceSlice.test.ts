@@ -1,4 +1,3 @@
-import { SequenceInitialState } from "../../models/sequencesInterface";
 import {
   createSequencesActionCreator,
   loadSequencesActionCreator,
@@ -6,7 +5,7 @@ import {
 } from "./sequencesSlice";
 
 describe("Given the sequencesSlicer", () => {
-  const previousSequencesPayload: SequenceInitialState = [
+  const previousSequencesPayload = [
     {
       id: "",
       name: "",

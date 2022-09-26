@@ -7,7 +7,7 @@ import {
   userLogOutActionCreator,
 } from "../app/slice/userSlice";
 import { NamePasswordUserData } from "../models/userInterface";
-import { ModalPayload, ModalType } from "../Types/interface";
+import { UiPayload, ModalType } from "../Types/interface";
 import { decodeToken } from "../utils/auth";
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -21,10 +21,13 @@ const useUser = () => {
     setMessage: string,
     setType: ModalType
   ) => {
-    const modal: ModalPayload = {
-      show: setShow,
-      message: setMessage,
-      type: setType,
+    const modal: UiPayload = {
+      modal: {
+        show: setShow,
+        message: setMessage,
+        type: setType,
+      },
+      loading: false,
     };
 
     dispatch(uiModalShowActionCreator(modal));

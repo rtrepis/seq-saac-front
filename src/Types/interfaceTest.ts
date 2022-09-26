@@ -11,9 +11,12 @@ export interface PreloadedState {
     token: string;
   };
   ui?: {
-    show: boolean;
-    type: ModalType;
-    message: string;
+    modal: {
+      show: boolean;
+      type: ModalType;
+      message: string;
+    };
+    loading: boolean;
   };
   sequence?: [
     {
