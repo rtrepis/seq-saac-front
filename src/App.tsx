@@ -21,11 +21,15 @@ const App = (): JSX.Element => {
     dispatch(userLoginActionCreator(userLogged));
   }
 
-  const { message, show, type } = useSelector((state: RootState) => state.ui);
+  const { modal } = useSelector((state: RootState) => state.ui);
 
   return (
     <>
-      <ModalCenter show={show} type={type} message={message} />
+      <ModalCenter
+        show={modal.show}
+        type={modal.type}
+        message={modal.message}
+      />
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />

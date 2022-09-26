@@ -1,23 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ModalPayload } from "../../Types/interface";
+import { UiPayload } from "../../Types/interface";
 
-export const modalInitialState: ModalPayload = {
-  show: false,
-  type: "ok",
-  message: "",
+export const UiInitialState: UiPayload = {
+  modal: { show: false, type: "ok", message: "" },
+  loading: false,
 };
 
 const uiSlice = createSlice({
   name: "ui",
-  initialState: modalInitialState,
+  initialState: UiInitialState,
   reducers: {
-    uiModalShow: (
-      previousModal: ModalPayload,
-      action: PayloadAction<ModalPayload>
-    ) => action.payload,
-    uiModalClose: (previousModal: ModalPayload) => ({
-      ...previousModal,
-      show: false,
+    uiModalShow: (previousUi: UiPayload, action: PayloadAction<UiPayload>) =>
+      action.payload,
+    uiModalClose: (previousUi: UiPayload) => ({
+      ...previousUi,
+      modal: { ...previousUi.modal, show: false },
+    }),
+    uiLoadingShow: (previousUi: UiPayload) => ({
+      ...previousUi,
+      loading: true,
+    }),
+    uiLoadingClose: (previousUi: UiPayload) => ({
+      ...previousUi,
+      loading: false,
     }),
   },
 });
@@ -27,4 +32,6 @@ export const uiReducer = uiSlice.reducer;
 export const {
   uiModalShow: uiModalShowActionCreator,
   uiModalClose: uiModalCloseActionCreator,
+  uiLoadingShow: uiLoadingShowActionCreator,
+  uiLoadingClose: uiLoadingCloseActionCreator,
 } = uiSlice.actions;

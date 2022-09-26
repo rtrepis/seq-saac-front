@@ -3,14 +3,17 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
-import { ModalPayload, Pictograms } from "../Types/interface";
+import { UiPayload, Pictograms } from "../Types/interface";
 
 const araSaacURL = process.env.REACT_APP_API_ARASAAC_URL;
 
-const NotFoundMessage: ModalPayload = {
-  show: true,
-  message: "No hem trobat cap coincidència, prova un altre text",
-  type: "ok",
+const NotFoundMessage: UiPayload = {
+  modal: {
+    show: true,
+    message: "No hem trobat cap coincidència, prova un altre text",
+    type: "ok",
+  },
+  loading: true,
 };
 
 const useAraSaac = () => {

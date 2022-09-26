@@ -5,20 +5,26 @@ import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
-import { ModalPayload } from "../Types/interface";
+import { UiPayload } from "../Types/interface";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
-const errorMessage: ModalPayload = {
-  show: true,
-  message: "error en la lectura del servidor. Torna ha provar-ho més tard",
-  type: "error",
+const errorMessage: UiPayload = {
+  modal: {
+    show: true,
+    message: "error en la lectura del servidor. Torna ha provar-ho més tard",
+    type: "error",
+  },
+  loading: false,
 };
 
-const createMessage: ModalPayload = {
-  show: true,
-  message: "seqüència creada",
-  type: "ok",
+const createMessage: UiPayload = {
+  modal: {
+    show: true,
+    message: "seqüència creada",
+    type: "ok",
+  },
+  loading: false,
 };
 
 const useApi = () => {

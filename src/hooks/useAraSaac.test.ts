@@ -32,9 +32,12 @@ describe("Given a useAraSacc hook", () => {
       const wordSearchMock = "";
       const expectModal = {
         payload: {
-          message: "No hem trobat cap coincidència, prova un altre text",
-          show: true,
-          type: "ok",
+          modal: {
+            message: "No hem trobat cap coincidència, prova un altre text",
+            show: true,
+            type: "ok",
+          },
+          loading: true,
         },
         type: "ui/uiModalShow",
       };
