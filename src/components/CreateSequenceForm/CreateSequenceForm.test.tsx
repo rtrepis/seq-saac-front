@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { renderUser } from "../../utils/test/test-utils-Loggin";
+import { renderUser } from "../../utils/test/test-utils-Login";
 import CreateSequenceForm from "./CreateSequenceForm";
 
 const mockDispatch = jest.fn();

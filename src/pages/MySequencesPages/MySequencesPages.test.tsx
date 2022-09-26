@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import mockSequenceArray from "../../mocks/mockSequenceArray";
-import { renderUser } from "../../utils/test/test-utils-Loggin";
+import { renderUser } from "../../utils/test/test-utils-Login";
 import MySequencePage from "./MySequencesPages";
 
 jest.mock("react-redux", () => ({

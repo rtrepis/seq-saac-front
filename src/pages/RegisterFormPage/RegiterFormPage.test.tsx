@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import RegisterFormPage from "./RegisterFormPage";
-import { render } from "../../utils/test/test-utils-Loggout";
+import { render } from "../../utils/test/test-utils-Logout";
 
 describe("Give a page register form", () => {
   describe("When its rendering register form with input 'Usuari'", () => {

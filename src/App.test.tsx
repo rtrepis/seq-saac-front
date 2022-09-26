@@ -1,5 +1,5 @@
 import App from "./App";
-import { renderUser } from "./utils/test/test-utils-Loggin";
+import { renderUser } from "./utils/test/test-utils-Login";
 
 const mockDispatch = jest.fn();
 const mockedUsedNavigate = jest.fn();
