@@ -3,7 +3,11 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
-import { uiModalShowActionCreator } from "../app/slice/uiSlice";
+import {
+  uiLoadingCloseActionCreator,
+  uiLoadingShowActionCreator,
+  uiModalShowActionCreator,
+} from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
 import { UiPayload } from "../Types/interface";
 
@@ -32,6 +36,9 @@ const useApi = () => {
 
   const getAllPublicSequences = useCallback(async (): Promise<void> => {
     try {
+      dispatch(loadSequencesActionCreator([]));
+      dispatch(uiLoadingShowActionCreator());
+
       const {
         data: { sequences },
       } = await axios.get(`${apiURL}sequences/`);
@@ -40,12 +47,17 @@ const useApi = () => {
     } catch {
       dispatch(uiModalShowActionCreator(errorMessage));
     }
+
+    dispatch(uiLoadingCloseActionCreator());
   }, [dispatch]);
 
   const getSequencesOwner = useCallback(async (): Promise<void> => {
     const token = localStorage.getItem("userToken");
 
     try {
+      dispatch(loadSequencesActionCreator([]));
+      dispatch(uiLoadingShowActionCreator());
+
       const {
         data: { sequences },
       } = await axios.get(`${apiURL}sequences/owner`, {
@@ -56,11 +68,16 @@ const useApi = () => {
     } catch {
       dispatch(uiModalShowActionCreator(errorMessage));
     }
+
+    dispatch(uiLoadingCloseActionCreator());
   }, [dispatch]);
 
   const getSequence = useCallback(
     async (id: string): Promise<void> => {
       try {
+        dispatch(loadSequencesActionCreator([]));
+        dispatch(uiLoadingShowActionCreator());
+
         const {
           data: { sequences },
         } = await axios.get(`${apiURL}sequences/${id}`);
@@ -71,6 +88,8 @@ const useApi = () => {
       } catch {
         dispatch(uiModalShowActionCreator(errorMessage));
       }
+
+      dispatch(uiLoadingCloseActionCreator());
     },
     [dispatch]
   );
@@ -80,6 +99,8 @@ const useApi = () => {
       const token = localStorage.getItem("userToken");
 
       try {
+        dispatch(uiLoadingShowActionCreator());
+
         await axios.post(`${apiURL}sequences/create/`, formSequenceData, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -91,6 +112,8 @@ const useApi = () => {
       } catch (error) {
         dispatch(uiModalShowActionCreator(errorMessage));
       }
+
+      dispatch(uiLoadingCloseActionCreator());
     },
     [dispatch]
   );

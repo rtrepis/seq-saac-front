@@ -2,7 +2,7 @@ import { renderHook } from "../utils/test/test-utils-Loggin";
 import axios from "axios";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
-import { SequenceInitialState, Sequences } from "../models/sequencesInterface";
+import { Sequences } from "../models/sequencesInterface";
 import useApi from "./useApi";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
 
@@ -96,7 +96,7 @@ describe("Given a useApi hook", () => {
     test("Then should it's called modelShow", async () => {
       axios.defaults.headers.get["Error"] = true;
 
-      const sequencesHook: SequenceInitialState = [
+      const sequencesHook = [
         { id: "", name: "", owner: "", pictograms: [0], private: false },
       ];
 
