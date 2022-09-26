@@ -1,4 +1,4 @@
-import { render, screen } from "../../utils/test/test-utils-Loggout";
+import { render, screen } from "../../utils/test/test-utils-Logout";
 import DetailsSequencePage from "./DetailsSequencePage";
 
 const mockPayload = {

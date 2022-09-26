@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import LoginFormPage from "./LoginFormPage";
-import { render } from "../../utils/test/test-utils-Loggout";
+import { render } from "../../utils/test/test-utils-Logout";
 
 describe("Give a page login form", () => {
   describe("When its rendering login form with input 'Usuari'", () => {

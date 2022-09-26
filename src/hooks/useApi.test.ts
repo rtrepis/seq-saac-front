@@ -1,4 +1,4 @@
-import { renderHook } from "../utils/test/test-utils-Loggin";
+import { renderHook } from "../utils/test/test-utils-Login";
 import axios from "axios";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";

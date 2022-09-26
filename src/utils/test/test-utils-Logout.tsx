@@ -6,13 +6,22 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "../../app/store";
 import { uiReducer } from "../../app/slice/uiSlice";
 import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
+import { sequencesReducer } from "../../app/slice/sequencesSlice";
+import { showPictogramsReducer } from "../../app/slice/showPictogramsSlice";
+import { selectPictogramsReducer } from "../../app/slice/selectPictogramsSlice";
 
 const render = (
   ui: JSX.Element,
   {
     preloadedState,
     store = configureStore({
-      reducer: { user: userReducer, ui: uiReducer },
+      reducer: {
+        user: userReducer,
+        ui: uiReducer,
+        sequences: sequencesReducer,
+        showPictograms: showPictogramsReducer,
+        selectPictograms: selectPictogramsReducer,
+      },
       preloadedState,
     }),
     ...renderOptions
@@ -39,4 +48,4 @@ const Wrapper = ({ children }: WrapperProps): JSX.Element => {
 export default Wrapper;
 
 export * from "@testing-library/react";
-export { render, Wrapper };
+export { render, Wrapper, rtlRender };

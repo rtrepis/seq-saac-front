@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { renderUser } from "../../utils/test/test-utils-Loggin";
+import { renderUser } from "../../utils/test/test-utils-Login";
 import CreateSequencePage from "./CreateSequencePage";
 
 const mockDispatch = jest.fn();

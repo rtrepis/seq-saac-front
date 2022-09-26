@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
-import { render } from "../../utils/test/test-utils-Loggout";
+import { render } from "../../utils/test/test-utils-Logout";
 import userEvent from "@testing-library/user-event";
 import Navigation from "./Navigation";
-import { renderUser } from "../../utils/test/test-utils-Loggin";
+import { renderUser } from "../../utils/test/test-utils-Login";
 
 const mockedUsedNavigate = jest.fn();
 
