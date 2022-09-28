@@ -7,7 +7,7 @@ const mockPayload = {
       id: "63199e9c8aa067d2f0931a4e",
       name: "",
       owner: "235",
-      pictograms: [0, 0],
+      pictograms: [0, 1],
       private: true,
     },
   ],
@@ -40,7 +40,7 @@ describe("Given a Details component", () => {
 
   describe("When pass through an arraypictogramsmock", () => {
     test("Then the past sequences are rendered", () => {
-      const pictogramsMockProperty = [0, 0];
+      const pictogramsMockProperty = [0, 1];
       const altImages = "pictograma";
 
       render(<DetailsSequencePage />);
