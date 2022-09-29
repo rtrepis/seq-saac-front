@@ -8,7 +8,7 @@ const mockPayload = {
       name: "",
       owner: "235",
       pictograms: [0, 1],
-      private: true,
+      privately: true,
     },
   ],
 };

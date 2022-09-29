@@ -12,7 +12,7 @@ describe("Give a component SequencesCardList", () => {
           id: "2354634t",
           name: "Rentar mans",
           pictograms: [1234, 1245, 6788, 4322],
-          private: true,
+          privately: true,
           owner: "235",
         },
       ];

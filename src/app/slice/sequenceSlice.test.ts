@@ -10,7 +10,7 @@ describe("Given the sequencesSlicer", () => {
       id: "",
       name: "",
       pictograms: [0, 0],
-      private: true,
+      privately: true,
       owner: "235",
     },
   ];
@@ -21,7 +21,7 @@ describe("Given the sequencesSlicer", () => {
           id: "2354634t",
           name: "Rentar mans",
           pictograms: [1234, 1245, 6788, 4322],
-          private: true,
+          privately: true,
           owner: "235",
         },
       ];
@@ -43,14 +43,14 @@ describe("Given the sequencesSlicer", () => {
         name: "",
         owner: "235",
         pictograms: [0, 0],
-        private: true,
+        privately: true,
       };
 
       const expectSequences = {
         id: "2354634t",
         name: "Rentar mans",
         pictograms: [1234, 1245, 6788, 4322],
-        private: true,
+        privately: true,
         owner: "235",
       };
       const arrayExpect = [previousSequencePayload, expectSequences];

@@ -74,13 +74,17 @@ const useApi = () => {
 
   const getSequence = useCallback(
     async (id: string): Promise<void> => {
+      const token = localStorage.getItem("userToken");
+
       try {
         dispatch(loadSequencesActionCreator([]));
         dispatch(uiLoadingShowActionCreator());
 
         const {
           data: { sequences },
-        } = await axios.get(`${apiURL}sequences/${id}`);
+        } = await axios.get(`${apiURL}sequences/${id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        });
 
         const sequencesArray = [sequences];
 
