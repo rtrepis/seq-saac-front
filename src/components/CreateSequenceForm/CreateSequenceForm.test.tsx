@@ -29,19 +29,19 @@ jest.mock("../../hooks/useApi", () => () => ({
 beforeEach(() => jest.clearAllMocks());
 
 describe("Give a CreateSequenceForm component", () => {
-  describe("When its rendering with inputs name, private, amountPictograms, button", () => {
+  describe("When its rendering with inputs name, privately, amountPictograms, button", () => {
     test("Then should show this component", () => {
       const labelName = "Nom";
-      const labelPrivate = "Privada";
+      const labelprivately = "Privada";
       const labelAmountPictograms = "Quantitat de pictogrames";
 
       renderUser(<CreateSequenceForm />);
       const name = screen.getByLabelText(labelName);
-      const privateSequence = screen.getByLabelText(labelPrivate);
+      const privatelySequence = screen.getByLabelText(labelprivately);
       const amountPictograms = screen.getByLabelText(labelAmountPictograms);
 
       expect(name).toBeInTheDocument();
-      expect(privateSequence).toBeInTheDocument();
+      expect(privatelySequence).toBeInTheDocument();
       expect(amountPictograms).toBeInTheDocument();
     });
   });
@@ -73,23 +73,23 @@ describe("Give a CreateSequenceForm component", () => {
     });
   });
 
-  describe("When user type name and checked private", () => {
+  describe("When user type name and checked privately", () => {
     test("Then should show changes in form", async () => {
       const textType = "New name sequence";
 
       const labelName = "Nom";
-      const labelPrivate = "Privada";
+      const labelprivately = "Privada";
 
       renderUser(<CreateSequenceForm />);
 
       const name = screen.getByLabelText(labelName);
-      const privateInput = screen.getByLabelText(labelPrivate);
+      const privatelyInput = screen.getByLabelText(labelprivately);
 
       await userEvent.type(name, textType);
-      await userEvent.click(privateInput);
+      await userEvent.click(privatelyInput);
 
       expect(name).toHaveValue(textType);
-      expect(privateInput).toBeChecked();
+      expect(privatelyInput).toBeChecked();
     });
   });
 

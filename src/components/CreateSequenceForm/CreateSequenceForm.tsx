@@ -36,7 +36,7 @@ const CreateSequenceForm = () => {
   const initialCreateSequence: ProtoSequences = {
     name: "",
     pictograms: [],
-    private: false,
+    privately: false,
   };
 
   const [createSequenceData, setCreateDataSequence] = useState(
@@ -63,7 +63,7 @@ const CreateSequenceForm = () => {
     });
   };
 
-  const handleCheckPrivate = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckprivately = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCreateDataSequence({
       ...createSequenceData,
       [event.target.id]: event.target.checked,
@@ -108,11 +108,11 @@ const CreateSequenceForm = () => {
             onChange={handleChanges}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="private">
+        <Form.Group className="mb-3" controlId="privately">
           <Form.Check
             type="checkbox"
             label="Privada"
-            onChange={handleCheckPrivate}
+            onChange={handleCheckprivately}
           />
 
           <Form.Text className="text-muted login-form__text">

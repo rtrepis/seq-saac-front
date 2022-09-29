@@ -25,7 +25,7 @@ export interface PreloadedState {
       id: string;
       name: string;
       pictograms: number[];
-      private: boolean;
+      privately: boolean;
       owner: string;
     }
   ];

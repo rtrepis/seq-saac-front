@@ -26,7 +26,7 @@ describe("Given a useApi hook", () => {
             id: "",
             name: "",
             pictograms: [0, 0],
-            private: true,
+            privately: true,
             owner: "235",
           },
         ],
@@ -49,7 +49,7 @@ describe("Given a useApi hook", () => {
             name: "owner",
             owner: "235",
             pictograms: [0, 0],
-            private: true,
+            privately: true,
           },
         ],
         type: "sequences/loadSequences",
@@ -97,7 +97,7 @@ describe("Given a useApi hook", () => {
       axios.defaults.headers.get["Error"] = true;
 
       const sequencesHook = [
-        { id: "", name: "", owner: "", pictograms: [0], private: false },
+        { id: "", name: "", owner: "", pictograms: [0], privately: false },
       ];
 
       const { result } = renderHook(() => useApi(), {
@@ -132,7 +132,7 @@ describe("Given a useApi hook", () => {
               name: "",
               owner: "235",
               pictograms: [0, 0],
-              private: true,
+              privately: true,
             },
           ],
         ],
@@ -180,7 +180,7 @@ describe("Given a useApi hook", () => {
       const sequenceCreateMock = {
         name: "",
         pictograms: [1, 2],
-        private: false,
+        privately: false,
       };
       const expectModal = {
         payload: {
@@ -213,7 +213,7 @@ describe("Given a useApi hook", () => {
       const sequenceCreateMock = {
         name: "Test Name",
         pictograms: [1, 2],
-        private: false,
+        privately: false,
       };
       const expectModal = {
         payload: {

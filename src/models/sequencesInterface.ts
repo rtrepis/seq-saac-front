@@ -1,6 +1,6 @@
 export interface ProtoSequences {
   name: string;
-  private: boolean;
+  privately: boolean;
   pictograms: number[];
 }
 
@@ -8,7 +8,7 @@ export interface Sequences extends ProtoSequences {
   id: string;
   name: string;
   pictograms: number[];
-  private: boolean;
+  privately: boolean;
   owner: string;
 }
 
