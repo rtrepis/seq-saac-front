@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
+import {
+  deleteSequenceIdActionCreator,
+  loadSequencesActionCreator,
+} from "../app/slice/sequencesSlice";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import {
   uiLoadingCloseActionCreator,
@@ -26,6 +29,15 @@ const createMessage: UiPayload = {
   modal: {
     show: true,
     message: "seqüència creada",
+    type: "ok",
+  },
+  loading: false,
+};
+
+const deleteSequenceIdMessage: UiPayload = {
+  modal: {
+    show: true,
+    message: "seqüència esborrada correctament",
     type: "ok",
   },
   loading: false,
@@ -72,7 +84,7 @@ const useApi = () => {
     dispatch(uiLoadingCloseActionCreator());
   }, [dispatch]);
 
-  const getSequence = useCallback(
+  const getSequenceId = useCallback(
     async (id: string): Promise<void> => {
       const token = localStorage.getItem("userToken");
 
@@ -122,11 +134,33 @@ const useApi = () => {
     [dispatch]
   );
 
+  const deleteSequenceId = useCallback(
+    async (id: string): Promise<void> => {
+      const token = localStorage.getItem("userToken");
+
+      try {
+        dispatch(uiLoadingShowActionCreator());
+
+        await axios.delete(`${apiURL}sequences/delete/${id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+      } catch {
+        dispatch(uiModalShowActionCreator(errorMessage));
+      }
+
+      dispatch(deleteSequenceIdActionCreator(id));
+      dispatch(uiLoadingCloseActionCreator());
+      dispatch(uiModalShowActionCreator(deleteSequenceIdMessage));
+    },
+    [dispatch]
+  );
+
   return {
     getAllPublicSequence: getAllPublicSequences,
     getSequencesOwner: getSequencesOwner,
-    getSequence: getSequence,
+    getSequenceId: getSequenceId,
     postCreateSequence: postCreateSequence,
+    deleteSequenceId: deleteSequenceId,
   };
 };
 

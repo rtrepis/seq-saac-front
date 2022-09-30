@@ -9,7 +9,7 @@ import DetailsSequencePageStyled from "./DetailsSequencePageStyled";
 
 const DetailsSequencePage = (): JSX.Element => {
   const { sequences } = useSelector((state: RootState) => state);
-  const { getSequence } = useApi();
+  const { getSequenceId: getSequence } = useApi();
   const { id } = useParams();
 
   useEffect(() => {

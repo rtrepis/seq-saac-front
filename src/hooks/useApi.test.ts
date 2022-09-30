@@ -143,7 +143,7 @@ describe("Given a useApi hook", () => {
         wrapper: Wrapper,
       });
 
-      await result.current.getSequence(idCorrect);
+      await result.current.getSequenceId(idCorrect);
 
       expect(mockDispatch).toHaveBeenCalledWith(payloadExpect);
     });
@@ -157,7 +157,7 @@ describe("Given a useApi hook", () => {
         wrapper: Wrapper,
       });
 
-      await result.current.getSequence(idCorrect);
+      await result.current.getSequenceId(idCorrect);
 
       expect(mockDispatch).toHaveBeenCalledWith(
         uiModalShowActionCreator({

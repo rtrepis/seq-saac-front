@@ -1,5 +1,8 @@
+import { Sequences } from "../../models/sequencesInterface";
+import { deleteSelectPictogramActionCreator } from "./selectPictogramsSlice";
 import {
   createSequencesActionCreator,
+  deleteSequenceIdActionCreator,
   loadSequencesActionCreator,
   sequencesReducer,
 } from "./sequencesSlice";
@@ -63,6 +66,30 @@ describe("Given the sequencesSlicer", () => {
       );
 
       expect(newSequences).toStrictEqual(arrayExpect);
+    });
+  });
+
+  describe("When called deleteSequenceId with previousState id payload", () => {
+    test("Then should return previousState without sequence id", () => {
+      const previousSequencePayload = [
+        {
+          id: "",
+          name: "",
+          owner: "235",
+          pictograms: [0, 0],
+          privately: true,
+        },
+      ];
+      const arraySequenceExpect: Sequences[] = [];
+
+      const sequencesPayLoad = deleteSequenceIdActionCreator("");
+
+      const newSequence = sequencesReducer(
+        previousSequencePayload,
+        sequencesPayLoad
+      );
+
+      expect(newSequence).toStrictEqual(arraySequenceExpect);
     });
   });
 });

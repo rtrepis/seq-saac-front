@@ -2,6 +2,7 @@ import { Col, Nav, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { IoTrashOutline } from "react-icons/io5";
+import useApi from "../../hooks/useApi";
 
 interface SequenceCardProps {
   name: string;
@@ -19,26 +20,39 @@ const SequenceCard = ({
   privately,
 }: SequenceCardProps): JSX.Element => {
   const navigate = useNavigate();
+  const { deleteSequenceId } = useApi();
+
+  const handlerDeleteSequenceId = (idSequence: string) => {
+    deleteSequenceId(idSequence);
+  };
 
   return (
-    <Nav.Link
-      className="sequence-link"
-      onClick={() => navigate(`/details-sequence/${id}`)}
-    >
-      <Col className="mx-auto">
-        <Card style={{ width: "20.5rem" }} border="primary" className="mx-auto">
-          <Card.Header className="p-2 ps-3">
-            <Row>
-              <Col xs={10}>
+    <Col className="mx-auto">
+      <Card style={{ width: "20.5rem" }} border="primary" className="mx-auto">
+        <Card.Header className="p-2 ps-3">
+          <Row>
+            <Col xs={10}>
+              <Nav.Link
+                className="sequence-link"
+                onClick={() => navigate(`/details-sequence/${id}`)}
+              >
                 <h3 className="mb-0">{name}</h3>
-              </Col>
-              {privately && owner && (
-                <Col xs={2}>
+              </Nav.Link>
+            </Col>
+            {privately && owner && (
+              <Col xs={2}>
+                <Nav.Link onClick={() => handlerDeleteSequenceId(id)}>
                   <IoTrashOutline />
-                </Col>
-              )}
-            </Row>
-          </Card.Header>
+                  <span hidden>Trash for delete sequences</span>
+                </Nav.Link>
+              </Col>
+            )}
+          </Row>
+        </Card.Header>
+        <Nav.Link
+          className="sequence-link"
+          onClick={() => navigate(`/details-sequence/${id}`)}
+        >
           <Card.Body>
             {pictograms.slice(0, 3).map((pictogram, index) => (
               <>
@@ -53,9 +67,9 @@ const SequenceCard = ({
               </>
             ))}
           </Card.Body>
-        </Card>
-      </Col>
-    </Nav.Link>
+        </Nav.Link>
+      </Card>
+    </Col>
   );
 };
 
