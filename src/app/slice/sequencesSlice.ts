@@ -14,6 +14,8 @@ const sequenceSlice = createSlice({
       ...previousSequences,
       action.payload,
     ],
+    deleteSequenceId: (previousSequences, action: PayloadAction<string>) =>
+      previousSequences.filter((sequences) => sequences.id !== action.payload),
   },
 });
 
@@ -22,4 +24,5 @@ export const sequencesReducer = sequenceSlice.reducer;
 export const {
   loadSequences: loadSequencesActionCreator,
   createSequences: createSequencesActionCreator,
+  deleteSequenceId: deleteSequenceIdActionCreator,
 } = sequenceSlice.actions;

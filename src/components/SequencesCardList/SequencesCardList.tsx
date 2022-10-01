@@ -7,11 +7,13 @@ import SequenceCard from "../SequenceCard/SequenceCard";
 import "./SequencesCardList.css";
 
 interface SequenceCardListProps {
+  owner?: boolean;
   sequences: Sequences[];
 }
 
 const SequencesCardList = ({
   sequences,
+  owner,
 }: SequenceCardListProps): JSX.Element => {
   const { loading } = useSelector((state: RootState) => state.ui);
 
@@ -26,6 +28,8 @@ const SequencesCardList = ({
             pictograms={sequence.pictograms}
             id={sequence.id}
             key={sequence.id}
+            owner={owner}
+            privately={sequence.privately}
           />
         ))}
       </Row>

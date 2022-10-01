@@ -2,7 +2,6 @@ import { Sequences } from "../../models/sequencesInterface";
 import { PreloadedState } from "../../Types/interfaceTest";
 import { render, screen } from "../../utils/test/test-utils-Logout";
 import SequencesCardList from "./SequencesCardList";
-import { store } from "../../app/store";
 
 describe("Give a component SequencesCardList", () => {
   describe("When it receive whit a array for props", () => {
