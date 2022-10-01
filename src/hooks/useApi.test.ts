@@ -203,7 +203,7 @@ describe("Given a useApi hook", () => {
     });
   });
 
-  describe("When postCreateSequences it's called with sequence corret", () => {
+  describe("When postCreateSequences it's called with sequence correct", () => {
     test("Then should return modal ok create", async () => {
       const mockToken =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzEwODYxYzk5MGM3MDlhNmNlYjk0NWQiLCJ1c2VyTmFtZSI6InRlc3RpbmciLCJpYXQiOjE2NjIxMzk1Mzd9.EKxxxoIKOLRRPDR4Uuh-_QmFM8khGF4_-mxbIxjrOpE";
@@ -231,6 +231,49 @@ describe("Given a useApi hook", () => {
       await result.current.postCreateSequence(sequenceCreateMock);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectModal);
+    });
+  });
+
+  describe("When deleteSequenceId it's called with string id, owner correct, privately true", () => {
+    test("Then should called dispatch expectDispatch", async () => {
+      const mockToken = "token";
+      window.localStorage.setItem("userToken", mockToken);
+
+      const expectDispatch = {
+        payload: "mockId",
+        type: "sequences/deleteSequenceId",
+      };
+
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.deleteSequenceId("mockId");
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectDispatch);
+    });
+  });
+
+  describe("When deleteSequenceId it's called with string error", () => {
+    test("Then should called dispatch modal error", async () => {
+      const mockToken = "token";
+      window.localStorage.setItem("userToken", mockToken);
+
+      const expectDispatchModal = {
+        payload: {
+          modal: {
+            message:
+              "error en la lectura del servidor. Torna ha provar-ho més tard",
+            show: true,
+            type: "error",
+          },
+          loading: false,
+        },
+        type: "ui/uiModalShow",
+      };
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.deleteSequenceId("mockIdError");
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectDispatchModal);
     });
   });
 });

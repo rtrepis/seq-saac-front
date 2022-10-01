@@ -116,4 +116,8 @@ export const handlers = [
 
     return res(ctx.status(status));
   }),
+
+  rest.delete(`${apiUrl}sequences/delete/mockId`, async (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];

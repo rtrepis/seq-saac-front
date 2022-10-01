@@ -137,7 +137,6 @@ const useApi = () => {
   const deleteSequenceId = useCallback(
     async (id: string): Promise<void> => {
       const token = localStorage.getItem("userToken");
-
       try {
         dispatch(uiLoadingShowActionCreator());
 
