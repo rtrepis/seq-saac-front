@@ -36,53 +36,51 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
       expand="md"
       bg="primary"
       variant="dark"
-      className="display-flex justify-content-start p-2 ps-3"
+      className="display-flex  justify-content-between p-2 ps-3 pe-3"
     >
-      <Navbar.Toggle
-        aria-controls="responsive-navbar-nav"
-        className="border-3"
-      />
       <Navbar.Brand className="ms-3">
         <h1 className="mb-0">{page}</h1>
       </Navbar.Brand>
 
+      <Navbar.Toggle
+        aria-controls="responsive-navbar-nav"
+        className="border-3"
+      />
+
       {userName === "" ? (
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className=""></Nav>
-          {linkPage === "register" ? (
-            ""
-          ) : (
-            <Nav>
-              <Nav.Link onClick={() => navigate("/register")}>
-                Registrar-se
-              </Nav.Link>
-            </Nav>
-          )}
-          <Nav className=""></Nav>
-          {linkPage === "home" ? (
-            ""
-          ) : (
-            <Nav>
-              <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
-            </Nav>
-          )}
-          <Nav className=""></Nav>
-          {linkPage === "login" ? (
-            ""
-          ) : (
-            <Nav>
-              <Nav.Link onClick={() => navigate("/login")}>
-                Inicia sessió
-              </Nav.Link>
-            </Nav>
-          )}
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className="justify-content-end"
+        >
+          <Nav>
+            {linkPage !== "home" && (
+              <Nav.Item>
+                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
+              </Nav.Item>
+            )}
+            {linkPage !== "register" && (
+              <Nav.Item>
+                <Nav.Link onClick={() => navigate("/register")}>
+                  Registrar-se
+                </Nav.Link>
+              </Nav.Item>
+            )}
+            {linkPage !== "login" && (
+              <Nav.Item>
+                <Nav.Link onClick={() => navigate("/login")}>
+                  Inicia sessió
+                </Nav.Link>
+              </Nav.Item>
+            )}
+          </Nav>
         </Navbar.Collapse>
       ) : (
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="">
-            {linkPage === "home" ? (
-              ""
-            ) : (
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className="justify-content-end"
+        >
+          <Nav>
+            {linkPage !== "home" && (
               <Nav.Item>
                 <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
               </Nav.Item>
@@ -95,16 +93,12 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
               id="nav-dropdown"
               align={{ lg: "start" }}
             >
-              {linkPage === "my-sequences" ? (
-                ""
-              ) : (
+              {linkPage !== "my-sequences" && (
                 <NavDropdown.Item onClick={() => navigate("/my-sequences")}>
                   Les meves seqüències
                 </NavDropdown.Item>
               )}
-              {linkPage === "create-sequence" ? (
-                ""
-              ) : (
+              {linkPage !== "create-sequence" && (
                 <NavDropdown.Item onClick={() => navigate("/create-sequence")}>
                   Crear la seqüència
                 </NavDropdown.Item>
