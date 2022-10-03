@@ -1,5 +1,5 @@
 import { SyntheticEvent, useEffect, useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
@@ -93,85 +93,96 @@ const CreateSequenceForm = () => {
       index: indexArray,
     });
 
+    setOpenSelectPictogram(!openSelectPictogram);
     document.getElementById("searchPictogramWord")?.focus();
   };
 
+  const [openSelectPictogram, setOpenSelectPictogram] = useState(false);
+
   return (
     <>
-      <Form className="create-sequence-form p-3">
-        <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Nom</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Introduïu el nom de la seqüència"
-            autoComplete="off"
-            onChange={handleChanges}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="privately">
-          <Form.Check
-            type="checkbox"
-            label="Privada"
-            onChange={handleCheckprivately}
-          />
-
-          <Form.Text className="text-muted login-form__text">
-            Clicar, si no voleu compartir la seqüència
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="amount">
-          <Form.Label>Quantitat de pictogrames</Form.Label>
-          <InputGroup className="mb-3">
-            <Button
-              variant="primary"
-              id="button-amount-rest"
-              onClick={() => handleChangesAmountPictograms(-1)}
-            >
-              -
-            </Button>
-            <Form.Control
-              type="number"
-              placeholder={amountPictograms.amount.toString()}
-              autoComplete="off"
-              disabled
-            />
-            <Button
-              variant="primary"
-              id="button-amount-plus"
-              onClick={() => handleChangesAmountPictograms(+1)}
-            >
-              +
-            </Button>
-          </InputGroup>
-        </Form.Group>
-        <Form.Label>
-          Selecciona cada un dels pictogrames de la teva seqüència
-        </Form.Label>
-
-        {amountPictograms.amount > 0 &&
-          [...Array(amountPictograms.amount)].map((element, index) => (
-            <>
-              <Button
-                className="m-2"
-                onClick={() => handleSelectPictogram(index)}
-                id={`button-select-${index}`}
-              >
-                Pictograma {index + 1}
-              </Button>
-              <PictogramShow
-                pictogram={selectPictograms[index].pictogram}
-                size="small"
+      <Row>
+        <Col md={6}>
+          <Form className="create-sequence-form p-3">
+            <Form.Group className="mb-3" controlId="name">
+              <Form.Label>Nom</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Introduïu el nom de la seqüència"
+                autoComplete="off"
+                onChange={handleChanges}
               />
-            </>
-          ))}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="privately">
+              <Form.Check
+                type="checkbox"
+                label="Privada"
+                onChange={handleCheckprivately}
+              />
 
-        <div className="text-center m-3">
-          <Button type="button" onClick={handleSubmit}>
-            Desar la seqüència
-          </Button>
-        </div>
-      </Form>
-      <SelectPictogram indexArrayPictograms={amountPictograms.index} />
+              <Form.Text className="text-muted login-form__text">
+                Clicar, si no voleu compartir la seqüència
+              </Form.Text>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="amount">
+              <Form.Label>Quantitat de pictogrames</Form.Label>
+              <InputGroup className="mb-3">
+                <Button
+                  variant="primary"
+                  id="button-amount-rest"
+                  onClick={() => handleChangesAmountPictograms(-1)}
+                >
+                  -
+                </Button>
+                <Form.Control
+                  type="number"
+                  placeholder={amountPictograms.amount.toString()}
+                  autoComplete="off"
+                  disabled
+                />
+                <Button
+                  variant="primary"
+                  id="button-amount-plus"
+                  onClick={() => handleChangesAmountPictograms(+1)}
+                >
+                  +
+                </Button>
+              </InputGroup>
+              <Form.Text className="text-muted login-form__text">
+                Selecciona la quantitat de pictogrames de la nova seqüència
+              </Form.Text>
+            </Form.Group>
+            {amountPictograms.amount > 0 &&
+              [...Array(amountPictograms.amount)].map((element, index) => (
+                <>
+                  <Button
+                    className="m-2"
+                    onClick={() => handleSelectPictogram(index)}
+                    id={`button-select-${index}`}
+                  >
+                    Pictograma {index + 1}
+                  </Button>
+                  <PictogramShow
+                    pictogram={selectPictograms[index].pictogram}
+                    size="small"
+                  />
+                </>
+              ))}
+            <div>
+              Busca i escull cada un dels pictogrames abans de guardar la
+              seqüència
+            </div>
+            <div className="text-center m-3">
+              <Button type="button" onClick={handleSubmit}>
+                Desar la seqüència
+              </Button>
+            </div>
+          </Form>
+        </Col>
+        <Col md={6}>
+          <SelectPictogram indexArrayPictograms={amountPictograms.index} />
+        </Col>
+      </Row>
     </>
   );
 };
