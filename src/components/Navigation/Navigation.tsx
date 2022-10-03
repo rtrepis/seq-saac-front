@@ -80,18 +80,11 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
           className="justify-content-end"
         >
           <Nav>
-            {linkPage !== "home" && (
-              <Nav.Item>
-                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
-              </Nav.Item>
-            )}
-            <Nav.Item>
-              <Nav.Link onClick={userLogout}>Tanca sessió</Nav.Link>
-            </Nav.Item>
             <NavDropdown
               title={userName}
               id="nav-dropdown"
               align={{ lg: "start" }}
+              drop="down"
             >
               {linkPage !== "my-sequences" && (
                 <NavDropdown.Item onClick={() => navigate("/my-sequences")}>
@@ -104,6 +97,14 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
                 </NavDropdown.Item>
               )}
             </NavDropdown>
+            {linkPage !== "home" && (
+              <Nav.Item>
+                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
+              </Nav.Item>
+            )}
+            <Nav.Item>
+              <Nav.Link onClick={userLogout}>Tanca sessió</Nav.Link>
+            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       )}
