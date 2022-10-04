@@ -13,7 +13,8 @@ interface NavigationProps {
     | "Inicia sessió"
     | "Les meves seqüències"
     | "Seqüència"
-    | "Crear la seqüència";
+    | "Crear la seqüència"
+    | "Editar la seqüencia";
 
   linkPage:
     | "register"
@@ -21,7 +22,8 @@ interface NavigationProps {
     | "login"
     | "my-sequences"
     | "details-sequence"
-    | "create-sequence";
+    | "create-sequence"
+    | "edit-sequence";
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {

@@ -10,37 +10,64 @@ import {
 } from "../../app/slice/selectPictogramsSlice";
 import { RootState } from "../../app/store";
 import useApi from "../../hooks/useApi";
-import { ProtoSequences } from "../../models/sequencesInterface";
+import { ProtoSequences, Sequences } from "../../models/sequencesInterface";
 import PictogramShow from "../PictogramShow/PictogramShow";
 import SelectPictogram from "../SelectPictogram/SelectPictogram";
 
-const CreateSequenceForm = () => {
+interface CreateSequenceFormsProps {
+  sequence?: Sequences;
+}
+
+const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
   const { selectPictograms } = useSelector((state: RootState) => state);
   const dispatch = useAppDispatch();
   const { postCreateSequence } = useApi();
   const navigate = useNavigate();
 
+  sequence?.pictograms.map((pictogram, index) =>
+    console.log({
+      pictogram: pictogram,
+      index: index,
+    })
+  );
+
   useEffect(() => {
     dispatch(restSelectPictogramsActionCreator());
-  }, [dispatch]);
+    if (sequence !== undefined) {
+      sequence.pictograms.map((pictogram, index) =>
+        dispatch(
+          addSelectPictogramActionCreator({
+            pictogram: pictogram,
+            index: index,
+          })
+        )
+      );
+    }
+  }, [dispatch, sequence]);
+
+  const initialCreateSequence: ProtoSequences = {
+    name: sequence?.name === undefined ? "" : sequence.name,
+    pictograms:
+      sequence?.pictograms.length === 0 || sequence?.pictograms === undefined
+        ? []
+        : sequence?.pictograms,
+    privately: sequence?.privately === undefined ? false : sequence.privately,
+  };
+
+  const [createSequenceData, setCreateDataSequence] = useState(
+    initialCreateSequence
+  );
 
   const initialAmountPictogram = {
-    amount: 0,
+    amount:
+      sequence?.pictograms.length === 0 || sequence?.pictograms === undefined
+        ? 0
+        : sequence.pictograms.length,
     index: 0,
   };
 
   const [amountPictograms, setAmountPictograms] = useState(
     initialAmountPictogram
-  );
-
-  const initialCreateSequence: ProtoSequences = {
-    name: "",
-    pictograms: [],
-    privately: false,
-  };
-
-  const [createSequenceData, setCreateDataSequence] = useState(
-    initialCreateSequence
   );
 
   const handleSubmit = async (event: SyntheticEvent) => {
@@ -63,7 +90,7 @@ const CreateSequenceForm = () => {
     });
   };
 
-  const handleCheckprivately = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckPrivately = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCreateDataSequence({
       ...createSequenceData,
       [event.target.id]: event.target.checked,
@@ -111,13 +138,14 @@ const CreateSequenceForm = () => {
                 placeholder="Introduïu el nom de la seqüència"
                 autoComplete="off"
                 onChange={handleChanges}
+                value={createSequenceData.name}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="privately">
               <Form.Check
                 type="checkbox"
                 label="Privada"
-                onChange={handleCheckprivately}
+                onChange={handleCheckPrivately}
               />
 
               <Form.Text className="text-muted login-form__text">
@@ -162,10 +190,12 @@ const CreateSequenceForm = () => {
                   >
                     Pictograma {index + 1}
                   </Button>
-                  <PictogramShow
-                    pictogram={selectPictograms[index].pictogram}
-                    size="small"
-                  />
+                  {selectPictograms.length !== 0 && (
+                    <PictogramShow
+                      pictogram={selectPictograms[index].pictogram}
+                      size="small"
+                    />
+                  )}
                 </>
               ))}
             <div>
