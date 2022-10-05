@@ -1,14 +1,16 @@
-import { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { Form } from "react-bootstrap";
 import useAraSaac from "../../hooks/useAraSaac";
 import SelectPictogramsListShow from "../SelectPictogramsListShow/SelectPictogramsListShow";
 
 interface SelectPictogramProps {
   indexArrayPictograms: number;
+  ref?: React.MutableRefObject<null>;
 }
 
 const SelectPictogram = ({
   indexArrayPictograms,
+  ref,
 }: SelectPictogramProps): JSX.Element => {
   const { getSearchPictogram } = useAraSaac();
 

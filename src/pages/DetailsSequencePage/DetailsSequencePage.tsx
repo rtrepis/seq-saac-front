@@ -9,15 +9,15 @@ import DetailsSequencePageStyled from "./DetailsSequencePageStyled";
 
 const DetailsSequencePage = (): JSX.Element => {
   const { sequences } = useSelector((state: RootState) => state);
-  const { getSequenceId: getSequence } = useApi();
+  const { getSequenceId } = useApi();
   const { id } = useParams();
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
     (async () => {
-      await getSequence(id!);
+      await getSequenceId(id!);
     })();
-  }, [getSequence, id]);
+  }, [getSequenceId, id]);
 
   return (
     <>

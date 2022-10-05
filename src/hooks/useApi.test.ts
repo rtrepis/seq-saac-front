@@ -2,7 +2,7 @@ import { renderHook } from "../utils/test/test-utils-Login";
 import axios from "axios";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
-import { Sequences } from "../models/sequencesInterface";
+import { ProtoSequences, Sequences } from "../models/sequencesInterface";
 import useApi from "./useApi";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
 
@@ -272,6 +272,68 @@ describe("Given a useApi hook", () => {
       const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
 
       await result.current.deleteSequenceId("mockIdError");
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectDispatchModal);
+    });
+  });
+
+  describe("When putSequenceId it's called with sequence and owner correct", () => {
+    test("Then should called dispatch expect modal ok", async () => {
+      const mockToken = "tokenMock";
+      window.localStorage.setItem("userToken", mockToken);
+      const mockDataToUpdateSequence: ProtoSequences = {
+        name: "UpdateName",
+        pictograms: [2],
+        privately: false,
+      };
+      const expectDispatchModal = {
+        payload: {
+          loading: false,
+          modal: {
+            message: "seqüència editada correctament",
+            show: true,
+            type: "ok",
+          },
+        },
+        type: "ui/uiModalShow",
+      };
+
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+      await result.current.putSequenceId("mockId", mockDataToUpdateSequence);
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectDispatchModal);
+    });
+  });
+
+  describe("When putSequenceId it's called with sequence error", () => {
+    test("Then should called dispatch modal error", async () => {
+      const mockToken = "token";
+      window.localStorage.setItem("userToken", mockToken);
+
+      const mockDataToUpdateSequence: ProtoSequences = {
+        name: "",
+        pictograms: [2],
+        privately: false,
+      };
+
+      const expectDispatchModal = {
+        payload: {
+          modal: {
+            message:
+              "error en la lectura del servidor. Torna ha provar-ho més tard",
+            show: true,
+            type: "error",
+          },
+          loading: false,
+        },
+        type: "ui/uiModalShow",
+      };
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.putSequenceId(
+        "mockIdError",
+        mockDataToUpdateSequence
+      );
 
       expect(mockDispatch).toHaveBeenCalledWith(expectDispatchModal);
     });

@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Sequences } from "../../models/sequencesInterface";
 import { renderUser } from "../../utils/test/test-utils-Login";
 import CreateSequenceForm from "./CreateSequenceForm";
 
@@ -24,6 +25,7 @@ const mockPostCreate = jest.fn();
 
 jest.mock("../../hooks/useApi", () => () => ({
   postCreateSequence: mockPostCreate,
+  putSequenceId: mockPostCreate,
 }));
 
 beforeEach(() => jest.clearAllMocks());
@@ -32,12 +34,12 @@ describe("Give a CreateSequenceForm component", () => {
   describe("When its rendering with inputs name, privately, amountPictograms, button", () => {
     test("Then should show this component", () => {
       const labelName = "Nom";
-      const labelprivately = "Privada";
+      const labelPrivately = "Privada";
       const labelAmountPictograms = "Quantitat de pictogrames";
 
       renderUser(<CreateSequenceForm />);
       const name = screen.getByLabelText(labelName);
-      const privatelySequence = screen.getByLabelText(labelprivately);
+      const privatelySequence = screen.getByLabelText(labelPrivately);
       const amountPictograms = screen.getByLabelText(labelAmountPictograms);
 
       expect(name).toBeInTheDocument();
@@ -78,12 +80,12 @@ describe("Give a CreateSequenceForm component", () => {
       const textType = "New name sequence";
 
       const labelName = "Nom";
-      const labelprivately = "Privada";
+      const labelPrivately = "Privada";
 
       renderUser(<CreateSequenceForm />);
 
       const name = screen.getByLabelText(labelName);
-      const privatelyInput = screen.getByLabelText(labelprivately);
+      const privatelyInput = screen.getByLabelText(labelPrivately);
 
       await userEvent.type(name, textType);
       await userEvent.click(privatelyInput);
@@ -94,11 +96,45 @@ describe("Give a CreateSequenceForm component", () => {
   });
 
   describe("When user completed form can click submit", () => {
-    test("Then should called useAraSaac", async () => {
+    test("Then should called postCreate function", async () => {
       const expectSubmitButton = "Desar la seqüència";
 
       renderUser(<CreateSequenceForm />);
 
+      const submit = screen.getByRole("button", { name: expectSubmitButton });
+
+      await userEvent.click(submit);
+
+      expect(mockPostCreate).toHaveBeenCalled();
+    });
+  });
+
+  describe("When props received data sequence", () => {
+    const mockSequenceProps: Sequences = {
+      id: "idMock",
+      name: "nameMock",
+      pictograms: [0],
+      owner: "idOwnerMock",
+      privately: true,
+    };
+    test("Then should show data in inputs form and call", () => {
+      const nameLabel = "Nom";
+      const privatelyLabel = "Privada";
+
+      renderUser(<CreateSequenceForm sequence={mockSequenceProps} />);
+      const nameInput = screen.getByRole("textbox", { name: nameLabel });
+      const privatelyCheck = screen.getByRole("checkbox", {
+        name: privatelyLabel,
+      });
+
+      expect(nameInput).toHaveValue(mockSequenceProps.name);
+      expect(privatelyCheck).toBeChecked();
+    });
+
+    test("Then should user can submit putSequenceId function call", async () => {
+      const expectSubmitButton = "Desar la seqüència";
+
+      renderUser(<CreateSequenceForm sequence={mockSequenceProps} />);
       const submit = screen.getByRole("button", { name: expectSubmitButton });
 
       await userEvent.click(submit);

@@ -43,6 +43,15 @@ const deleteSequenceIdMessage: UiPayload = {
   loading: false,
 };
 
+const updateSequenceIdMessage: UiPayload = {
+  modal: {
+    show: true,
+    message: "seqüència editada correctament",
+    type: "ok",
+  },
+  loading: false,
+};
+
 const useApi = () => {
   const dispatch = useDispatch();
 
@@ -154,12 +163,36 @@ const useApi = () => {
     [dispatch]
   );
 
+  const putSequenceId = useCallback(
+    async (id: string, dataToUpdateSequence: ProtoSequences): Promise<void> => {
+      const token = localStorage.getItem("userToken");
+      try {
+        dispatch(uiLoadingShowActionCreator());
+
+        await axios.put(
+          `${apiURL}sequences/update/${id}`,
+          dataToUpdateSequence,
+          {
+            headers: { authorization: `Bearer ${token}` },
+          }
+        );
+      } catch {
+        dispatch(uiModalShowActionCreator(errorMessage));
+      }
+
+      dispatch(uiLoadingCloseActionCreator());
+      dispatch(uiModalShowActionCreator(updateSequenceIdMessage));
+    },
+    [dispatch]
+  );
+
   return {
     getAllPublicSequence: getAllPublicSequences,
     getSequencesOwner: getSequencesOwner,
     getSequenceId: getSequenceId,
     postCreateSequence: postCreateSequence,
     deleteSequenceId: deleteSequenceId,
+    putSequenceId: putSequenceId,
   };
 };
 

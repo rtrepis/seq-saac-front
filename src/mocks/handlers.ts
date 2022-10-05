@@ -120,4 +120,8 @@ export const handlers = [
   rest.delete(`${apiUrl}sequences/delete/mockId`, async (req, res, ctx) => {
     return res(ctx.status(200));
   }),
+
+  rest.put(`${apiUrl}sequences/update/mockId`, async (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];
