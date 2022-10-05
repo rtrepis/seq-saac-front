@@ -139,6 +139,7 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
                 type="checkbox"
                 label="Privada"
                 onChange={handleCheckPrivately}
+                checked={createSequenceData.privately}
               />
 
               <Form.Text className="text-muted login-form__text">
