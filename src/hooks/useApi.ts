@@ -43,6 +43,15 @@ const deleteSequenceIdMessage: UiPayload = {
   loading: false,
 };
 
+const updateSequenceIdMessage: UiPayload = {
+  modal: {
+    show: true,
+    message: "seqüència editada correctament",
+    type: "ok",
+  },
+  loading: false,
+};
+
 const useApi = () => {
   const dispatch = useDispatch();
 
@@ -160,12 +169,19 @@ const useApi = () => {
       try {
         dispatch(uiLoadingShowActionCreator());
 
-        axios.put(`${apiURL}sequences/update/${id}`, dataToUpdateSequence, {
-          headers: { authorization: `Bearer ${token}` },
-        });
+        await axios.put(
+          `${apiURL}sequences/update/${id}`,
+          dataToUpdateSequence,
+          {
+            headers: { authorization: `Bearer ${token}` },
+          }
+        );
       } catch {
         dispatch(uiModalShowActionCreator(errorMessage));
       }
+
+      dispatch(uiLoadingCloseActionCreator());
+      dispatch(uiModalShowActionCreator(updateSequenceIdMessage));
     },
     [dispatch]
   );

@@ -27,7 +27,7 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
   useEffect(() => {
     dispatch(restSelectPictogramsActionCreator());
     if (sequence !== undefined) {
-      sequence.pictograms.map((pictogram, index) =>
+      sequence.pictograms.forEach((pictogram, index) =>
         dispatch(
           addSelectPictogramActionCreator({
             pictogram: pictogram,

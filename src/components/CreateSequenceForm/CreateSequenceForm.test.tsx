@@ -96,7 +96,7 @@ describe("Give a CreateSequenceForm component", () => {
   });
 
   describe("When user completed form can click submit", () => {
-    test("Then should called useAraSaac", async () => {
+    test("Then should called postCreate function", async () => {
       const expectSubmitButton = "Desar la seqüència";
 
       renderUser(<CreateSequenceForm />);
@@ -109,15 +109,15 @@ describe("Give a CreateSequenceForm component", () => {
     });
   });
 
-  describe("When props received sequence", () => {
-    test("Then should show data sequence in inputs form", () => {
-      const mockSequenceProps: Sequences = {
-        id: "idMock",
-        name: "nameMock",
-        pictograms: [0],
-        owner: "idOwnerMock",
-        privately: true,
-      };
+  describe("When props received data sequence", () => {
+    const mockSequenceProps: Sequences = {
+      id: "idMock",
+      name: "nameMock",
+      pictograms: [0],
+      owner: "idOwnerMock",
+      privately: true,
+    };
+    test("Then should show data in inputs form and call", () => {
       const nameLabel = "Nom";
       const privatelyLabel = "Privada";
 
@@ -129,6 +129,17 @@ describe("Give a CreateSequenceForm component", () => {
 
       expect(nameInput).toHaveValue(mockSequenceProps.name);
       expect(privatelyCheck).toBeChecked();
+    });
+
+    test("Then should user can submit putSequenceId function call", async () => {
+      const expectSubmitButton = "Desar la seqüència";
+
+      renderUser(<CreateSequenceForm sequence={mockSequenceProps} />);
+      const submit = screen.getByRole("button", { name: expectSubmitButton });
+
+      await userEvent.click(submit);
+
+      expect(mockPostCreate).toHaveBeenCalled();
     });
   });
 });
