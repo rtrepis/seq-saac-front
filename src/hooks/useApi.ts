@@ -154,12 +154,29 @@ const useApi = () => {
     [dispatch]
   );
 
+  const putSequenceId = useCallback(
+    async (id: string, dataToUpdateSequence: ProtoSequences): Promise<void> => {
+      const token = localStorage.getItem("userToken");
+      try {
+        dispatch(uiLoadingShowActionCreator());
+
+        axios.put(`${apiURL}sequences/update/${id}`, dataToUpdateSequence, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+      } catch {
+        dispatch(uiModalShowActionCreator(errorMessage));
+      }
+    },
+    [dispatch]
+  );
+
   return {
     getAllPublicSequence: getAllPublicSequences,
     getSequencesOwner: getSequencesOwner,
     getSequenceId: getSequenceId,
     postCreateSequence: postCreateSequence,
     deleteSequenceId: deleteSequenceId,
+    putSequenceId: putSequenceId,
   };
 };
 

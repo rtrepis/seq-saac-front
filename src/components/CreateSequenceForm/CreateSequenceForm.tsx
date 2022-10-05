@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -21,15 +21,8 @@ interface CreateSequenceFormsProps {
 const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
   const { selectPictograms } = useSelector((state: RootState) => state);
   const dispatch = useAppDispatch();
-  const { postCreateSequence } = useApi();
+  const { postCreateSequence, putSequenceId } = useApi();
   const navigate = useNavigate();
-
-  sequence?.pictograms.map((pictogram, index) =>
-    console.log({
-      pictogram: pictogram,
-      index: index,
-    })
-  );
 
   useEffect(() => {
     dispatch(restSelectPictogramsActionCreator());
@@ -77,9 +70,12 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
     selectPictograms.forEach((element) =>
       addPictograms.push(element.pictogram)
     );
-
     const newSequence = { ...createSequenceData, pictograms: addPictograms };
-    await postCreateSequence(newSequence);
+
+    sequence === undefined
+      ? await postCreateSequence(newSequence)
+      : await putSequenceId(sequence.id, newSequence);
+
     navigate("/my-sequences");
   };
 
@@ -120,11 +116,8 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
       index: indexArray,
     });
 
-    setOpenSelectPictogram(!openSelectPictogram);
     document.getElementById("searchPictogramWord")?.focus();
   };
-
-  const [openSelectPictogram, setOpenSelectPictogram] = useState(false);
 
   return (
     <>
