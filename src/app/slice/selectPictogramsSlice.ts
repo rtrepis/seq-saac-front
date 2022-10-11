@@ -30,6 +30,11 @@ const selectPictogramsSlice = createSlice({
           : selectPictogram
       );
     },
+
+    loadAllSelectPictogram: (
+      previousSelectPictogram,
+      action: PayloadAction<SelectPictogram[]>
+    ) => [...action.payload],
   },
 });
 
@@ -40,4 +45,5 @@ export const {
   updateSelectPictogram: updateSelectPictogramActionCreator,
   deleteSelectPictogram: deleteSelectPictogramActionCreator,
   restSelectPictograms: restSelectPictogramsActionCreator,
+  loadAllSelectPictogram: loadAllSelectPictogramActionCreator,
 } = selectPictogramsSlice.actions;

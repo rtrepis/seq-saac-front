@@ -1,9 +1,8 @@
-import { Col, Nav, Row } from "react-bootstrap";
+import { Col, Nav } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import { IoTrashOutline } from "react-icons/io5";
+import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
 import useApi from "../../hooks/useApi";
-
 interface SequenceCardProps {
   name: string;
   pictograms: number[];
@@ -25,29 +24,16 @@ const SequenceCard = ({
   const handlerDeleteSequenceId = (idSequence: string) => {
     deleteSequenceId(idSequence);
   };
-
   return (
     <Col className="mx-auto">
       <Card style={{ width: "20.5rem" }} border="primary" className="mx-auto">
         <Card.Header className="p-2 ps-3">
-          <Row>
-            <Col xs={10}>
-              <Nav.Link
-                className="sequence-link"
-                onClick={() => navigate(`/details-sequence/${id}`)}
-              >
-                <h3 className="mb-0">{name}</h3>
-              </Nav.Link>
-            </Col>
-            {privately && owner && (
-              <Col xs={2}>
-                <Nav.Link onClick={() => handlerDeleteSequenceId(id)}>
-                  <IoTrashOutline />
-                  <span hidden>Trash for delete sequences</span>
-                </Nav.Link>
-              </Col>
-            )}
-          </Row>
+          <Nav.Link
+            className="sequence-link"
+            onClick={() => navigate(`/details-sequence/${id}`)}
+          >
+            <h3 className="mb-0">{name}</h3>
+          </Nav.Link>
         </Card.Header>
         <Nav.Link
           className="sequence-link"
@@ -68,6 +54,20 @@ const SequenceCard = ({
             ))}
           </Card.Body>
         </Nav.Link>
+        {owner && (
+          <Card.Footer className="d-flex justify-content-end p-0 ps-3 pe-3">
+            <Nav.Link onClick={() => navigate(`/edit-sequence/${id}`)}>
+              <IoPencilOutline className="ms-3" />
+              <span hidden>Llapis per editar la seqüència</span>
+            </Nav.Link>
+            {privately && (
+              <Nav.Link onClick={() => handlerDeleteSequenceId(id)}>
+                <IoTrashOutline className="ms-3" />
+                <span hidden>Brosa per borrar la seqüència</span>
+              </Nav.Link>
+            )}
+          </Card.Footer>
+        )}
       </Card>
     </Col>
   );

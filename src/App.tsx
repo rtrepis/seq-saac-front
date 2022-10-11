@@ -12,15 +12,18 @@ import MySequencePage from "./pages/MySequencesPages/MySequencesPages";
 import DetailsSequencePage from "./pages/DetailsSequencePage/DetailsSequencePage";
 import CreateSequencePage from "./pages/CreateSequencePage/CreateSequencePage";
 import EditSequencePage from "./pages/EditSequencePage/EditSequencePage";
+import { useEffect } from "react";
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
 
-  const isUserLogged = localStorage.getItem("userToken");
-  if (isUserLogged != null) {
-    const userLogged = decodeToken(isUserLogged);
-    dispatch(userLoginActionCreator(userLogged));
-  }
+  useEffect(() => {
+    const isUserLogged = localStorage.getItem("userToken");
+    if (isUserLogged != null) {
+      const userLogged = decodeToken(isUserLogged);
+      dispatch(userLoginActionCreator(userLogged));
+    }
+  }, [dispatch]);
 
   const { modal } = useSelector((state: RootState) => state.ui);
 

@@ -1,16 +1,18 @@
 import React, { SyntheticEvent, useEffect, useState } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import {
   addSelectPictogramActionCreator,
   deleteSelectPictogramActionCreator,
+  loadAllSelectPictogramActionCreator,
   restSelectPictogramsActionCreator,
 } from "../../app/slice/selectPictogramsSlice";
 import { RootState } from "../../app/store";
 import useApi from "../../hooks/useApi";
 import { ProtoSequences, Sequences } from "../../models/sequencesInterface";
+import { ISelectPictogram } from "../../Types/interface";
 import PictogramShow from "../PictogramShow/PictogramShow";
 import SelectPictogram from "../SelectPictogram/SelectPictogram";
 
@@ -24,20 +26,6 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
   const { postCreateSequence, putSequenceId } = useApi();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(restSelectPictogramsActionCreator());
-    if (sequence !== undefined) {
-      sequence.pictograms.forEach((pictogram, index) =>
-        dispatch(
-          addSelectPictogramActionCreator({
-            pictogram: pictogram,
-            index: index,
-          })
-        )
-      );
-    }
-  }, [dispatch, sequence]);
-
   const initialCreateSequence: ProtoSequences = {
     name: sequence?.name === undefined ? "" : sequence.name,
     pictograms:
@@ -50,6 +38,23 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
   const [createSequenceData, setCreateDataSequence] = useState(
     initialCreateSequence
   );
+
+  useEffect(() => {
+    if (sequence !== undefined) {
+      let loadAllSelectPictogramSequence: ISelectPictogram[] = [];
+
+      sequence.pictograms.forEach((pictogram, index) => {
+        const addSelectPictogram = { pictogram: pictogram, index: index };
+        loadAllSelectPictogramSequence.push(addSelectPictogram);
+      });
+
+      dispatch(
+        loadAllSelectPictogramActionCreator(loadAllSelectPictogramSequence)
+      );
+    } else {
+      dispatch(restSelectPictogramsActionCreator());
+    }
+  }, [dispatch, sequence]);
 
   const initialAmountPictogram = {
     amount:
@@ -174,24 +179,30 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
                 Selecciona la quantitat de pictogrames de la nova seqüència
               </Form.Text>
             </Form.Group>
-            {amountPictograms.amount > 0 &&
-              [...Array(amountPictograms.amount)].map((element, index) => (
-                <>
-                  <Button
-                    className="m-2"
-                    onClick={() => handleSelectPictogram(index)}
-                    id={`button-select-${index}`}
-                  >
-                    Pictograma {index + 1}
-                  </Button>
-                  {selectPictograms.length !== 0 && (
-                    <PictogramShow
-                      pictogram={selectPictograms[index].pictogram}
-                      size="small"
-                    />
-                  )}
-                </>
-              ))}
+            <Row>
+              {amountPictograms.amount > 0 &&
+                [...Array(amountPictograms.amount)].map((element, index) => (
+                  <Col sx={6} className="justify-content-center">
+                    <Card style={{ width: "13rem" }} className="m-1">
+                      <Card.Body className="p-1">
+                        {selectPictograms[index] !== undefined && (
+                          <PictogramShow
+                            pictogram={selectPictograms[index].pictogram}
+                            size="small"
+                          />
+                        )}
+                        <Button
+                          className="m-1"
+                          onClick={() => handleSelectPictogram(index)}
+                          id={`button-select-${index}`}
+                        >
+                          Pictograma {index + 1}
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+            </Row>
             <div>
               Busca i escull cada un dels pictogrames abans de guardar la
               seqüència
