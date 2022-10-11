@@ -2,6 +2,7 @@ import { SelectPictogram } from "../../models/sequencesInterface";
 import {
   addSelectPictogramActionCreator,
   deleteSelectPictogramActionCreator,
+  loadAllSelectPictogramActionCreator,
   restSelectPictogramsActionCreator,
   selectPictogramsReducer,
   updateSelectPictogramActionCreator,
@@ -29,7 +30,7 @@ describe("Given the slice selectPictogramsSlice", () => {
     });
   });
 
-  describe("When call updateSelecPictogram reducer with previousState and payload", () => {
+  describe("When call updateSelectPictogram reducer with previousState and payload", () => {
     test("Then should return same previousSequencePayload with show new property", () => {
       const previousSequencesPayload: SelectPictogram[] = [
         {
@@ -81,7 +82,7 @@ describe("Given the slice selectPictogramsSlice", () => {
     });
   });
 
-  describe("When call deteleSelectPictogram with previousState", () => {
+  describe("When call deleteSelectPictogram with previousState", () => {
     test("Then should return previousSequence length -1", () => {
       const previousSequencesPayload: SelectPictogram[] = [
         {
@@ -113,6 +114,7 @@ describe("Given the slice selectPictogramsSlice", () => {
           pictogram: 123,
         },
       ];
+      const expectLengthPictograms = 0;
 
       const selectPictogramPayLoad = restSelectPictogramsActionCreator();
 
@@ -121,7 +123,40 @@ describe("Given the slice selectPictogramsSlice", () => {
         selectPictogramPayLoad
       );
 
-      expect(newSelectPictogram).toHaveLength(0);
+      expect(newSelectPictogram).toHaveLength(expectLengthPictograms);
+    });
+  });
+
+  describe("When call loadAllSelectPictogram with previousState", () => {
+    test("Then should return previousSequence all selectPictograms of sequences", () => {
+      const previousSequencesPayload: SelectPictogram[] = [
+        {
+          index: 1,
+          pictogram: 123,
+        },
+      ];
+      const expectPictogramsOfSequences: SelectPictogram[] = [
+        {
+          index: 1,
+          pictogram: 123,
+        },
+        {
+          index: 2,
+          pictogram: 123,
+        },
+      ];
+      const expectLengthPictograms = 2;
+
+      const selectPictogramPayLoad = loadAllSelectPictogramActionCreator(
+        expectPictogramsOfSequences
+      );
+
+      const newSelectPictogram = selectPictogramsReducer(
+        previousSequencesPayload,
+        selectPictogramPayLoad
+      );
+
+      expect(newSelectPictogram).toHaveLength(expectLengthPictograms);
     });
   });
 });

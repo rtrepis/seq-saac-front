@@ -13,7 +13,7 @@ export type Pictogram = number;
 
 export type Pictograms = Pictogram[];
 
-export interface SelectPictogram {
+export interface ISelectPictogram {
   pictogram: number;
   index: number;
 }

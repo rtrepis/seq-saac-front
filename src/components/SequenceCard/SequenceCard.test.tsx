@@ -50,7 +50,7 @@ describe("Give a component SequenceCard", () => {
 
   describe("When sequence is privately", () => {
     test("Then should show and user can click action", async () => {
-      const expectTrashIcon = "";
+      const expectTrashIcon = "Brosa per borrar la seqüència";
       const privatelySequence = true;
 
       renderUser(
@@ -62,12 +62,35 @@ describe("Give a component SequenceCard", () => {
           owner={true}
         />
       );
-      const iconTrash = screen.getByRole("button", { name: expectTrashIcon });
+      const iconTrash = screen.getByText(expectTrashIcon);
 
       await userEvent.click(iconTrash);
 
       expect(iconTrash).toBeInTheDocument();
       expect(mockDeleteSequenceId).toHaveBeenCalled();
+    });
+  });
+
+  describe("When user register is mySequencePage", () => {
+    test("Then should show pen and user can click action", async () => {
+      const expectPenIcon = "Llapis per editar la seqüència";
+      const privatelySequence = false;
+
+      renderUser(
+        <SequenceCard
+          name={expectTitle}
+          pictograms={expectPictogramsArray}
+          id={expectId}
+          privately={privatelySequence}
+          owner={true}
+        />
+      );
+      const iconPen = screen.getByText(expectPenIcon);
+
+      await userEvent.click(iconPen);
+
+      expect(iconPen).toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 });
