@@ -45,6 +45,12 @@ const App = (): JSX.Element => {
         <Route path="/edit-sequence/:id" element={<EditSequencePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <footer className="text-center mt-5 p-4 bg-dark text-white">
+        Els símbols pictogràfics utilitzats són propietat del Govern d'Aragó i
+        han estat creats per Sergio Palao per a ARASAAC
+        (http://www.arasaac.org), que els distribueix a Llicència Creative
+        Commons BY-NC-SA.
+      </footer>
     </>
   );
 };
