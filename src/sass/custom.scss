@@ -1,3 +1,9 @@
+$theme-colors: (
+  "primary": #1b7d20,
+  "dark": rgb(37, 37, 37),
+  "danger": #700,
+);
+
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -8,9 +14,24 @@ $grid-breakpoints: (
 );
 
 $component-active-bg: #1b7d20;
+$form-feedback-valid-color: #070;
+$form-feedback-invalid-color: #700;
+$form-feedback-icon-invalid-color: $form-feedback-invalid-color;
+$form-feedback-icon-invalid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='#{$form-feedback-icon-invalid-color}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='10' y1='2' x2='2' y2='10'/><line x1='2' y1='2' x2='10' y2='10'/></svg>");
 
-$input-focus-border-color: tint-color($component-active-bg, 50%);
+//$input-focus-border-color: tint-color(#fff, 0%);
+
 $input-btn-font-size: 20px;
+
+$input-btn-focus-width: 0.1rem;
+$input-btn-focus-color-opacity: 0.25;
+$input-btn-focus-color: rgba(
+  $component-active-bg,
+  $input-btn-focus-color-opacity
+);
+$input-btn-focus-blur: 0;
+$input-btn-focus-box-shadow: 0 0 $input-btn-focus-blur $input-btn-focus-width
+  $input-btn-focus-color;
 
 $input-font-size: 20px;
 $input-font-weight: 500;
@@ -27,11 +48,6 @@ $carousel-indicator-active-bg: #252525;
 $carousel-caption-color: #252525;
 
 $h3-font-size: 20px;
-
-$theme-colors: (
-  "primary": #1b7d20,
-  "dark": rgb(37, 37, 37),
-);
 
 $card-height: 200px;
 
