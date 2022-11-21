@@ -13,6 +13,7 @@ import DetailsSequencePage from "./pages/DetailsSequencePage/DetailsSequencePage
 import CreateSequencePage from "./pages/CreateSequencePage/CreateSequencePage";
 import EditSequencePage from "./pages/EditSequencePage/EditSequencePage";
 import { useEffect } from "react";
+import ValidateEmailPage from "./pages/ValidateEmailPage/ValidateEmailPage";
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const App = (): JSX.Element => {
         <Route path="/details-sequence/:id" element={<DetailsSequencePage />} />
         <Route path="/create-sequence" element={<CreateSequencePage />} />
         <Route path="/edit-sequence/:id" element={<EditSequencePage />} />
+        <Route path="/email-verify/:code" element={<ValidateEmailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <footer className="text-center mt-5 p-4 bg-dark text-white">

@@ -40,13 +40,24 @@ const useUser = () => {
       await axios.post(`${apiUrl}users/register`, dataForm);
       navigate("/login");
       isUserCreate = true;
-      modalShow(true, "Usuari creat correctament", "ok");
+      modalShow(true, "Si us plau, valideu el vostre correu electrònic.", "ok");
     } catch (error) {
       modalShow(true, "Usuari o contrasenya invàlids", "error");
       isUserCreate = false;
       return isUserCreate;
     }
     return isUserCreate;
+  };
+
+  const getConfirmationCode = async (code: string) => {
+    try {
+      await axios.get(`${apiUrl}users/email-verify/${code}`);
+      modalShow(true, "El correu electònic s'ha validat correctament", "ok");
+      navigate("/login");
+    } catch (error) {
+      modalShow(true, "Error en la validació del correu", "error");
+      navigate("/login");
+    }
   };
 
   const postLogin = async (dataForm: NamePasswordUserData) => {
@@ -79,7 +90,7 @@ const useUser = () => {
     navigate("/home");
   };
 
-  return { postRegister, postLogin, userLogout };
+  return { postRegister, getConfirmationCode, postLogin, userLogout };
 };
 
 export default useUser;
