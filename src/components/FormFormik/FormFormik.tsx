@@ -3,28 +3,43 @@ import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { Formik } from "formik";
 import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
+import useUser from "../../hooks/useUser";
 
 const schema = yup.object().shape({
-  userName: yup.string().min(3, "es curt nen").max(30).required(),
-  email: yup.string().email().required(),
-  password: yup.string().min(3).max(30).required(),
+  userName: yup
+    .string()
+    .min(3, "Requrit min 3 caracters")
+    .max(30, "Exedit max 30 caracters")
+    .required("Nom d'usuari és requirit"),
+  email: yup
+    .string()
+    .email("Introduïu un correu electrònic vàlid")
+    .required("Correu electrònic és requerit"),
+  password: yup
+    .string()
+    .min(3, "Requrit min 3 caracters")
+    .max(30, "Requrit min 3 caracters")
+    .required("Contrasenya és requerit"),
   confirmPassword: yup
     .string()
-    .required()
-    .oneOf([yup.ref("password"), null]),
-  terms: yup
-    .bool()
-    .required()
-    .oneOf([true], "Xaval Accepta les condicions si no Tururu"),
+    .required("Confirmació contrasenya és requerit")
+    .oneOf([yup.ref("password"), null], "No coincideix amb la contrasenya"),
+  terms: yup.bool().required().oneOf([true], "Acceptació és requierit"),
 });
 
 const FormFormik = (): JSX.Element => {
+  const { postRegister } = useUser();
   return (
     <RegisterFormStyled>
       <Formik
         validationSchema={schema}
-        onSubmit={() => {
-          console.log("Submit");
+        onSubmit={(values) => {
+          const dataPostRegister = {
+            userName: values.userName,
+            password: values.password,
+            email: values.email,
+          };
+          postRegister(dataPostRegister);
         }}
         initialValues={{
           userName: "",
@@ -50,7 +65,7 @@ const FormFormik = (): JSX.Element => {
               <Form.Control
                 type="text"
                 name="userName"
-                placeholder="Introduïu el vostre nom"
+                placeholder="Nom d'usuari"
                 className=" register-form__input"
                 value={values.userName}
                 onChange={handleChange}
@@ -59,9 +74,6 @@ const FormFormik = (): JSX.Element => {
                 isInvalid={touched.userName && !!errors.userName}
               />
 
-              <Form.Text className="text-muted register-form__text">
-                Introduïu un nom alfanumèric entre 3 i 30 digits
-              </Form.Text>
               <Form.Control.Feedback>
                 Validat correctament!
               </Form.Control.Feedback>
@@ -83,56 +95,63 @@ const FormFormik = (): JSX.Element => {
                 isValid={touched.email && !errors.email}
                 isInvalid={touched.email && !!errors.email}
               />
-              <Form.Text className="text-muted register-form__text">
-                Introduïu una correu vàlid.
-              </Form.Text>
+              <Form.Control.Feedback>
+                Validat correctament!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="passwordGroup">
               <Form.Label>Contrasenya</Form.Label>
 
               <Form.Control
-                type="text"
+                type="password"
                 name="password"
-                placeholder="Introduïu la vostra contrasenyes"
+                placeholder=""
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isValid={touched.password && !errors.password}
                 isInvalid={touched.password && !!errors.password}
               />
-
-              <Form.Text className="text-muted register-form__text">
-                Introduïu una contrasenya entre 3 i 30 digits.
-              </Form.Text>
+              <Form.Control.Feedback>
+                Validat correctament!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="confirmPasswordGroup">
               <Form.Label>Confirmació Contrasenya</Form.Label>
 
               <Form.Control
-                type="text"
+                type="password"
                 name="confirmPassword"
-                placeholder="Introduïu la vostra contrasenyes"
+                placeholder=""
                 value={values.confirmPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isValid={touched.confirmPassword && !errors.confirmPassword}
                 isInvalid={touched.confirmPassword && !!errors.confirmPassword}
               />
-
-              <Form.Text className="text-muted register-form__text">
-                Introduïu la contrasenya de nou.
-              </Form.Text>
+              <Form.Control.Feedback>
+                Validat correctament!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.confirmPassword}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Check
                 required
                 name="terms"
-                label="Agree to terms and conditions"
+                label="Acceptacío termes i condicions"
                 onChange={handleChange}
-                isInvalid={!!errors.terms}
+                isInvalid={touched.confirmPassword && !!errors.terms}
                 feedback={errors.terms}
                 feedbackType="invalid"
                 id="validationFormik0"
@@ -145,7 +164,7 @@ const FormFormik = (): JSX.Element => {
                 disabled={!isValid}
                 className="register-form__button"
               >
-                Submit form
+                Registra't
               </Button>
             </div>
           </Form>
