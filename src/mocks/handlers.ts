@@ -124,4 +124,11 @@ export const handlers = [
   rest.put(`${apiUrl}sequences/update/mockId`, async (req, res, ctx) => {
     return res(ctx.status(200));
   }),
+
+  rest.get(
+    `${apiUrl}users/email-verify/validConfirmationCode`,
+    async (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
 ];

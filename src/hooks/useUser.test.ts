@@ -2,6 +2,7 @@ import { renderHook } from "@testing-library/react";
 import { NamePasswordUserData } from "../models/userInterface";
 import useUser from "./useUser";
 import { Wrapper } from "../utils/test/test-utils-Logout";
+import { resourceLimits } from "worker_threads";
 
 describe("Given the useUser hook", () => {
   describe("When postRegister it's called with a correct userHook", () => {
@@ -83,6 +84,34 @@ describe("Given the useUser hook", () => {
       const localStoreState = localStorage.getItem("userToken");
 
       expect(localStoreState).toBe(null);
+    });
+  });
+
+  describe("When getConfirmationCode it's called with valid code", () => {
+    test("Then should show ok modal", async () => {
+      const confirmationCode = "validConfirmationCode";
+      const { result } = renderHook(() => useUser(), { wrapper: Wrapper });
+      const expectReturn = true;
+
+      const resultGetValidationCode = await result.current.getConfirmationCode(
+        confirmationCode
+      );
+
+      expect(resultGetValidationCode).toBe(expectReturn);
+    });
+  });
+
+  describe("When getConfirmationCode it's called with inValid code", () => {
+    test("Then should show ok modal", async () => {
+      const confirmationCode = "inValidConfirmationCode";
+      const { result } = renderHook(() => useUser(), { wrapper: Wrapper });
+      const expectReturn = false;
+
+      const resultGetValidationCode = await result.current.getConfirmationCode(
+        confirmationCode
+      );
+
+      expect(resultGetValidationCode).toBe(expectReturn);
     });
   });
 });

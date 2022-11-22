@@ -50,14 +50,18 @@ const useUser = () => {
   };
 
   const getConfirmationCode = async (code: string) => {
+    let isValidConfirmationCode;
     try {
       await axios.get(`${apiUrl}users/email-verify/${code}`);
       modalShow(true, "El correu electònic s'ha validat correctament", "ok");
       navigate("/login");
+      isValidConfirmationCode = true;
     } catch (error) {
       modalShow(true, "Error en la validació del correu", "error");
       navigate("/login");
+      isValidConfirmationCode = false;
     }
+    return isValidConfirmationCode;
   };
 
   const postLogin = async (dataForm: NamePasswordUserData) => {
