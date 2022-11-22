@@ -13,7 +13,7 @@ const ValidateEmailPage = (): JSX.Element => {
     })();
   }, [getConfirmationCode, confirmationCode]);
 
-  return <div className="message">Validant correu electrònic</div>;
+  return <div className="message">Validant correu electrònic...</div>;
 };
 
 export default ValidateEmailPage;
