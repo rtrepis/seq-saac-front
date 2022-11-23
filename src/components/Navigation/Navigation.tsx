@@ -14,7 +14,8 @@ interface NavigationProps {
     | "Les meves seqüències"
     | "Seqüència"
     | "Crear la seqüència"
-    | "Editar la seqüència";
+    | "Editar la seqüència"
+    | "Termes i condicions";
 
   linkPage:
     | "register"
