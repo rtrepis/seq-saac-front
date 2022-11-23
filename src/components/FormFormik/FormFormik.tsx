@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
 import useUser from "../../hooks/useUser";
+import { Nav } from "react-bootstrap";
 
 const schema = yup.object().shape({
   userName: yup
@@ -58,7 +59,11 @@ const FormFormik = (): JSX.Element => {
           isValid,
           errors,
         }) => (
-          <Form noValidate onSubmit={handleSubmit} className="register-form">
+          <Form
+            noValidate
+            onSubmit={handleSubmit}
+            className="register-form mt-5"
+          >
             <Form.Group className="mb-3" controlId="userNameGroup">
               <Form.Label>Usuari</Form.Label>
 
@@ -152,10 +157,17 @@ const FormFormik = (): JSX.Element => {
                 label="Acceptacío termes i condicions"
                 onChange={handleChange}
                 isInvalid={touched.confirmPassword && !!errors.terms}
-                feedback={errors.terms}
-                feedbackType="invalid"
+                isValid={touched.terms && !errors.terms}
                 id="validationFormik0"
               />
+              <Form.Text className="text-muted register-form__text">
+                <Nav.Link href="terms">
+                  Coneixeu els termes i condicions d'ús
+                </Nav.Link>
+              </Form.Text>
+              <Form.Control.Feedback type="invalid">
+                {errors.terms}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <div className="register-form__footer">
