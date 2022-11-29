@@ -4,7 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import useApi from "../../hooks/useApi";
 
 const SearchSequence = (): JSX.Element => {
-  const { getSearchSequences: getSearch } = useApi();
+  const { getSearchSequences, getAllPublicSequence } = useApi();
 
   const initialSearchSequencesWord = {
     searchWord: "",
@@ -23,8 +23,11 @@ const SearchSequence = (): JSX.Element => {
   const handelSubmitSearch = async (event: SyntheticEvent) => {
     event.preventDefault();
     const { searchWord } = searchSequencesWord;
-    console.log(searchWord);
-    await getSearch(searchWord);
+    if (searchWord.length > 0) {
+      await getSearchSequences(searchWord);
+    } else {
+      await getAllPublicSequence();
+    }
   };
 
   return (
