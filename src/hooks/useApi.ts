@@ -186,6 +186,25 @@ const useApi = () => {
     [dispatch]
   );
 
+  const getSearchSequences = useCallback(
+    async (word: string): Promise<void> => {
+      try {
+        dispatch(uiLoadingShowActionCreator());
+
+        const {
+          data: { sequences },
+        } = await axios.get(`${apiURL}sequences/search/${word}`);
+
+        dispatch(loadSequencesActionCreator(sequences));
+      } catch {
+        dispatch(uiModalShowActionCreator(errorMessage));
+      }
+
+      dispatch(uiLoadingCloseActionCreator());
+    },
+    [dispatch]
+  );
+
   return {
     getAllPublicSequence: getAllPublicSequences,
     getSequencesOwner: getSequencesOwner,
@@ -193,6 +212,7 @@ const useApi = () => {
     postCreateSequence: postCreateSequence,
     deleteSequenceId: deleteSequenceId,
     putSequenceId: putSequenceId,
+    getSearchSequences: getSearchSequences,
   };
 };
 
