@@ -338,4 +338,49 @@ describe("Given a useApi hook", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expectDispatchModal);
     });
   });
+
+  describe("When getSearchSequences it's called with word", () => {
+    test("Then should called dispatch expectDispatch", async () => {
+      const sequencesMock = [
+        {
+          id: "",
+          name: "",
+          pictograms: [0, 0],
+          privately: true,
+          owner: "235",
+        },
+      ];
+      const expectDispatch = {
+        payload: sequencesMock,
+        type: "sequences/loadSequences",
+      };
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.getSearchSequences("mockWord");
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectDispatch);
+    });
+  });
+
+  describe("When getSearchSequences it's called with invalid word", () => {
+    test.only("Then should called dispatch expectDispatch", async () => {
+      const expectDispatchModal = {
+        payload: {
+          modal: {
+            message:
+              "error en la lectura del servidor. Torna ha provar-ho més tard",
+            show: true,
+            type: "error",
+          },
+          loading: false,
+        },
+        type: "ui/uiModalShow",
+      };
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.getSearchSequences("%");
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectDispatchModal);
+    });
+  });
 });

@@ -131,4 +131,17 @@ export const handlers = [
       return res(ctx.status(200));
     }
   ),
+
+  rest.get(`${apiUrl}sequences/search/mockWord`, async (req, res, ctx) => {
+    const sequences = [
+      {
+        id: "",
+        name: "",
+        pictograms: [0, 0],
+        privately: true,
+        owner: "235",
+      },
+    ];
+    return res(ctx.status(200), ctx.json({ sequences }));
+  }),
 ];

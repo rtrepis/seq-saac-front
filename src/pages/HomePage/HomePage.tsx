@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import Navigation from "../../components/Navigation/Navigation";
-import SearchSequence from "../../components/SearchSequence/SeachSequence";
+import SearchSequence from "../../components/SearchSequence/SearchSequence";
 import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
 import Slider from "../../components/Slider/Slider";
 import useApi from "../../hooks/useApi";
