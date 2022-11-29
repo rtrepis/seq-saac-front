@@ -363,7 +363,7 @@ describe("Given a useApi hook", () => {
   });
 
   describe("When getSearchSequences it's called with invalid word", () => {
-    test.only("Then should called dispatch expectDispatch", async () => {
+    test("Then should called dispatch expectDispatch", async () => {
       const expectDispatchModal = {
         payload: {
           modal: {
