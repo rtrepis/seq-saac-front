@@ -15,6 +15,7 @@ import EditSequencePage from "./pages/EditSequencePage/EditSequencePage";
 import { useEffect } from "react";
 import ValidateEmailPage from "./pages/ValidateEmailPage/ValidateEmailPage";
 import TermesPage from "./pages/TermesPage/TermesPage";
+import ForgotPage from "./pages/ForgotPage/ForgotPage";
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -46,6 +47,8 @@ const App = (): JSX.Element => {
         <Route path="/create-sequence" element={<CreateSequencePage />} />
         <Route path="/edit-sequence/:id" element={<EditSequencePage />} />
         <Route path="/email-verify/:code" element={<ValidateEmailPage />} />
+        <Route path="/forgot/:code" element={<ForgotPage />} />
+        <Route path="/forgot" element={<ForgotPage />} />
         <Route path="/terms" element={<TermesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
