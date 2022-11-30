@@ -8,3 +8,8 @@ export interface UserLogged {
   userName: string;
   token: string;
 }
+
+export interface PasswordCodeData {
+  password: string;
+  code?: string;
+}

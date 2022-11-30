@@ -38,26 +38,20 @@ const LoginForm = () => {
           <Form.Control
             type="text"
             className=" login-form__input"
-            placeholder="Introduïu el vostre nom"
+            placeholder="Nom d'usuari"
             onChange={handleChange}
             autoComplete="off"
           />
-          <Form.Text className="text-muted login-form__text">
-            Introduïu un nom alfanumèric entre 3 i 30 digits
-          </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
           <Form.Label>Contrasenya</Form.Label>
           <Form.Control
             type="password"
             className="login-form__input"
-            placeholder="Introduïu la vostra contrasenyes"
+            placeholder="email@domini.org"
             onChange={handleChange}
             autoComplete="off"
           />
-          <Form.Text className="text-muted login-form__text">
-            Introduïu una contrasenya entre 3 i 30 digits.
-          </Form.Text>
         </Form.Group>
         <div className="login-form__footer">
           <Button

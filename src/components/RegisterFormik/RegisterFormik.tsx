@@ -28,7 +28,7 @@ const schema = yup.object().shape({
   terms: yup.bool().required().oneOf([true], "Acceptació és requierit"),
 });
 
-const FormFormik = (): JSX.Element => {
+const RegisterFormik = (): JSX.Element => {
   const { postRegister } = useUser();
   return (
     <RegisterFormStyled>
@@ -186,4 +186,4 @@ const FormFormik = (): JSX.Element => {
   );
 };
 
-export default FormFormik;
+export default RegisterFormik;

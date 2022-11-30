@@ -6,7 +6,10 @@ import {
   userLoginActionCreator,
   userLogOutActionCreator,
 } from "../app/slice/userSlice";
-import { NamePasswordUserData } from "../models/userInterface";
+import {
+  NamePasswordUserData,
+  PasswordCodeData,
+} from "../models/userInterface";
 import { UiPayload, ModalType } from "../Types/interface";
 import { decodeToken } from "../utils/auth";
 
@@ -49,21 +52,6 @@ const useUser = () => {
     return isUserCreate;
   };
 
-  const getConfirmationCode = async (code: string) => {
-    let isValidConfirmationCode;
-    try {
-      await axios.get(`${apiUrl}users/email-verify/${code}`);
-      modalShow(true, "El correu electònic s'ha validat correctament", "ok");
-      navigate("/login");
-      isValidConfirmationCode = true;
-    } catch (error) {
-      modalShow(true, "Error en la validació del correu", "error");
-      navigate("/login");
-      isValidConfirmationCode = false;
-    }
-    return isValidConfirmationCode;
-  };
-
   const postLogin = async (dataForm: NamePasswordUserData) => {
     let isUserLogin;
 
@@ -94,7 +82,62 @@ const useUser = () => {
     navigate("/home");
   };
 
-  return { postRegister, getConfirmationCode, postLogin, userLogout };
+  const getConfirmationCode = async (code: string) => {
+    let isValidConfirmationCode;
+    try {
+      await axios.get(`${apiUrl}users/email-verify/${code}`);
+      modalShow(true, "El correu electònic s'ha validat correctament", "ok");
+      navigate("/login");
+      isValidConfirmationCode = true;
+    } catch (error) {
+      modalShow(true, "Error en la validació del correu", "error");
+      navigate("/home");
+      isValidConfirmationCode = false;
+    }
+    return isValidConfirmationCode;
+  };
+
+  const postForgot = async (dataForgot: { email: string }) => {
+    let isForgot;
+    try {
+      await axios.put(`${apiUrl}users/forgot`, dataForgot);
+      modalShow(
+        true,
+        "Si us plau, restabliu la vostra contrasenya desde l'enllaç al vostre correu electrònic.",
+        "ok"
+      );
+      navigate("/login");
+      isForgot = true;
+    } catch (error) {
+      modalShow(true, "Error en restablir", "error");
+      navigate("/home");
+      isForgot = false;
+    }
+    return isForgot;
+  };
+
+  const putReset = async (dataForgot: PasswordCodeData) => {
+    let isReset;
+    try {
+      await axios.put(`${apiUrl}users/reset`, dataForgot);
+      modalShow(true, "Contrasenya restablerta correctament", "ok");
+      navigate("/login");
+      isReset = true;
+    } catch (error) {
+      modalShow(true, "Error en restablir la contrasenya", "error");
+      navigate("/home");
+      isReset = false;
+    }
+    return isReset;
+  };
+  return {
+    postRegister,
+    getConfirmationCode,
+    postLogin,
+    userLogout,
+    putReset,
+    postForgot,
+  };
 };
 
 export default useUser;
