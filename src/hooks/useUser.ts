@@ -100,7 +100,7 @@ const useUser = () => {
   const postForgot = async (dataForgot: { email: string }) => {
     let isForgot;
     try {
-      await axios.put(`${apiUrl}users/forgot`, dataForgot);
+      await axios.post(`${apiUrl}users/forgot`, dataForgot);
       modalShow(
         true,
         "Si us plau, restabliu la vostra contrasenya desde l'enllaç al vostre correu electrònic.",
@@ -116,10 +116,10 @@ const useUser = () => {
     return isForgot;
   };
 
-  const putReset = async (dataForgot: PasswordCodeData) => {
+  const patchReset = async (dataForgot: PasswordCodeData) => {
     let isReset;
     try {
-      await axios.put(`${apiUrl}users/reset`, dataForgot);
+      await axios.patch(`${apiUrl}users/reset`, dataForgot);
       modalShow(true, "Contrasenya restablerta correctament", "ok");
       navigate("/login");
       isReset = true;
@@ -135,7 +135,7 @@ const useUser = () => {
     getConfirmationCode,
     postLogin,
     userLogout,
-    putReset,
+    putReset: patchReset,
     postForgot,
   };
 };
