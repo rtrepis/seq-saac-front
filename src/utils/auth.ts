@@ -1,7 +1,7 @@
 import jwt from "jwt-decode";
 
 export const decodeToken = (token: string) => {
-  const payloadToken: {
+  const payload: {
     id: string;
     userName: string;
     iat: number;
@@ -9,7 +9,7 @@ export const decodeToken = (token: string) => {
 
   return {
     token: token,
-    id: payloadToken.id,
-    userName: payloadToken.userName,
+    id: payload.id,
+    userName: payload.userName,
   };
 };
