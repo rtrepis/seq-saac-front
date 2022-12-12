@@ -65,7 +65,6 @@ describe("Given a navigation component", () => {
       await userEvent.click(linkClick_1);
 
       expect(linkClick_1).toBeInTheDocument();
-      //  expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 
@@ -93,7 +92,6 @@ describe("Given a navigation component", () => {
       expect(link1).toBeInTheDocument();
       expect(linkDrop).toBeInTheDocument();
       expect(link3).toBeInTheDocument();
-      //  expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 
@@ -121,7 +119,6 @@ describe("Given a navigation component", () => {
       expect(link1).toBeInTheDocument();
       expect(link2).toBeInTheDocument();
       expect(link3).toBeInTheDocument();
-      // expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 });
