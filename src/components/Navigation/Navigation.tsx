@@ -2,7 +2,6 @@ import { NavDropdown } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { RootState } from "../../app/store";
 import useUser from "../../hooks/useUser";
 
@@ -28,8 +27,6 @@ interface NavigationProps {
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
-  const navigate = useNavigate();
-
   const { userLogout } = useUser();
   const { userName } = useSelector((state: RootState) => state.user);
 
@@ -50,7 +47,7 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
         className="border-3"
       />
 
-      {userName === "" ? (
+      {userName === "" && (
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="justify-content-end"
@@ -58,26 +55,23 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
           <Nav>
             {linkPage !== "home" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
+                <Nav.Link href="home">Inici</Nav.Link>
               </Nav.Item>
             )}
             {linkPage !== "register" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/register")}>
-                  Registrar-se
-                </Nav.Link>
+                <Nav.Link href="register">Registrar-se</Nav.Link>
               </Nav.Item>
             )}
             {linkPage !== "login" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/login")}>
-                  Inicia sessió
-                </Nav.Link>
+                <Nav.Link href="login">Inicia sessió</Nav.Link>
               </Nav.Item>
             )}
           </Nav>
         </Navbar.Collapse>
-      ) : (
+      )}
+      {userName !== "" && (
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="justify-content-end"
@@ -90,19 +84,19 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
               drop="down"
             >
               {linkPage !== "my-sequences" && (
-                <NavDropdown.Item onClick={() => navigate("/my-sequences")}>
+                <NavDropdown.Item href="my-sequences">
                   Les meves seqüències
                 </NavDropdown.Item>
               )}
               {linkPage !== "create-sequence" && (
-                <NavDropdown.Item onClick={() => navigate("/create-sequence")}>
+                <NavDropdown.Item href="create-sequences">
                   Crear la seqüència
                 </NavDropdown.Item>
               )}
             </NavDropdown>
             {linkPage !== "home" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
+                <Nav.Link href="home">Inici</Nav.Link>
               </Nav.Item>
             )}
             <Nav.Item>
