@@ -2,6 +2,7 @@ import { NavDropdown } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { RootState } from "../../app/store";
 import useUser from "../../hooks/useUser";
 
@@ -47,7 +48,7 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
         className="border-3"
       />
 
-      {userName === "" && (
+      {userName === "" ? (
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="justify-content-end"
@@ -55,23 +56,28 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
           <Nav>
             {linkPage !== "home" && (
               <Nav.Item>
-                <Nav.Link href="home">Inici</Nav.Link>
+                <Nav.Link as={NavLink} to="/home">
+                  Inici
+                </Nav.Link>
               </Nav.Item>
             )}
             {linkPage !== "register" && (
               <Nav.Item>
-                <Nav.Link href="register">Registrar-se</Nav.Link>
+                <Nav.Link as={NavLink} to="/register">
+                  Registrar-se
+                </Nav.Link>
               </Nav.Item>
             )}
             {linkPage !== "login" && (
               <Nav.Item>
-                <Nav.Link href="login">Inicia sessió</Nav.Link>
+                <Nav.Link as={NavLink} to="/login">
+                  Inicia sessió
+                </Nav.Link>
               </Nav.Item>
             )}
           </Nav>
         </Navbar.Collapse>
-      )}
-      {userName !== "" && (
+      ) : (
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="justify-content-end"
@@ -84,19 +90,21 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
               drop="down"
             >
               {linkPage !== "my-sequences" && (
-                <NavDropdown.Item href="my-sequences">
+                <NavDropdown.Item as={NavLink} to="/my-sequences">
                   Les meves seqüències
                 </NavDropdown.Item>
               )}
               {linkPage !== "create-sequence" && (
-                <NavDropdown.Item href="create-sequences">
+                <NavDropdown.Item as={NavLink} to="/create-sequence">
                   Crear la seqüència
                 </NavDropdown.Item>
               )}
             </NavDropdown>
             {linkPage !== "home" && (
               <Nav.Item>
-                <Nav.Link href="home">Inici</Nav.Link>
+                <Nav.Link as={NavLink} to="/home">
+                  Inici
+                </Nav.Link>
               </Nav.Item>
             )}
             <Nav.Item>

@@ -1,5 +1,6 @@
 import { Col, Nav } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import { NavLink } from "react-router-dom";
 import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
 import useApi from "../../hooks/useApi";
 interface SequenceCardProps {
@@ -26,11 +27,19 @@ const SequenceCard = ({
     <Col className="mx-auto">
       <Card style={{ width: "20.5rem" }} border="primary" className="mx-auto">
         <Card.Header className="p-2 ps-3">
-          <Nav.Link className="sequence-link" href={`details-sequence/${id}`}>
+          <Nav.Link
+            className="sequence-link"
+            as={NavLink}
+            to={`/details-sequence/${id}`}
+          >
             <h3 className="mb-0">{name}</h3>
           </Nav.Link>
         </Card.Header>
-        <Nav.Link className="sequence-link" href={`details-sequence/${id}`}>
+        <Nav.Link
+          className="sequence-link"
+          as={NavLink}
+          to={`/details-sequence/${id}`}
+        >
           <Card.Body>
             {pictograms.slice(0, 3).map((pictogram, index) => (
               <>
@@ -48,7 +57,7 @@ const SequenceCard = ({
         </Nav.Link>
         {owner && (
           <Card.Footer className="d-flex justify-content-end p-0 ps-3 pe-3">
-            <Nav.Link href={`edit-sequence/${id}`}>
+            <Nav.Link as={NavLink} to={`/edit-sequence/${id}`}>
               <IoPencilOutline className="ms-3" />
               <span hidden>Llapis per editar la seqüència</span>
             </Nav.Link>

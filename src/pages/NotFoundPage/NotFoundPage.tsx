@@ -1,4 +1,5 @@
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import UrlNotFound from "../../components/UrlNotFound/UrlNotFound";
 import NotFoundPageStyled from "./NotFoundPageStyled";
 
@@ -7,9 +8,11 @@ const NotFoundPage = (): JSX.Element => {
     <NotFoundPageStyled>
       <h1>404: Pàgina web no trobada</h1>
       <UrlNotFound />
-      <Button variant="primary" type="button" className="m-3" href="home">
-        Inici
-      </Button>
+      <Link to="/home">
+        <Button variant="primary" type="button" className="m-3">
+          Inici
+        </Button>
+      </Link>
     </NotFoundPageStyled>
   );
 };
