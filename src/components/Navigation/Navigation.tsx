@@ -2,7 +2,7 @@ import { NavDropdown } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { RootState } from "../../app/store";
 import useUser from "../../hooks/useUser";
 
@@ -28,8 +28,6 @@ interface NavigationProps {
 }
 
 const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
-  const navigate = useNavigate();
-
   const { userLogout } = useUser();
   const { userName } = useSelector((state: RootState) => state.user);
 
@@ -58,19 +56,21 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
           <Nav>
             {linkPage !== "home" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
+                <Nav.Link as={NavLink} to="/home">
+                  Inici
+                </Nav.Link>
               </Nav.Item>
             )}
             {linkPage !== "register" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/register")}>
+                <Nav.Link as={NavLink} to="/register">
                   Registrar-se
                 </Nav.Link>
               </Nav.Item>
             )}
             {linkPage !== "login" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/login")}>
+                <Nav.Link as={NavLink} to="/login">
                   Inicia sessió
                 </Nav.Link>
               </Nav.Item>
@@ -90,19 +90,21 @@ const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
               drop="down"
             >
               {linkPage !== "my-sequences" && (
-                <NavDropdown.Item onClick={() => navigate("/my-sequences")}>
+                <NavDropdown.Item as={NavLink} to="/my-sequences">
                   Les meves seqüències
                 </NavDropdown.Item>
               )}
               {linkPage !== "create-sequence" && (
-                <NavDropdown.Item onClick={() => navigate("/create-sequence")}>
+                <NavDropdown.Item as={NavLink} to="/create-sequence">
                   Crear la seqüència
                 </NavDropdown.Item>
               )}
             </NavDropdown>
             {linkPage !== "home" && (
               <Nav.Item>
-                <Nav.Link onClick={() => navigate("/home")}>Inici</Nav.Link>
+                <Nav.Link as={NavLink} to="/home">
+                  Inici
+                </Nav.Link>
               </Nav.Item>
             )}
             <Nav.Item>

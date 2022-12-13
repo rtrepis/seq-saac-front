@@ -30,7 +30,6 @@ describe("Give a page register form", () => {
       await userEvent.click(button);
 
       expect(button).toBeInTheDocument();
-      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 });

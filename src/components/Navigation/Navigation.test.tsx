@@ -44,10 +44,10 @@ describe("Given a navigation component", () => {
       const expectClickLink_2 = "Inicia sessió";
 
       render(<Navigation page={pageTitle} linkPage={pageLink} />);
-      const linkClick_1 = screen.getByRole("button", {
+      const linkClick_1 = screen.getByRole("link", {
         name: expectClickLink_1,
       });
-      const linkClick_2 = screen.getByRole("button", {
+      const linkClick_2 = screen.getByRole("link", {
         name: expectClickLink_2,
       });
 
@@ -56,7 +56,6 @@ describe("Given a navigation component", () => {
 
       expect(linkClick_1).toBeInTheDocument();
       expect(linkClick_2).toBeInTheDocument();
-      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 
@@ -67,14 +66,13 @@ describe("Given a navigation component", () => {
       const expectClickLink_1 = "Registrar-se";
 
       render(<Navigation page={pageTitle} linkPage={pageLink} />);
-      const linkClick_1 = screen.getByRole("button", {
+      const linkClick_1 = screen.getByRole("link", {
         name: expectClickLink_1,
       });
 
       await userEvent.click(linkClick_1);
 
       expect(linkClick_1).toBeInTheDocument();
-      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 
@@ -94,15 +92,14 @@ describe("Given a navigation component", () => {
 
       await userEvent.click(linkDrop);
 
-      const link3 = screen.getByRole("button", { name: expectLink_3_click });
-      const link4 = screen.getByRole("button", { name: expectLink_4_click });
+      const link3 = screen.getByRole("link", { name: expectLink_3_click });
+      const link4 = screen.getByRole("link", { name: expectLink_4_click });
       await userEvent.click(link3);
       await userEvent.click(link4);
 
       expect(link1).toBeInTheDocument();
       expect(linkDrop).toBeInTheDocument();
       expect(link3).toBeInTheDocument();
-      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 
@@ -118,19 +115,18 @@ describe("Given a navigation component", () => {
       renderUser(<Navigation page={pageTitle} linkPage={pageLink} />);
 
       const link1 = screen.getByRole("button", { name: expectLink_1 });
-      const link2 = screen.getByRole("button", { name: expectLink_2_Click });
+      const link2 = screen.getByRole("link", { name: expectLink_2_Click });
       const linkDrop = screen.getByRole("button", { name: expectLink_2 });
 
       await userEvent.click(link2);
       await userEvent.click(linkDrop);
-      const link3 = screen.getByRole("button", { name: expectLink_3_Click });
+      const link3 = screen.getByRole("link", { name: expectLink_3_Click });
 
       await userEvent.click(link3);
 
       expect(link1).toBeInTheDocument();
       expect(link2).toBeInTheDocument();
       expect(link3).toBeInTheDocument();
-      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 });
