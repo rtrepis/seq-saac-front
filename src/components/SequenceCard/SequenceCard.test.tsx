@@ -3,13 +3,6 @@ import SequenceCard from "./SequenceCard";
 import userEvent from "@testing-library/user-event";
 import { renderUser } from "../../utils/test/test-utils-Login";
 
-const mockedUsedNavigate = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockedUsedNavigate,
-}));
-
 const mockDeleteSequenceId = jest.fn();
 
 jest.mock("../../hooks/useApi", () => () => ({
@@ -33,8 +26,8 @@ describe("Give a component SequenceCard", () => {
       );
       const title = screen.getByRole("heading", { name: expectTitle });
       const image = screen.getAllByRole("img", { name: expectImages });
-      const link = screen.getByRole("button", { name: expectTitle });
-      const linkImages = screen.getByRole("button", {
+      const link = screen.getByRole("link", { name: expectTitle });
+      const linkImages = screen.getByRole("link", {
         name: `${expectImages} ${expectImages} ${expectImages}`,
       });
 
@@ -44,7 +37,6 @@ describe("Give a component SequenceCard", () => {
       expect(link).toBeInTheDocument();
       expect(title).toBeInTheDocument();
       expect(image).toHaveLength(3);
-      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 
@@ -90,7 +82,6 @@ describe("Give a component SequenceCard", () => {
       await userEvent.click(iconPen);
 
       expect(iconPen).toBeInTheDocument();
-      expect(mockedUsedNavigate).toHaveBeenCalled();
     });
   });
 });
