@@ -3,13 +3,6 @@ import SequenceCard from "./SequenceCard";
 import userEvent from "@testing-library/user-event";
 import { renderUser } from "../../utils/test/test-utils-Login";
 
-const mockedUsedNavigate = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockedUsedNavigate,
-}));
-
 const mockDeleteSequenceId = jest.fn();
 
 jest.mock("../../hooks/useApi", () => () => ({

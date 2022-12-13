@@ -2,13 +2,6 @@ import { render, screen } from "../../utils/test/test-utils-Logout";
 import NotFoundPage from "./NotFoundPage";
 import userEvent from "@testing-library/user-event";
 
-const mockedUsedNavigate = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockedUsedNavigate,
-}));
-
 describe("Give a page register form", () => {
   describe("When its rendering with title", () => {
     test("Then should show in document", () => {
