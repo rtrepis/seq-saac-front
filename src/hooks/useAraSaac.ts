@@ -16,6 +16,14 @@ const NotFoundMessage: UiPayload = {
   loading: true,
 };
 
+const ErrorServer: UiPayload = {
+  modal: {
+    show: true,
+    message: "Error en la lectura del servidor, intenta-ho més tard",
+    type: "error",
+  },
+  loading: true,
+};
 const useAraSaac = () => {
   const dispatch = useDispatch();
 
@@ -31,7 +39,7 @@ const useAraSaac = () => {
         data.map((element: any) => pictogramsShow.push(element._id as number));
 
         pictogramsShow.shift();
-        dispatch(loadShowPictogramsActionCreator(pictogramsShow as any));
+        dispatch(loadShowPictogramsActionCreator(pictogramsShow as [number]));
       } catch {
         dispatch(uiModalShowActionCreator(NotFoundMessage));
       }
@@ -39,8 +47,26 @@ const useAraSaac = () => {
     [dispatch]
   );
 
+  const getWordPictogram = useCallback(
+    async (pictogram: number) => {
+      try {
+        const { data } = await axios.get(
+          `${araSaacURL}pictograms/ca/${pictogram}`
+        );
+        if (data !== undefined) {
+          return (await data.keywords[0].keyword) as string;
+        }
+      } catch {
+        dispatch(uiModalShowActionCreator(ErrorServer));
+      }
+      return "undefind";
+    },
+    [dispatch]
+  );
+
   return {
     getSearchPictogram: getSearchPictogram,
+    getWordPictogram: getWordPictogram,
   };
 };
 
