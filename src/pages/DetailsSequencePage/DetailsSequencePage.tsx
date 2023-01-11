@@ -55,13 +55,19 @@ const DetailsSequencePage = (): JSX.Element => {
               onClick={() => setOpen(!open)}
               aria-controls="print-settings-collapse"
               type="button"
+              aria-label="Configuració"
             ></IoSettingsSharp>
           </div>
+
           <Collapse in={open}>
             <div id="print-settings-collapse" className="mb-4">
-              <Form.Group className="border border-primary rounded-3 group not-print">
-                <Form.Label>Paraula</Form.Label>
-                <Form.Switch id="word" onChange={handleChange} />
+              <Form.Group className="p-2 group not-print">
+                <Form.Check
+                  type="switch"
+                  id="word"
+                  onChange={handleChange}
+                  label="Paraula"
+                />
               </Form.Group>
             </div>
           </Collapse>

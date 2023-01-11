@@ -1,19 +1,16 @@
-import { render } from "@testing-library/react";
+import { render } from "../../utils/test/test-utils-Logout";
 import PictogramWord from "./PictogramWord";
-
-const mock = jest.fn();
-
-jest.mock("../../hooks/useAraSaac", () => () => ({
-  getWordPictogram: mock,
-}));
+import React from "react";
 
 describe("Give a pictogram word component", () => {
   describe("When it is rendered with pictogram number by props", () => {
     test("Then we expect to see the pictogram word", async () => {
       const pictogramNumber = 1234;
-      const expectWord = "WordPictogram-1234";
+      let wordPictogram = jest.spyOn(React, "useState");
 
       render(<PictogramWord pictogram={pictogramNumber} />);
+
+      expect(wordPictogram).toBeCalled();
     });
   });
 });
