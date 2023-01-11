@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { Formik } from "formik";
-import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
+import RegisterFormikStyled from "./RegisterFormikStyled";
 import useUser from "../../hooks/useUser";
 import { Nav } from "react-bootstrap";
 
@@ -31,7 +31,7 @@ const schema = yup.object().shape({
 const RegisterFormik = (): JSX.Element => {
   const { postRegister } = useUser();
   return (
-    <RegisterFormStyled>
+    <RegisterFormikStyled>
       <Formik
         validationSchema={schema}
         onSubmit={(values) => {
@@ -182,7 +182,7 @@ const RegisterFormik = (): JSX.Element => {
           </Form>
         )}
       </Formik>
-    </RegisterFormStyled>
+    </RegisterFormikStyled>
   );
 };
 

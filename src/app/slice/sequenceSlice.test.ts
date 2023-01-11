@@ -1,5 +1,4 @@
 import { Sequences } from "../../models/sequencesInterface";
-import { deleteSelectPictogramActionCreator } from "./selectPictogramsSlice";
 import {
   createSequencesActionCreator,
   deleteSequenceIdActionCreator,

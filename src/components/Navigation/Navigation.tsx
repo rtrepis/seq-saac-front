@@ -25,19 +25,26 @@ interface NavigationProps {
     | "details-sequence"
     | "create-sequence"
     | "edit-sequence";
+
+  isNotPrint?: boolean;
 }
 
-const Navigation = ({ page, linkPage }: NavigationProps): JSX.Element => {
+const Navigation = ({
+  page,
+  linkPage,
+  isNotPrint,
+}: NavigationProps): JSX.Element => {
   const { userLogout } = useUser();
   const { userName } = useSelector((state: RootState) => state.user);
-
   return (
     <Navbar
       collapseOnSelect
       expand="md"
       bg="primary"
       variant="dark"
-      className="display-flex  justify-content-between p-2 ps-3 pe-3"
+      className={`display-flex  justify-content-between p-2 ps-3 pe-3 ${
+        isNotPrint && "not-print"
+      }`}
     >
       <Navbar.Brand className="ms-3">
         <h1 className="mb-0">{page}</h1>

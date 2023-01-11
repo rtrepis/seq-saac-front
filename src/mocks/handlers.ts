@@ -144,4 +144,9 @@ export const handlers = [
     ];
     return res(ctx.status(200), ctx.json({ sequences }));
   }),
+
+  rest.get(`${apiAraSaacUrl}pictograms/ca/1234`, async (req, res, ctx) => {
+    const data = { keywords: [{ keyword: "WordPictogram-1234" }] };
+    return res(ctx.status(200), ctx.json(data));
+  }),
 ];
