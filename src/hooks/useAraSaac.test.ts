@@ -28,7 +28,7 @@ describe("Given a useAraSacc hook", () => {
   });
 
   describe("When getSearchPictogram it's called without  wordMock", () => {
-    test("Then should return Pictograms array", async () => {
+    test("Then should return message error", async () => {
       const wordSearchMock = "";
       const expectModal = {
         payload: {
@@ -44,6 +44,43 @@ describe("Given a useAraSacc hook", () => {
       const { result } = renderHook(() => useAraSaac(), { wrapper: Wrapper });
 
       await result.current.getSearchPictogram(wordSearchMock);
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectModal);
+    });
+  });
+
+  describe("When getWordPictogram it's called with mockNumberPictogram", () => {
+    test("Then should return word this pictogram", async () => {
+      const mockNumberPictogram = 1234;
+      const expectReturnMockWord = "WordPictogram-1234";
+
+      const { result } = renderHook(() => useAraSaac(), { wrapper: Wrapper });
+
+      const returnWord = await result.current.getWordPictogram(
+        mockNumberPictogram
+      );
+
+      expect(returnWord).toBe(expectReturnMockWord);
+    });
+  });
+
+  describe("When getWordPictogram it's called without mockNumberPictogram", () => {
+    test("Then should return message error", async () => {
+      const mockNumberPictogram = NaN;
+      const expectModal = {
+        payload: {
+          loading: true,
+          modal: {
+            message: "Error en la lectura del servidor, intenta-ho més tard",
+            show: true,
+            type: "error",
+          },
+        },
+        type: "ui/uiModalShow",
+      };
+
+      const { result } = renderHook(() => useAraSaac(), { wrapper: Wrapper });
+      await result.current.getWordPictogram(mockNumberPictogram);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectModal);
     });

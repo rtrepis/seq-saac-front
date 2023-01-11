@@ -144,4 +144,23 @@ export const handlers = [
     ];
     return res(ctx.status(200), ctx.json({ sequences }));
   }),
+
+  rest.get(`${apiAraSaacUrl}pictograms/ca/1234`, async (req, res, ctx) => {
+    const data = { keywords: [{ keyword: "WordPictogram-1234" }] };
+    return res(ctx.status(200), ctx.json(data));
+  }),
+
+  rest.get(`${apiAraSaacUrl}pictograms/ca/0`, async (req, res, ctx) => {
+    const data = { keywords: [{ keyword: "WordPictogram-0" }] };
+    return res(ctx.status(200), ctx.json(data));
+  }),
+
+  rest.get(`${apiAraSaacUrl}pictograms/ca/1`, async (req, res, ctx) => {
+    const data = { keywords: [{ keyword: "WordPictogram-1" }] };
+    return res(ctx.status(200), ctx.json(data));
+  }),
+
+  rest.get(`${apiUrl}sequences/undefined`, async (req, res, ctx) => {
+    return res(ctx.status(403));
+  }),
 ];
