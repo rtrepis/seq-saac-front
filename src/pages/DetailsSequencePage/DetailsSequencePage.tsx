@@ -32,17 +32,30 @@ const DetailsSequencePage = (): JSX.Element => {
 
   const initialSettingsDetailsSequence: SettingsDetailsSequence = {
     keyWords: false,
+    size: "big",
   };
 
   const [pictogramSettings, setPictogramSettings] = useState(
     initialSettingsDetailsSequence
   );
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPictogramSettings({
       ...pictogramSettings,
       keyWords: !pictogramSettings.keyWords,
     });
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const property = event.target.id;
+    const newValue = Number(event.target.value);
+
+    setPictogramSettings({
+      ...pictogramSettings,
+      [property]: newValue,
+    });
+
+    console.log(pictogramSettings.size);
   };
 
   return (
@@ -54,7 +67,7 @@ const DetailsSequencePage = (): JSX.Element => {
       />
       {sequences[0] && (
         <>
-          <div className="d-flex justify-content-between m-4">
+          <div className="m-4 d-flex justify-content-between align-items-center not-print">
             <h2 className="text-start not-print">{sequences[0].name}</h2>
             <IoSettingsSharp
               className="fs-2 not-print"
@@ -65,23 +78,23 @@ const DetailsSequencePage = (): JSX.Element => {
             />
           </div>
 
-          <Collapse in={open}>
+          <Collapse in={open} className="border rounded-3">
             <Row
               id="print-settings-collapse"
-              className="m-4 justify-content-between align-items-center text-center "
+              className="m-4 justify-content-between align-items-center text-center not-print"
             >
               <Form.Group className="not-print" as={Col}>
                 <Form.Label>
                   Paraula
-                  <Form.Check type="switch" id="word" onChange={handleChange} />
+                  <Form.Check
+                    type="switch"
+                    id="KeyWord"
+                    onChange={handleChangeSwitch}
+                  />
                 </Form.Label>
               </Form.Group>
 
-              <Form.Group
-                className="p-2 not-print"
-                controlId="nPictogramsForPrintPage"
-                as={Col}
-              >
+              <Form.Group className="p-2 not-print" controlId="size" as={Col}>
                 <Form.Label>Pictogrames per pàgina</Form.Label>
 
                 <OverlayTrigger
@@ -92,18 +105,26 @@ const DetailsSequencePage = (): JSX.Element => {
                     </Tooltip>
                   }
                 >
-                  <Form.Range min={0} max={10} />
+                  <Form.Range min={100} max={300} onChange={handleChange} />
                 </OverlayTrigger>
               </Form.Group>
               <Col>
-                <IoPrint className="fs-2 not-print" aria-label="Imprimir" />
+                <IoPrint
+                  className="fs-2 not-print"
+                  aria-label="Imprimir"
+                  type="button"
+                  onClick={() => window.print()}
+                />
               </Col>
             </Row>
           </Collapse>
           <div className="m-4 page-print d-flex flex-wrap gap-3 text-center align-items-center">
             {sequences[0].pictograms.map((element: number) => (
-              <div className="d-flex flex-column mb-3" key={element}>
-                <PictogramShow pictogram={element} size={"big"} />
+              <div className="d-flex flex-column" key={element}>
+                <PictogramShow
+                  pictogram={element}
+                  size={pictogramSettings.size}
+                />
 
                 {pictogramSettings.keyWords && (
                   <PictogramWord pictogram={element} />
