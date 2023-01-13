@@ -19,7 +19,7 @@ const PictogramWord = ({ pictogram }: PictogramWordProps): JSX.Element => {
     })();
   }, [getWordPictogram, pictogram]);
 
-  return <span className="text-uppercase">{word}</span>;
+  return <span className="text-uppercase mt-2">{word}</span>;
 };
 
 export default PictogramWord;

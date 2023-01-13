@@ -1,5 +1,3 @@
-import PictogramShowStyled from "./PictogramShowStyled";
-
 interface PictogramShowProps {
   pictogram: number;
   size: "small" | "big" | number;
@@ -16,9 +14,9 @@ const PictogramShow = ({
     size = 300;
   }
   return (
-    <PictogramShowStyled
+    <img
       src={`https://api.arasaac.org/api/pictograms/${pictogram.toString()}`}
-      className="border border-primary rounded-3 m-3 p-1"
+      className="border border-2 border-primary rounded-3"
       alt="pictograma"
       height={size + "px"}
       width={size + "px"}

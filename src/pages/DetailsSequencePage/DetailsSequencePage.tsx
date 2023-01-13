@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
-import { Collapse, Form } from "react-bootstrap";
-import { IoSettingsSharp } from "react-icons/io5";
+import {
+  Col,
+  Collapse,
+  Form,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from "react-bootstrap";
+import { IoPrint, IoSettingsSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState } from "../../app/store";
@@ -9,7 +16,6 @@ import PictogramShow from "../../components/PictogramShow/PictogramShow";
 import PictogramWord from "../../components/PictogramWord/PictogramWord";
 import useApi from "../../hooks/useApi";
 import { SettingsDetailsSequence } from "../../models/pictogramsInterface";
-import DetailsSequencePageStyled from "./DetailsSequencePageStyled";
 
 const DetailsSequencePage = (): JSX.Element => {
   const { sequences } = useSelector((state: RootState) => state);
@@ -47,31 +53,54 @@ const DetailsSequencePage = (): JSX.Element => {
         isNotPrint={true}
       />
       {sequences[0] && (
-        <DetailsSequencePageStyled>
-          <div className="d-flex justify-content-between">
-            <h2 className="m-4 text-start not-print">{sequences[0].name}</h2>
+        <>
+          <div className="d-flex justify-content-between m-4">
+            <h2 className="text-start not-print">{sequences[0].name}</h2>
             <IoSettingsSharp
-              className="m-4 fs-2 not-print"
+              className="fs-2 not-print"
               onClick={() => setOpen(!open)}
               aria-controls="print-settings-collapse"
               type="button"
               aria-label="Configuració"
-            ></IoSettingsSharp>
+            />
           </div>
 
           <Collapse in={open}>
-            <div id="print-settings-collapse" className="mb-4">
-              <Form.Group className="p-2 group not-print">
-                <Form.Check
-                  type="switch"
-                  id="word"
-                  onChange={handleChange}
-                  label="Paraula"
-                />
+            <Row
+              id="print-settings-collapse"
+              className="m-4 justify-content-between align-items-center text-center "
+            >
+              <Form.Group className="not-print" as={Col}>
+                <Form.Label>
+                  Paraula
+                  <Form.Check type="switch" id="word" onChange={handleChange} />
+                </Form.Label>
               </Form.Group>
-            </div>
+
+              <Form.Group
+                className="p-2 not-print"
+                controlId="nPictogramsForPrintPage"
+                as={Col}
+              >
+                <Form.Label>Pictogrames per pàgina</Form.Label>
+
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={
+                    <Tooltip id="rangeNPictogramsForPage">
+                      Hallow world !!
+                    </Tooltip>
+                  }
+                >
+                  <Form.Range min={0} max={10} />
+                </OverlayTrigger>
+              </Form.Group>
+              <Col>
+                <IoPrint className="fs-2 not-print" aria-label="Imprimir" />
+              </Col>
+            </Row>
           </Collapse>
-          <div className="page-print d-flex flex-wrap">
+          <div className="m-4 page-print d-flex flex-wrap gap-3 text-center align-items-center">
             {sequences[0].pictograms.map((element: number) => (
               <div className="d-flex flex-column mb-3" key={element}>
                 <PictogramShow pictogram={element} size={"big"} />
@@ -82,7 +111,7 @@ const DetailsSequencePage = (): JSX.Element => {
               </div>
             ))}
           </div>
-        </DetailsSequencePageStyled>
+        </>
       )}
     </>
   );
