@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Col,
-  Collapse,
-  Form,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
+import { Col, Collapse, Form, Row } from "react-bootstrap";
 import { IoPrint, IoSettingsSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -54,8 +47,6 @@ const DetailsSequencePage = (): JSX.Element => {
       ...pictogramSettings,
       [property]: newValue,
     });
-
-    console.log(pictogramSettings.size);
   };
 
   return (
@@ -65,6 +56,7 @@ const DetailsSequencePage = (): JSX.Element => {
         linkPage="details-sequence"
         isNotPrint={true}
       />
+
       {sequences[0] && (
         <>
           <div className="m-4 d-flex justify-content-between align-items-center not-print">
@@ -90,23 +82,67 @@ const DetailsSequencePage = (): JSX.Element => {
                     type="switch"
                     id="KeyWord"
                     onChange={handleChangeSwitch}
+                    className="m-1"
                   />
                 </Form.Label>
               </Form.Group>
 
-              <Form.Group className="p-2 not-print" controlId="size" as={Col}>
-                <Form.Label>Pictogrames per pàgina</Form.Label>
-
-                <OverlayTrigger
-                  placement="bottom"
-                  overlay={
-                    <Tooltip id="rangeNPictogramsForPage">
-                      Hallow world !!
-                    </Tooltip>
-                  }
-                >
-                  <Form.Range min={100} max={300} onChange={handleChange} />
-                </OverlayTrigger>
+              <Form.Group
+                className="p-2 not-print"
+                controlId="nPictogramsForPage"
+                as={Col}
+              >
+                <Form.Label className="m-0">Pictograma per fila</Form.Label>
+                <div>
+                  <Form.Label className="m-1">
+                    5
+                    <Form.Check
+                      type="radio"
+                      name="nPictogramsForPage"
+                      id="size"
+                      onChange={handleChange}
+                      inline
+                      className="m-1"
+                      value={180}
+                    />
+                  </Form.Label>
+                  <Form.Label className="m-1">
+                    4
+                    <Form.Check
+                      type="radio"
+                      name="nPictogramsForPage"
+                      id="size"
+                      onChange={handleChange}
+                      inline
+                      className="m-1"
+                      value={230}
+                    />
+                  </Form.Label>
+                  <Form.Label className="m-1">
+                    3
+                    <Form.Check
+                      type="radio"
+                      name="nPictogramsForPage"
+                      id="size"
+                      onChange={handleChange}
+                      inline
+                      className="m-1"
+                      value={300}
+                    />
+                  </Form.Label>
+                  <Form.Label className="m-1">
+                    2
+                    <Form.Check
+                      type="radio"
+                      name="nPictogramsForPage"
+                      id="size"
+                      onChange={handleChange}
+                      inline
+                      className="m-1"
+                      value={450}
+                    />
+                  </Form.Label>
+                </div>
               </Form.Group>
               <Col>
                 <IoPrint
@@ -118,9 +154,12 @@ const DetailsSequencePage = (): JSX.Element => {
               </Col>
             </Row>
           </Collapse>
-          <div className="m-4 page-print d-flex flex-wrap gap-3 text-center align-items-center">
+          <div className="m-4 page-print d-flex flex-wrap gap-4 text-center align-items-center">
             {sequences[0].pictograms.map((element: number) => (
-              <div className="d-flex flex-column" key={element}>
+              <div
+                className="d-flex flex-column align-items-center"
+                key={element}
+              >
                 <PictogramShow
                   pictogram={element}
                   size={pictogramSettings.size}
