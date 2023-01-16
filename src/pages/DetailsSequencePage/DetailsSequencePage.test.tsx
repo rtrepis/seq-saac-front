@@ -1,6 +1,7 @@
 import { render, screen } from "../../utils/test/test-utils-Logout";
 import DetailsSequencePage from "./DetailsSequencePage";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 
 const mockPayload = {
   sequences: [
@@ -77,6 +78,18 @@ describe("Given a Details component", () => {
       await userEvent.click(switchWord);
 
       expect(switchWord).toBeChecked();
+    });
+  });
+
+  describe("When user click radio option", () => {
+    test("Then should checked this radio option", async () => {
+      render(<DetailsSequencePage />);
+      const switchWord = screen.getAllByRole("radio", {
+        name: "",
+      });
+      await userEvent.click(switchWord[0]);
+
+      expect(switchWord[0]).toBeChecked();
     });
   });
 });
