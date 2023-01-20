@@ -5,6 +5,7 @@ export const UiInitialState: UiPayload = {
   modal: { show: false, type: "ok", message: "" },
   loading: false,
   nav: {
+    show: true,
     allSequencesPage: 0,
   },
 };
@@ -32,6 +33,16 @@ const uiSlice = createSlice({
       ...previousUi,
       nav: action.payload,
     }),
+
+    uiPageNavClose: (previousUi: UiPayload) => ({
+      ...previousUi,
+      nav: { ...previousUi.nav, show: false },
+    }),
+
+    uiPageNavShow: (previousUi: UiPayload) => ({
+      ...previousUi,
+      nav: { ...previousUi.nav, show: true },
+    }),
   },
 });
 
@@ -43,4 +54,6 @@ export const {
   uiLoadingShow: uiLoadingShowActionCreator,
   uiLoadingClose: uiLoadingCloseActionCreator,
   uiPageCurrent: uiPageCurrentActionCreator,
+  uiPageNavClose: uiPageNavCloseActionCreator,
+  uiPageNavShow: uiPageNavShowActionCreator,
 } = uiSlice.actions;

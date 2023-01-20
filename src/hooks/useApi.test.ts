@@ -34,7 +34,7 @@ describe("Given a useApi hook", () => {
       };
       const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
 
-      await result.current.getAllPublicSequence();
+      await result.current.getAllPublicSequence(2, 0);
 
       expect(mockDispatch).toHaveBeenCalledWith(sequencesHook);
     });
@@ -86,7 +86,7 @@ describe("Given a useApi hook", () => {
         wrapper: Wrapper,
       });
 
-      await result.current.getAllPublicSequence();
+      await result.current.getAllPublicSequence(2, 0);
       await loadSequencesActionCreator(sequencesHook as Sequences[]);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectPayLoadModalShow);

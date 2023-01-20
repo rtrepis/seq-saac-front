@@ -8,6 +8,7 @@ export let previousUiPayload: UiPayload = {
   },
   loading: false,
   nav: {
+    show: true,
     allSequencesPage: 0,
   },
 };

@@ -3,6 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import Navigation from "../../components/Navigation/Navigation";
+import PaginationNav from "../../components/PaginationNav/PaginationNav";
 import SearchSequence from "../../components/SearchSequence/SearchSequence";
 import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
 import Slider from "../../components/Slider/Slider";
@@ -11,10 +12,11 @@ import useApi from "../../hooks/useApi";
 const HomePage = (): JSX.Element => {
   const { getAllPublicSequence } = useApi();
   const sequencePublic = useSelector((state: RootState) => state.sequences);
+  const uiNav = useSelector((state: RootState) => state.ui.nav);
 
   useEffect(() => {
-    getAllPublicSequence();
-  }, [getAllPublicSequence]);
+    getAllPublicSequence(2, uiNav.allSequencesPage);
+  }, [getAllPublicSequence, uiNav.allSequencesPage]);
 
   return (
     <>
@@ -26,6 +28,7 @@ const HomePage = (): JSX.Element => {
         </Col>
       </Row>
       <SequencesCardList sequences={sequencePublic} />
+      {uiNav.show && <PaginationNav pageCurrent={uiNav.allSequencesPage} />}
     </>
   );
 };

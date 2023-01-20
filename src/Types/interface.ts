@@ -5,6 +5,7 @@ export interface ModalI {
 }
 
 export interface NavI {
+  show: boolean;
   allSequencesPage: number;
 }
 

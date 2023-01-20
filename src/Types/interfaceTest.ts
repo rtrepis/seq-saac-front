@@ -20,6 +20,7 @@ export interface PreloadedState {
     };
     loading: boolean;
     nav: {
+      show: boolean;
       allSequencesPage: number;
     };
   };

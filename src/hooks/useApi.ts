@@ -10,6 +10,8 @@ import {
   uiLoadingCloseActionCreator,
   uiLoadingShowActionCreator,
   uiModalShowActionCreator,
+  uiPageNavCloseActionCreator,
+  uiPageNavShowActionCreator,
 } from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
 import { UiPayload } from "../Types/interface";
@@ -56,22 +58,28 @@ const updateSequenceIdMessage: UiPayload = {
 const useApi = () => {
   const dispatch = useDispatch();
 
-  const getAllPublicSequences = useCallback(async (): Promise<void> => {
-    try {
-      dispatch(loadSequencesActionCreator([]));
-      dispatch(uiLoadingShowActionCreator());
+  const getAllPublicSequences = useCallback(
+    async (pageSize: number, pageCurrent: number): Promise<void> => {
+      try {
+        dispatch(loadSequencesActionCreator([]));
+        dispatch(uiLoadingShowActionCreator());
 
-      const {
-        data: { sequences },
-      } = await axios.get(`${apiURL}sequences/`);
+        const {
+          data: { sequences },
+        } = await axios.get(
+          `${apiURL}sequences/?pageSize=${pageSize}&page=${pageCurrent}`
+        );
 
-      dispatch(loadSequencesActionCreator(sequences));
-    } catch {
-      dispatch(uiModalShowActionCreator(errorMessage));
-    }
+        dispatch(loadSequencesActionCreator(sequences));
+        dispatch(uiPageNavShowActionCreator());
+      } catch {
+        dispatch(uiModalShowActionCreator(errorMessage));
+      }
 
-    dispatch(uiLoadingCloseActionCreator());
-  }, [dispatch]);
+      dispatch(uiLoadingCloseActionCreator());
+    },
+    [dispatch]
+  );
 
   const getSequencesOwner = useCallback(async (): Promise<void> => {
     const token = localStorage.getItem("userToken");
@@ -190,6 +198,7 @@ const useApi = () => {
   const getSearchSequences = useCallback(
     async (word: string): Promise<void> => {
       try {
+        dispatch(uiPageNavCloseActionCreator());
         dispatch(uiLoadingShowActionCreator());
 
         const {

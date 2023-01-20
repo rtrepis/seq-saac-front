@@ -10,11 +10,13 @@ const PaginationNav = ({ pageCurrent }: PaginationNavProps): JSX.Element => {
   const dispatch = useDispatch();
 
   const handlePage = (pageGoTo: number) => {
-    dispatch(uiPageCurrentActionCreator({ allSequencesPage: pageGoTo }));
+    dispatch(
+      uiPageCurrentActionCreator({ show: true, allSequencesPage: pageGoTo })
+    );
   };
 
   return (
-    <Pagination className="justify-content-center">
+    <Pagination className="justify-content-center m-4">
       {pageCurrent < 3 ? (
         <Pagination.First disabled />
       ) : (
