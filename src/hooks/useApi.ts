@@ -13,43 +13,44 @@ import {
 } from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
 import { UiPayload } from "../Types/interface";
+import { previousUiPayload } from "../utils/payloads/previousUiPayload";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
 const errorMessage: UiPayload = {
+  ...previousUiPayload,
   modal: {
     show: true,
     message: "error en la lectura del servidor. Torna ha provar-ho més tard",
     type: "error",
   },
-  loading: false,
 };
 
 const createMessage: UiPayload = {
+  ...previousUiPayload,
   modal: {
     show: true,
     message: "seqüència creada",
     type: "ok",
   },
-  loading: false,
 };
 
 const deleteSequenceIdMessage: UiPayload = {
+  ...previousUiPayload,
   modal: {
     show: true,
     message: "seqüència esborrada correctament",
     type: "ok",
   },
-  loading: false,
 };
 
 const updateSequenceIdMessage: UiPayload = {
+  ...previousUiPayload,
   modal: {
     show: true,
     message: "seqüència editada correctament",
     type: "ok",
   },
-  loading: false,
 };
 
 const useApi = () => {

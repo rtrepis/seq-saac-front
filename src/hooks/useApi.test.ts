@@ -1,10 +1,10 @@
 import { renderHook } from "../utils/test/test-utils-Login";
 import axios from "axios";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
-import { uiModalShowActionCreator } from "../app/slice/uiSlice";
 import { ProtoSequences, Sequences } from "../models/sequencesInterface";
 import useApi from "./useApi";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
+import { previousUiPayload } from "../utils/payloads/previousUiPayload";
 
 const mockDispatch = jest.fn();
 const mockedUsedNavigate = jest.fn();
@@ -68,8 +68,19 @@ describe("Given a useApi hook", () => {
   describe("When getAllPublicSequence it's called with incorrect sequencesHook", () => {
     test("Then should it's called modelShow", async () => {
       axios.defaults.headers.get["Error"] = true;
-
       const sequencesHook = {};
+      const expectPayLoadModalShow = {
+        payload: {
+          ...previousUiPayload,
+          modal: {
+            message:
+              "error en la lectura del servidor. Torna ha provar-ho més tard",
+            show: true,
+            type: "error",
+          },
+        },
+        type: "ui/uiModalShow",
+      };
 
       const { result } = renderHook(() => useApi(), {
         wrapper: Wrapper,
@@ -78,27 +89,28 @@ describe("Given a useApi hook", () => {
       await result.current.getAllPublicSequence();
       await loadSequencesActionCreator(sequencesHook as Sequences[]);
 
-      expect(mockDispatch).toHaveBeenCalledWith(
-        uiModalShowActionCreator({
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
-          loading: false,
-        })
-      );
+      expect(mockDispatch).toHaveBeenCalledWith(expectPayLoadModalShow);
     });
   });
 
   describe("When getSequenceOwner it's called with incorrect header", () => {
     test("Then should it's called modelShow", async () => {
       axios.defaults.headers.get["Error"] = true;
-
       const sequencesHook = [
         { id: "", name: "", owner: "", pictograms: [0], privately: false },
       ];
+      const expectPayLoadModalShow = {
+        payload: {
+          ...previousUiPayload,
+          modal: {
+            message:
+              "error en la lectura del servidor. Torna ha provar-ho més tard",
+            show: true,
+            type: "error",
+          },
+        },
+        type: "ui/uiModalShow",
+      };
 
       const { result } = renderHook(() => useApi(), {
         wrapper: Wrapper,
@@ -107,17 +119,7 @@ describe("Given a useApi hook", () => {
       await result.current.getSequencesOwner();
       await loadSequencesActionCreator(sequencesHook);
 
-      expect(mockDispatch).toHaveBeenCalledWith(
-        uiModalShowActionCreator({
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
-          loading: false,
-        })
-      );
+      expect(mockDispatch).toHaveBeenCalledWith(expectPayLoadModalShow);
     });
   });
 
@@ -152,6 +154,18 @@ describe("Given a useApi hook", () => {
   describe("When getSequence caller id incorrect", () => {
     test("Then should it's called modelShow", async () => {
       const idCorrect = "63199e9";
+      const expectPayLoadModalShow = {
+        payload: {
+          ...previousUiPayload,
+          modal: {
+            message:
+              "error en la lectura del servidor. Torna ha provar-ho més tard",
+            show: true,
+            type: "error",
+          },
+        },
+        type: "ui/uiModalShow",
+      };
 
       const { result } = renderHook(() => useApi(), {
         wrapper: Wrapper,
@@ -159,17 +173,7 @@ describe("Given a useApi hook", () => {
 
       await result.current.getSequenceId(idCorrect);
 
-      expect(mockDispatch).toHaveBeenCalledWith(
-        uiModalShowActionCreator({
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
-          loading: false,
-        })
-      );
+      expect(mockDispatch).toHaveBeenCalledWith(expectPayLoadModalShow);
     });
   });
 
@@ -184,13 +188,13 @@ describe("Given a useApi hook", () => {
       };
       const expectModal = {
         payload: {
+          ...previousUiPayload,
           modal: {
             message:
               "error en la lectura del servidor. Torna ha provar-ho més tard",
             show: true,
             type: "error",
           },
-          loading: false,
         },
         type: "ui/uiModalShow",
       };
@@ -217,12 +221,12 @@ describe("Given a useApi hook", () => {
       };
       const expectModal = {
         payload: {
+          ...previousUiPayload,
           modal: {
             message: "seqüència creada",
             show: true,
             type: "ok",
           },
-          loading: false,
         },
         type: "ui/uiModalShow",
       };
@@ -259,16 +263,17 @@ describe("Given a useApi hook", () => {
 
       const expectDispatchModal = {
         payload: {
+          ...previousUiPayload,
           modal: {
             message:
               "error en la lectura del servidor. Torna ha provar-ho més tard",
             show: true,
             type: "error",
           },
-          loading: false,
         },
         type: "ui/uiModalShow",
       };
+
       const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
 
       await result.current.deleteSequenceId("mockIdError");
@@ -288,7 +293,7 @@ describe("Given a useApi hook", () => {
       };
       const expectDispatchModal = {
         payload: {
-          loading: false,
+          ...previousUiPayload,
           modal: {
             message: "seqüència editada correctament",
             show: true,
@@ -318,13 +323,13 @@ describe("Given a useApi hook", () => {
 
       const expectDispatchModal = {
         payload: {
+          ...previousUiPayload,
           modal: {
             message:
               "error en la lectura del servidor. Torna ha provar-ho més tard",
             show: true,
             type: "error",
           },
-          loading: false,
         },
         type: "ui/uiModalShow",
       };
@@ -366,13 +371,13 @@ describe("Given a useApi hook", () => {
     test("Then should called dispatch expectDispatch", async () => {
       const expectDispatchModal = {
         payload: {
+          ...previousUiPayload,
           modal: {
             message:
               "error en la lectura del servidor. Torna ha provar-ho més tard",
             show: true,
             type: "error",
           },
-          loading: false,
         },
         type: "ui/uiModalShow",
       };

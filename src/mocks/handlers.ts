@@ -163,4 +163,26 @@ export const handlers = [
   rest.get(`${apiUrl}sequences/undefined`, async (req, res, ctx) => {
     return res(ctx.status(403));
   }),
+
+  rest.get(`${apiUrl}sequences/search/%`, async (req, res, ctx) => {
+    return res(ctx.status(403));
+  }),
+
+  rest.delete(
+    `${apiUrl}sequences/delete/mockIdError`,
+    async (req, res, ctx) => {
+      return res(ctx.status(403));
+    }
+  ),
+
+  rest.put(`${apiUrl}sequences/update/mockIdError`, async (req, res, ctx) => {
+    return res(ctx.status(403));
+  }),
+
+  rest.options(
+    `${apiUrl}sequences/delete/mockIdError`,
+    async (req, res, ctx) => {
+      return res(ctx.status(403));
+    }
+  ),
 ];

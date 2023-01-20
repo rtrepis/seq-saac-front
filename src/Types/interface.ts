@@ -1,10 +1,17 @@
+export interface ModalI {
+  show: boolean;
+  type: ModalType;
+  message: string;
+}
+
+export interface NavI {
+  allSequencesPage: number;
+}
+
 export interface UiPayload {
-  modal: {
-    show: boolean;
-    type: ModalType;
-    message: string;
-  };
+  modal: ModalI;
   loading: boolean;
+  nav: NavI;
 }
 
 export type ModalType = "error" | "ok";
