@@ -31,7 +31,7 @@ const SearchSequence = (): JSX.Element => {
     if (searchWord.length > 0) {
       await getSearchSequences(searchWord);
     } else {
-      await getAllPublicSequence(2, gotoPage);
+      await getAllPublicSequence(6, gotoPage);
     }
   };
 

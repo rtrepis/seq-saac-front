@@ -9,6 +9,7 @@ import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
 import { sequencesReducer } from "../../app/slice/sequencesSlice";
 import { showPictogramsReducer } from "../../app/slice/showPictogramsSlice";
 import { selectPictogramsReducer } from "../../app/slice/selectPictogramsSlice";
+import { act } from "react-dom/test-utils";
 
 const render = (
   ui: JSX.Element,
@@ -34,7 +35,9 @@ const render = (
       </Provider>
     );
   };
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  return act(() => {
+    rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  });
 };
 
 const Wrapper = ({ children }: WrapperProps): JSX.Element => {

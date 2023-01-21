@@ -1,3 +1,4 @@
+import { previousUiPayload } from "../utils/payloads/previousUiPayload";
 import { renderHook } from "../utils/test/test-utils-Login";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
 import useAraSaac from "./useAraSaac";
@@ -32,12 +33,12 @@ describe("Given a useAraSacc hook", () => {
       const wordSearchMock = "";
       const expectModal = {
         payload: {
+          ...previousUiPayload,
           modal: {
             message: "No hem trobat cap coincidència, prova un altre text",
             show: true,
             type: "ok",
           },
-          loading: true,
         },
         type: "ui/uiModalShow",
       };
@@ -69,7 +70,7 @@ describe("Given a useAraSacc hook", () => {
       const mockNumberPictogram = NaN;
       const expectModal = {
         payload: {
-          loading: true,
+          ...previousUiPayload,
           modal: {
             message: "Error en la lectura del servidor, intenta-ho més tard",
             show: true,

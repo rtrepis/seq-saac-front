@@ -15,7 +15,7 @@ const HomePage = (): JSX.Element => {
   const uiNav = useSelector((state: RootState) => state.ui.nav);
 
   useEffect(() => {
-    getAllPublicSequence(2, uiNav.allSequencesPage);
+    getAllPublicSequence(6, uiNav.allSequencesPage);
   }, [getAllPublicSequence, uiNav.allSequencesPage]);
 
   return (

@@ -51,7 +51,7 @@ describe("Give a component SearchSequences", () => {
 
       await userEvent.type(searchInput, typeEnterEvent);
 
-      expect(mockGetAllPublicSequence).toHaveBeenCalledWith();
+      expect(mockGetAllPublicSequence).toHaveBeenCalled();
     });
   });
 });

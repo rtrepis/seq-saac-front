@@ -185,4 +185,8 @@ export const handlers = [
       return res(ctx.status(403));
     }
   ),
+
+  rest.get(`${apiAraSaacUrl}pictograms/ca/NaN`, async (req, res, ctx) => {
+    return res(ctx.status(400));
+  }),
 ];
