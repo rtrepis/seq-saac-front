@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
 import { UiPayload, Pictograms } from "../Types/interface";
-import { previousUiPayload } from "../utils/payloads/previousUiPayload";
+import { previousUiPayload } from "../utils/test/payloads/previousUiPayload";
 
 const araSaacURL = process.env.REACT_APP_API_ARASAAC_URL;
 

@@ -4,7 +4,7 @@ import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
 import { ProtoSequences, Sequences } from "../models/sequencesInterface";
 import useApi from "./useApi";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
-import { previousUiPayload } from "../utils/payloads/previousUiPayload";
+import { previousUiPayload } from "../utils/test/payloads/previousUiPayload";
 
 const mockDispatch = jest.fn();
 const mockedUsedNavigate = jest.fn();

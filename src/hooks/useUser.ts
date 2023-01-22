@@ -12,7 +12,7 @@ import {
 } from "../models/userInterface";
 import { UiPayload, ModalType } from "../Types/interface";
 import { decodeToken } from "../utils/auth";
-import { previousUiPayload } from "../utils/payloads/previousUiPayload";
+import { previousUiPayload } from "../utils/test/payloads/previousUiPayload";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 

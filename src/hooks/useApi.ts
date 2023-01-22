@@ -7,6 +7,7 @@ import {
 } from "../app/slice/sequencesSlice";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import {
+  UiInitialState,
   uiLoadingCloseActionCreator,
   uiLoadingShowActionCreator,
   uiModalShowActionCreator,
@@ -15,12 +16,11 @@ import {
 } from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
 import { UiPayload } from "../Types/interface";
-import { previousUiPayload } from "../utils/payloads/previousUiPayload";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
 const errorMessage: UiPayload = {
-  ...previousUiPayload,
+  ...UiInitialState,
   modal: {
     show: true,
     message: "error en la lectura del servidor. Torna ha provar-ho més tard",
@@ -29,7 +29,7 @@ const errorMessage: UiPayload = {
 };
 
 const createMessage: UiPayload = {
-  ...previousUiPayload,
+  ...UiInitialState,
   modal: {
     show: true,
     message: "seqüència creada",
@@ -38,7 +38,7 @@ const createMessage: UiPayload = {
 };
 
 const deleteSequenceIdMessage: UiPayload = {
-  ...previousUiPayload,
+  ...UiInitialState,
   modal: {
     show: true,
     message: "seqüència esborrada correctament",
@@ -47,7 +47,7 @@ const deleteSequenceIdMessage: UiPayload = {
 };
 
 const updateSequenceIdMessage: UiPayload = {
-  ...previousUiPayload,
+  ...UiInitialState,
   modal: {
     show: true,
     message: "seqüència editada correctament",

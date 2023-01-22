@@ -17,11 +17,7 @@ const PaginationNav = ({ pageCurrent }: PaginationNavProps): JSX.Element => {
 
   return (
     <Pagination className="justify-content-center m-4">
-      {pageCurrent < 3 ? (
-        <Pagination.First disabled />
-      ) : (
-        <Pagination.First disabled />
-      )}
+      {pageCurrent < 3 ? <Pagination.First disabled /> : <Pagination.First />}
 
       {pageCurrent > 2 && <Pagination.Ellipsis />}
       {pageCurrent > 1 && (

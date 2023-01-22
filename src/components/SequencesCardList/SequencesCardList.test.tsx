@@ -1,6 +1,6 @@
 import { Sequences } from "../../models/sequencesInterface";
 import { PreloadedState } from "../../Types/interfaceTest";
-import { previousUiPayload } from "../../utils/payloads/previousUiPayload";
+import { previousUiPayload } from "../../utils/test/payloads/previousUiPayload";
 import { render, screen } from "../../utils/test/test-utils-Logout";
 import SequencesCardList from "./SequencesCardList";
 

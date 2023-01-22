@@ -20,6 +20,7 @@ const uiSlice = createSlice({
       ...previousUi,
       modal: { ...previousUi.modal, show: false },
     }),
+
     uiLoadingShow: (previousUi: UiPayload) => ({
       ...previousUi,
       loading: true,
@@ -33,12 +34,10 @@ const uiSlice = createSlice({
       ...previousUi,
       nav: action.payload,
     }),
-
     uiPageNavClose: (previousUi: UiPayload) => ({
       ...previousUi,
       nav: { ...previousUi.nav, show: false },
     }),
-
     uiPageNavShow: (previousUi: UiPayload) => ({
       ...previousUi,
       nav: { ...previousUi.nav, show: true },

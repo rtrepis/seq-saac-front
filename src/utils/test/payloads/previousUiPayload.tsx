@@ -1,4 +1,4 @@
-import { UiPayload } from "../../Types/interface";
+import { UiPayload } from "../../../Types/interface";
 
 export let previousUiPayload: UiPayload = {
   modal: {
