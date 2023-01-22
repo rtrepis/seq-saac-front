@@ -1,10 +1,15 @@
 import { SyntheticEvent, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { IoSearch } from "react-icons/io5";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 import useApi from "../../hooks/useApi";
 
 const SearchSequence = (): JSX.Element => {
   const { getSearchSequences, getAllPublicSequence } = useApi();
+  const gotoPage = useSelector(
+    (state: RootState) => state.ui.nav.allSequencesPage
+  );
 
   const initialSearchSequencesWord = {
     searchWord: "",
@@ -26,7 +31,7 @@ const SearchSequence = (): JSX.Element => {
     if (searchWord.length > 0) {
       await getSearchSequences(searchWord);
     } else {
-      await getAllPublicSequence();
+      await getAllPublicSequence(6, gotoPage);
     }
   };
 

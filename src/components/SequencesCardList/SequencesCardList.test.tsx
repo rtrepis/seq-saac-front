@@ -1,5 +1,6 @@
 import { Sequences } from "../../models/sequencesInterface";
 import { PreloadedState } from "../../Types/interfaceTest";
+import { previousUiPayload } from "../../utils/test/payloads/previousUiPayload";
 import { render, screen } from "../../utils/test/test-utils-Logout";
 import SequencesCardList from "./SequencesCardList";
 
@@ -26,10 +27,7 @@ describe("Give a component SequencesCardList", () => {
   describe("When state.ui loading is true", () => {
     test("Then should show the loading component", () => {
       const preloadedState: PreloadedState = {
-        ui: {
-          modal: { message: "", show: false, type: "ok" },
-          loading: true,
-        },
+        ui: { ...previousUiPayload, loading: true },
       };
       const expectLoading = "Loading...";
       const sequencesProps: Sequences[] = [];

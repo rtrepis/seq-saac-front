@@ -2,7 +2,6 @@ import { renderHook } from "@testing-library/react";
 import { NamePasswordUserData } from "../models/userInterface";
 import useUser from "./useUser";
 import { Wrapper } from "../utils/test/test-utils-Logout";
-import { resourceLimits } from "worker_threads";
 
 describe("Given the useUser hook", () => {
   describe("When postRegister it's called with a correct userHook", () => {

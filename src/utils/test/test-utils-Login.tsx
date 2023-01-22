@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { uiReducer } from "../../app/slice/uiSlice";
 import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
 import { sequencesReducer } from "../../app/slice/sequencesSlice";
+import { act } from "react-dom/test-utils";
 
 const renderUser = (
   ui: JSX.Element,
@@ -34,7 +35,9 @@ const renderUser = (
       </Provider>
     );
   };
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  return act(() => {
+    rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  });
 };
 
 export * from "@testing-library/react";

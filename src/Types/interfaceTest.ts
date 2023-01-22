@@ -19,6 +19,10 @@ export interface PreloadedState {
       message: string;
     };
     loading: boolean;
+    nav: {
+      show: boolean;
+      allSequencesPage: number;
+    };
   };
   sequence?: [
     {
