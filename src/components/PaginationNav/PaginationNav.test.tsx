@@ -13,12 +13,11 @@ beforeEach(() => jest.clearAllMocks());
 
 describe("Give a component PaginationNav", () => {
   describe("When this components is rendering in pageCurrent 3", () => {
+    const pageNav = {
+      itemsTotal: 80,
+      pageCurrent: 2,
+    };
     test("Then should show button to page 1 & 2 and 4 & 5", () => {
-      const pageNav = {
-        itemsTotal: 80,
-        pageCurrent: 2,
-      };
-
       render(<PaginationNav pageNav={pageNav} />);
       const pages = [];
       pages[0] = screen.getByRole("button", { name: "1" });
@@ -32,11 +31,6 @@ describe("Give a component PaginationNav", () => {
     });
 
     test("Then clicked user and called mockDispatch", async () => {
-      const pageNav = {
-        itemsTotal: 80,
-        pageCurrent: 2,
-      };
-
       render(<PaginationNav pageNav={pageNav} />);
       const pages = [];
       pages[0] = screen.getByRole("button", { name: "1" });
