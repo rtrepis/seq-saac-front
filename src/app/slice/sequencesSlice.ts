@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Sequences } from "../../models/sequencesInterface";
+import { SequencesI } from "../../models/sequencesInterface";
 
-const sequenceInitialState: Sequences[] = [];
+const sequenceInitialState: SequencesI[] = [];
 
 const sequenceSlice = createSlice({
   name: "sequences",
   initialState: sequenceInitialState,
   reducers: {
-    loadSequences: (previousSequences, action: PayloadAction<Sequences[]>) => [
+    loadSequences: (previousSequences, action: PayloadAction<SequencesI[]>) => [
       ...action.payload,
     ],
-    createSequences: (previousSequences, action: PayloadAction<Sequences>) => [
+    createSequences: (previousSequences, action: PayloadAction<SequencesI>) => [
       ...previousSequences,
       action.payload,
     ],
