@@ -13,6 +13,7 @@ import {
   uiModalShowActionCreator,
   uiPageNavCloseActionCreator,
   uiPageNavShowActionCreator,
+  uiPageNItemsActionCreator,
 } from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
 import { UiPayload } from "../Types/interface";
@@ -65,11 +66,12 @@ const useApi = () => {
         dispatch(uiLoadingShowActionCreator());
 
         const {
-          data: { sequences },
+          data: { sequences, count },
         } = await axios.get(
           `${apiURL}sequences/?pageSize=${pageSize}&page=${pageCurrent}`
         );
 
+        dispatch(uiPageNItemsActionCreator(count));
         dispatch(loadSequencesActionCreator(sequences));
         dispatch(uiPageNavShowActionCreator());
       } catch {
