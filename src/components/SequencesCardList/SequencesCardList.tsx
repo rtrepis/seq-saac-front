@@ -1,14 +1,14 @@
 import { Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import { Sequences } from "../../models/sequencesInterface";
+import { SequencesI } from "../../models/sequencesInterface";
 import Loading from "../Loading/Loading";
 import SequenceCard from "../SequenceCard/SequenceCard";
 import "./SequencesCardList.css";
 
 interface SequenceCardListProps {
   owner?: boolean;
-  sequences: Sequences[];
+  sequences: SequencesI[];
 }
 
 const SequencesCardList = ({

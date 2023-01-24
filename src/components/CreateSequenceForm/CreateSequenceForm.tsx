@@ -11,13 +11,13 @@ import {
 } from "../../app/slice/selectPictogramsSlice";
 import { RootState } from "../../app/store";
 import useApi from "../../hooks/useApi";
-import { ProtoSequences, Sequences } from "../../models/sequencesInterface";
+import { ProtoSequences, SequencesI } from "../../models/sequencesInterface";
 import { ISelectPictogram } from "../../Types/interface";
 import PictogramShow from "../PictogramShow/PictogramShow";
 import SelectPictogram from "../SelectPictogram/SelectPictogram";
 
 interface CreateSequenceFormsProps {
-  sequence?: Sequences;
+  sequence?: SequencesI;
 }
 
 const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {

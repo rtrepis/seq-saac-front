@@ -8,7 +8,7 @@ import useApi from "../../hooks/useApi";
 const SearchSequence = (): JSX.Element => {
   const { getSearchSequences, getAllPublicSequence } = useApi();
   const gotoPage = useSelector(
-    (state: RootState) => state.ui.nav.allSequencesPage
+    (state: RootState) => state.ui.nav.allSequencesPublic.pageCurrent
   );
 
   const initialSearchSequencesWord = {

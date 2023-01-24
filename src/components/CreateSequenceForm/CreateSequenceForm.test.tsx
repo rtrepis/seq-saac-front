@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Sequences } from "../../models/sequencesInterface";
+import { SequencesI } from "../../models/sequencesInterface";
 import { renderUser } from "../../utils/test/test-utils-Login";
 import CreateSequenceForm from "./CreateSequenceForm";
 
@@ -110,7 +110,7 @@ describe("Give a CreateSequenceForm component", () => {
   });
 
   describe("When props received data sequence", () => {
-    const mockSequenceProps: Sequences = {
+    const mockSequenceProps: SequencesI = {
       id: "idMock",
       name: "nameMock",
       pictograms: [0],

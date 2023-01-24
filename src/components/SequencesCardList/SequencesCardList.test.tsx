@@ -1,4 +1,4 @@
-import { Sequences } from "../../models/sequencesInterface";
+import { SequencesI } from "../../models/sequencesInterface";
 import { PreloadedState } from "../../Types/interfaceTest";
 import { previousUiPayload } from "../../utils/test/payloads/previousUiPayload";
 import { render, screen } from "../../utils/test/test-utils-Logout";
@@ -30,7 +30,7 @@ describe("Give a component SequencesCardList", () => {
         ui: { ...previousUiPayload, loading: true },
       };
       const expectLoading = "Loading...";
-      const sequencesProps: Sequences[] = [];
+      const sequencesProps: SequencesI[] = [];
 
       render(<SequencesCardList sequences={sequencesProps} />, {
         preloadedState,
