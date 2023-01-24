@@ -1,6 +1,5 @@
 import { SelectPictogram, SequencesI } from "../models/sequencesInterface";
 import { UserLogged } from "../models/userInterface";
-import { previousUiPayload } from "../utils/test/payloads/previousUiPayload";
 import { ModalType, UiPayload } from "./interface";
 
 export interface WrapperProps {
