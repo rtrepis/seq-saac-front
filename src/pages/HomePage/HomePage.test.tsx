@@ -1,21 +1,24 @@
-import { screen } from "@testing-library/react";
+import { render, screen } from "../../utils/test/test-utils-Logout";
 import HomePage from "./HomePage";
-import { render } from "../../utils/test/test-utils-Logout";
 import mockSequenceArray from "../../mocks/mockSequenceArray";
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockSequenceArray,
-}));
-
 describe("Given a HomePage component", () => {
+  const preloadedState = {
+    sequences: mockSequenceArray,
+    ui: {
+      nav: {
+        allSequencesPublic: { itemsTotal: 20, pageCurrent: 2 },
+        show: true,
+      },
+    },
+  };
   describe("When rendered it should", () => {
     test("Then display a navigation with the page title", () => {
       const pageTitle = "SEQ-SAAC";
       const expectNavigation = "";
       const expectSearchBar = "searchSequences";
 
-      render(<HomePage />);
+      render(<HomePage />, { preloadedState });
       const title = screen.getByRole("heading", { level: 1, name: pageTitle });
       const navigation = screen.getByRole("navigation", {
         name: expectNavigation,

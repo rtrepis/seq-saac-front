@@ -1,4 +1,6 @@
-const mockSequenceArray = [
+import { SequencesI } from "../models/sequencesInterface";
+
+const mockSequenceArray: SequencesI[] = [
   {
     name: "Rentar mans",
     pictograms: [11737, 8975, 35729, 2443, 11739],
