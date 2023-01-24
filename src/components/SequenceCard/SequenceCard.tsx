@@ -49,9 +49,7 @@ const SequenceCard = ({
                   alt="pictograma"
                   height="92px"
                   width="92px"
-                  key={
-                    new Date().getMilliseconds() + "_" + pictogram + "_" + index
-                  }
+                  key={new Date().getMilliseconds() + "_" + pictogram}
                 />
               </>
             ))}
