@@ -5,7 +5,7 @@ import { userReducer } from "../../app/slice/userSlice";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "../../app/store";
 import { uiReducer } from "../../app/slice/uiSlice";
-import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
+import { WrapperProps } from "../../Types/interfaceTest";
 import { sequencesReducer } from "../../app/slice/sequencesSlice";
 import { showPictogramsReducer } from "../../app/slice/showPictogramsSlice";
 import { selectPictogramsReducer } from "../../app/slice/selectPictogramsSlice";
@@ -26,7 +26,7 @@ const render = (
       preloadedState,
     }),
     ...renderOptions
-  }: { preloadedState?: PreloadedState; store?: any } = {}
+  }: { preloadedState?: any; store?: any } = {}
 ) => {
   const Wrapper = ({ children }: WrapperProps): JSX.Element => {
     return (

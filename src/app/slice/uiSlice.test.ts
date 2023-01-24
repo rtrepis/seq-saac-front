@@ -64,21 +64,24 @@ describe("Given the uiSlicer", () => {
         ...previousUiPayload,
         nav: {
           ...previousUiPayload.nav,
-          allSequencesPage: 0,
+          allSequencesPublic: {
+            ...previousUiPayload.nav.allSequencesPublic,
+            pageCurrent: 0,
+          },
         },
       };
       const uiPayload = {
-        payload: {
-          show: true,
-          allSequencesPage: 1,
-        },
+        payload: 1,
         type: "ui/uiPageCurrent",
       };
       const expectUi: UiPayload = {
         ...previousUiPayload,
         nav: {
           ...previousUiPayload.nav,
-          allSequencesPage: 1,
+          allSequencesPublic: {
+            ...previousUiPayload.nav.allSequencesPublic,
+            pageCurrent: 1,
+          },
         },
       };
 

@@ -12,11 +12,11 @@ import useApi from "../../hooks/useApi";
 const HomePage = (): JSX.Element => {
   const { getAllPublicSequence } = useApi();
   const sequencePublic = useSelector((state: RootState) => state.sequences);
-  const uiNav = useSelector((state: RootState) => state.ui.nav);
+  const uiNavHomePage = useSelector((state: RootState) => state.ui.nav);
 
   useEffect(() => {
-    getAllPublicSequence(6, uiNav.allSequencesPage);
-  }, [getAllPublicSequence, uiNav.allSequencesPage]);
+    getAllPublicSequence(6, uiNavHomePage.allSequencesPublic.pageCurrent);
+  }, [getAllPublicSequence, uiNavHomePage.allSequencesPublic.pageCurrent]);
 
   return (
     <>
@@ -28,7 +28,10 @@ const HomePage = (): JSX.Element => {
         </Col>
       </Row>
       <SequencesCardList sequences={sequencePublic} />
-      {uiNav.show && <PaginationNav pageCurrent={uiNav.allSequencesPage} />}
+      {uiNavHomePage.allSequencesPublic.itemsTotal > 6 &&
+        uiNavHomePage.show && (
+          <PaginationNav pageNav={uiNavHomePage.allSequencesPublic} />
+        )}
     </>
   );
 };

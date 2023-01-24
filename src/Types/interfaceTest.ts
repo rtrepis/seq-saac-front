@@ -1,5 +1,6 @@
-import { SelectPictogram, Sequences } from "../models/sequencesInterface";
+import { SelectPictogram, SequencesI } from "../models/sequencesInterface";
 import { UserLogged } from "../models/userInterface";
+import { previousUiPayload } from "../utils/test/payloads/previousUiPayload";
 import { ModalType, UiPayload } from "./interface";
 
 export interface WrapperProps {
@@ -13,18 +14,21 @@ export interface PreloadedState {
     token: string;
   };
   ui?: {
-    modal: {
+    modal?: {
       show: boolean;
       type: ModalType;
       message: string;
     };
-    loading: boolean;
-    nav: {
+    loading?: boolean;
+    nav?: {
       show: boolean;
-      allSequencesPage: number;
+      allSequencesPublic: {
+        itemsTotal: number;
+        pageCurrent: number;
+      };
     };
   };
-  sequence?: [
+  sequences?: [
     {
       id: string;
       name: string;
@@ -42,7 +46,7 @@ export interface WrapperProps {
 export interface Store {
   user: UserLogged;
   ui: UiPayload;
-  sequences: Sequences[];
+  sequences: SequencesI[];
   showPictograms: number[];
   selectPictograms: SelectPictogram[];
 }

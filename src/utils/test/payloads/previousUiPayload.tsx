@@ -9,6 +9,9 @@ export let previousUiPayload: UiPayload = {
   loading: false,
   nav: {
     show: true,
-    allSequencesPage: 0,
+    allSequencesPublic: {
+      itemsTotal: 0,
+      pageCurrent: 0,
+    },
   },
 };

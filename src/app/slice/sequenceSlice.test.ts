@@ -1,4 +1,4 @@
-import { Sequences } from "../../models/sequencesInterface";
+import { SequencesI } from "../../models/sequencesInterface";
 import {
   createSequencesActionCreator,
   deleteSequenceIdActionCreator,
@@ -79,7 +79,7 @@ describe("Given the sequencesSlicer", () => {
           privately: true,
         },
       ];
-      const arraySequenceExpect: Sequences[] = [];
+      const arraySequenceExpect: SequencesI[] = [];
 
       const sequencesPayLoad = deleteSequenceIdActionCreator("");
 

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NavI, UiPayload } from "../../Types/interface";
+import { UiPayload } from "../../Types/interface";
 
 export const UiInitialState: UiPayload = {
   modal: { show: false, type: "ok", message: "" },
   loading: false,
   nav: {
     show: true,
-    allSequencesPage: 0,
+    allSequencesPublic: { itemsTotal: 0, pageCurrent: 0 },
   },
 };
 
@@ -30,9 +30,25 @@ const uiSlice = createSlice({
       loading: false,
     }),
 
-    uiPageCurrent: (previousUi: UiPayload, action: PayloadAction<NavI>) => ({
+    uiPageCurrent: (previousUi: UiPayload, action: PayloadAction<number>) => ({
       ...previousUi,
-      nav: action.payload,
+      nav: {
+        ...previousUi.nav,
+        allSequencesPublic: {
+          ...previousUi.nav.allSequencesPublic,
+          pageCurrent: action.payload,
+        },
+      },
+    }),
+    uiPageNItems: (previousUi: UiPayload, action: PayloadAction<number>) => ({
+      ...previousUi,
+      nav: {
+        ...previousUi.nav,
+        allSequencesPublic: {
+          ...previousUi.nav.allSequencesPublic,
+          itemsTotal: action.payload,
+        },
+      },
     }),
     uiPageNavClose: (previousUi: UiPayload) => ({
       ...previousUi,
@@ -55,4 +71,5 @@ export const {
   uiPageCurrent: uiPageCurrentActionCreator,
   uiPageNavClose: uiPageNavCloseActionCreator,
   uiPageNavShow: uiPageNavShowActionCreator,
+  uiPageNItems: uiPageNItemsActionCreator,
 } = uiSlice.actions;

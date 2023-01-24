@@ -4,15 +4,18 @@ export interface ModalI {
   message: string;
 }
 
-export interface NavI {
-  show: boolean;
-  allSequencesPage: number;
+export interface SequencesNavPageI {
+  itemsTotal: number;
+  pageCurrent: number;
 }
 
 export interface UiPayload {
   modal: ModalI;
   loading: boolean;
-  nav: NavI;
+  nav: {
+    show: boolean;
+    allSequencesPublic: SequencesNavPageI;
+  };
 }
 
 export type ModalType = "error" | "ok";

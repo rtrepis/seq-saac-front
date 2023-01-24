@@ -1,7 +1,7 @@
 import { renderHook } from "../utils/test/test-utils-Login";
 import axios from "axios";
 import { loadSequencesActionCreator } from "../app/slice/sequencesSlice";
-import { ProtoSequences, Sequences } from "../models/sequencesInterface";
+import { ProtoSequences, SequencesI } from "../models/sequencesInterface";
 import useApi from "./useApi";
 import Wrapper from "../utils/test/test-utils-WrapperProvaider";
 import { previousUiPayload } from "../utils/test/payloads/previousUiPayload";
@@ -87,7 +87,7 @@ describe("Given a useApi hook", () => {
       });
 
       await result.current.getAllPublicSequence(2, 0);
-      await loadSequencesActionCreator(sequencesHook as Sequences[]);
+      await loadSequencesActionCreator(sequencesHook as SequencesI[]);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectPayLoadModalShow);
     });
