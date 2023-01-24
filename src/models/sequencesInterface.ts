@@ -4,14 +4,17 @@ export interface ProtoSequences {
   pictograms: number[];
 }
 
-export interface Sequences extends ProtoSequences {
+export interface SequencesI extends ProtoSequences {
   id: string;
   name: string;
   pictograms: number[];
   privately: boolean;
   owner: string;
 }
-
+export interface SequenceStateI {
+  count: number;
+  sequences: SequencesI;
+}
 export interface SelectPictogram {
   index: number;
   pictogram: number;
