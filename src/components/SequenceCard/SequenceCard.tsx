@@ -24,15 +24,19 @@ const SequenceCard = ({
     deleteSequenceId(idSequence);
   };
   return (
-    <Col className="mx-auto">
-      <Card style={{ width: "20.5rem" }} border="primary" className="mx-auto">
+    <Col className="d-flex flex-wrap justify-content-around align-items-center">
+      <Card
+        style={{ width: "16.2em" }}
+        border="primary"
+        className="flex-nowrap"
+      >
         <Card.Header className="p-2 ps-3">
           <Nav.Link
             className="sequence-link"
             as={NavLink}
             to={`/details-sequence/${id}`}
           >
-            <h3 className="mb-0">{name}</h3>
+            <h3 className="fs-5 mb-0">{name}</h3>
           </Nav.Link>
         </Card.Header>
         <Nav.Link
@@ -40,7 +44,7 @@ const SequenceCard = ({
           as={NavLink}
           to={`/details-sequence/${id}`}
         >
-          <Card.Body>
+          <Card.Body className="flex-nowrap">
             {pictograms.slice(0, 3).map((pictogram, index) => (
               <>
                 <img

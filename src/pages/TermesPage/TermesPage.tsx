@@ -7,7 +7,7 @@ const TermesPage = (): JSX.Element => {
       <Navigation page="Termes i condicions" linkPage="login" />
       <TermesPageStyled>
         <h2>Política de privacitat</h2>
-        <p>
+        <p className="fs-5">
           Aquesta pàgina informa sobre la política de privadesa i protecció de
           dades del lloc web www.seqsaac.netlify.app, que s'ha adaptat al
           "Reglament (UE) 2016/679 del Parlament Europeu i del Consell, de 27
@@ -28,7 +28,7 @@ const TermesPage = (): JSX.Element => {
           únicament per als fins establerts en cada cas.
         </p>
         <h3>Responsable del tractament de dades personals</h3>
-        <p>
+        <p className="fs-5">
           SeqSaac disposa d'una base de dades anomenada "Users". Les dades
           tractades són les estrictament necessàries, adequades i pertinents per
           a cada finalitat. Les vostres dades personals seran tractades amb la
@@ -40,7 +40,7 @@ const TermesPage = (): JSX.Element => {
           llevat d'obligació legal.
         </p>
         <h3>Drets dels interessats</h3>
-        <p>
+        <p fs-5>
           Qualsevol persona té dret a obtenir informació sobre els tractaments
           de les dades personals fetes per SeqSaa. Es poden exercir els drets
           daccés, rectificació, supressió, portabilitat de les dades i els de
@@ -61,7 +61,7 @@ const TermesPage = (): JSX.Element => {
           està sent adequat.
         </p>
         <h3>Seguretat de les dades personals</h3>
-        <p>
+        <p className="fs-5">
           En compliment del que disposa l'article 32 del RGPD, el SeqSaac
           garantirà la confidencialitat, integritat, disponibilitat i
           resiliència permanents dels sistemes i serveis de tractament. El
@@ -69,7 +69,7 @@ const TermesPage = (): JSX.Element => {
           tipus de dades personals.
         </p>
         <h2>Condicions d'ús del pictogrames</h2>
-        <p>
+        <p className="fs-5">
           ARASAAC és una marca del Govern d'Aragó (Espanya), registrada a
           l'Oficina Espanyola de Patents i Marques. La ARASAAC col·lecció de
           pictogrames està registrada al Registre General de Propietat
@@ -98,26 +98,26 @@ const TermesPage = (): JSX.Element => {
         <h3>Com citar la llicència ARASAAC</h3>
         <p>
           Hi ha dues maneres d'atribuir l'autoria:
-          <p>
+          <p className="fs-5">
             Els símbols pictogràfics utilitzats són propietat del Govern d'Aragó
             i han estat creats per Sergio Palao per a ARASAAC
             (http://www.arasaac.org), que els distribueix a Llicència Creative
             Commons BY-NC-SA.
           </p>
-          <p>
+          <p className="fs-5">
             Autor dels pictogrames: Sergio Palao. Origen: ARASAAC
             (http://www.arasaac.org). Llicència: CC (BY-NC-SA). Propietari:
             Govern d'Aragó (Espanya) El logotip ARASAAC s'ha d'incloure a tots
             els rètols, cartells i plaques quan els pictogrames s'utilitzen per
             a la senyalització d'espais públics, serveis, botigues, etc.
           </p>
-          <p>
+          <p className="fs-5">
             Per a altres usos i qualsevol consulta, poseu-vos en contacte amb
             (http://www.arasaac.org/contact-us).
           </p>
         </p>
         <h3>Renúncia</h3>
-        <p>
+        <p className="fs-5">
           El Govern d'Aragó i SeqSaac no es fa responsable de l'ús indegut o
           negligent dels recursos continguts en els catàlegs ARASAAC
           (http://www.arasaac.org) realitzats per tercers que superin els termes

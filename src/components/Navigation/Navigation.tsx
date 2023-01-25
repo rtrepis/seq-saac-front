@@ -47,7 +47,7 @@ const Navigation = ({
       }`}
     >
       <Navbar.Brand className="ms-3">
-        <h1 className="mb-0">{page}</h1>
+        <h1 className="mb-0 fw-bolder">{page}</h1>
       </Navbar.Brand>
 
       <Navbar.Toggle

@@ -1,6 +1,6 @@
 $theme-colors: (
   "primary": #1b7d20,
-  "dark": rgb(37, 37, 37),
+  "dark": rgb(52, 52, 52),
   "danger": #700,
 );
 
@@ -8,7 +8,7 @@ $grid-breakpoints: (
   xs: 0,
   sm: 576px,
   md: 768px,
-  lg: 992px,
+  lg: 1028px,
   xl: 1200px,
   xxl: 1400px,
 );
@@ -46,8 +46,6 @@ $navbar-nav-link-font-size: 0.2rem;
 $carousel-control-color: #252525;
 $carousel-indicator-active-bg: #252525;
 $carousel-caption-color: #252525;
-
-$h3-font-size: 20px;
 
 $card-height: 200px;
 
