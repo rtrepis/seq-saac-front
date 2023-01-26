@@ -13,17 +13,20 @@ describe("Given a slider component", () => {
       images.forEach((element) => expect(element).toBeInTheDocument());
     });
   });
-  describe("When is rendered with same caption for image", () => {
+  describe("When is rendered with text for image", () => {
     test("Then these should be in document", () => {
-      const expectCaption = "Crea i comparteix les teves seqüències";
+      const expectTexts = [];
+      expectTexts[0] = "Crea";
+      expectTexts[1] = "Comparteix";
+      expectTexts[2] = "Seqüències";
 
       render(<Slider />);
-      const caption = screen.getAllByRole("heading", {
-        level: 2,
-        name: expectCaption,
+      const texts: any = [];
+      expectTexts.forEach((text, index) => {
+        texts[index] = screen.getByText(text);
       });
 
-      caption.forEach((element) => expect(element).toBeInTheDocument());
+      texts.forEach((text: string) => expect(text).toBeInTheDocument());
     });
   });
 });
