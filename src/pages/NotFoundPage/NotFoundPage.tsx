@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import UrlNotFound from "../../components/UrlNotFound/UrlNotFound";
+import UrlNotFound from "../../components/ui/UrlNotFound/UrlNotFound";
 import NotFoundPageStyled from "./NotFoundPageStyled";
 
 const NotFoundPage = (): JSX.Element => {

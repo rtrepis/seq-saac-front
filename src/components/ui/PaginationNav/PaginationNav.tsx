@@ -1,6 +1,6 @@
 import { Pagination } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { uiPageCurrentActionCreator } from "../../app/slice/uiSlice";
+import { uiPageCurrentActionCreator } from "../../../app/slice/uiSlice";
 
 interface PaginationNavProps {
   pageNav: { itemsTotal: number; pageCurrent: number };
