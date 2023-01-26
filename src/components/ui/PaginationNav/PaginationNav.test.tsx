@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "../../utils/test/test-utils-Logout";
+import { render, screen } from "../../../utils/test/test-utils-Logout";
 import PaginationNav from "./PaginationNav";
 
 const mockDispatch = jest.fn();

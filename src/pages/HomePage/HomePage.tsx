@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import Cta from "../../components/ui/Cta/Cta";
 import Navigation from "../../components/ui/Navigation/Navigation";
-import PaginationNav from "../../components/PaginationNav/PaginationNav";
+import PaginationNav from "../../components/ui/PaginationNav/PaginationNav";
 import SearchSequence from "../../components/SearchSequence/SearchSequence";
 import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
 import Slider from "../../components/ui/Carousel/Carousel";
