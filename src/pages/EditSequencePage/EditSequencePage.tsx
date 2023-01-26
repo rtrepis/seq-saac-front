@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState } from "../../app/store";
 import CreateSequenceForm from "../../components/CreateSequenceForm/CreateSequenceForm";
-import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/ui/Navigation/Navigation";
 import useApi from "../../hooks/useApi";
 
 const EditSequencePage = (): JSX.Element => {

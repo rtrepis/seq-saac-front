@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/ui/Navigation/Navigation";
 import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
 import useApi from "../../hooks/useApi";
 

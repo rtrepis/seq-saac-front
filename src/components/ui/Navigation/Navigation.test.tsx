@@ -1,7 +1,7 @@
-import { screen, render } from "../../utils/test/test-utils-Logout";
+import { screen, render } from "../../../utils/test/test-utils-Logout";
 import userEvent from "@testing-library/user-event";
 import Navigation from "./Navigation";
-import { renderUser } from "../../utils/test/test-utils-Login";
+import { renderUser } from "../../../utils/test/test-utils-Login";
 
 describe("Given a navigation component", () => {
   describe("When it is rendered with props page title 'Regisrar-se'", () => {

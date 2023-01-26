@@ -3,8 +3,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { RootState } from "../../app/store";
-import useUser from "../../hooks/useUser";
+import { RootState } from "../../../app/store";
+import useUser from "../../../hooks/useUser";
 
 interface NavigationProps {
   page:
@@ -42,7 +42,7 @@ const Navigation = ({
       expand="md"
       bg="primary"
       variant="dark"
-      className={`display-flex  justify-content-between p-2 ps-3 pe-3 ${
+      className={`display-flex  justify-content-between p-2 ps-3 pe-3 border-bottom border-white border-3 ${
         isNotPrint && "not-print"
       }`}
     >

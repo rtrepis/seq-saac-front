@@ -4,7 +4,7 @@ import { IoPrint, IoSettingsSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState } from "../../app/store";
-import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/ui/Navigation/Navigation";
 import PictogramShow from "../../components/PictogramShow/PictogramShow";
 import PictogramWord from "../../components/PictogramWord/PictogramWord";
 import useApi from "../../hooks/useApi";

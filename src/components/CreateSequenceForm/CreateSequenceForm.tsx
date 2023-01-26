@@ -182,7 +182,7 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
             <Row>
               {amountPictograms.amount > 0 &&
                 [...Array(amountPictograms.amount)].map((element, index) => (
-                  <Col sx={6} className="justify-content-center">
+                  <Col sx={6} className="justify-content-center" key={index}>
                     <Card style={{ width: "13rem" }} className="m-1">
                       <Card.Body className="p-1">
                         {selectPictograms[index] !== undefined && (

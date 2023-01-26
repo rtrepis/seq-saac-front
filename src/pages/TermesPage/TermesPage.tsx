@@ -1,4 +1,4 @@
-import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/ui/Navigation/Navigation";
 import TermesPageStyled from "./TemesPageStyled";
 
 const TermesPage = (): JSX.Element => {
@@ -40,7 +40,7 @@ const TermesPage = (): JSX.Element => {
           llevat d'obligació legal.
         </p>
         <h3>Drets dels interessats</h3>
-        <p fs-5>
+        <p className="fs-5">
           Qualsevol persona té dret a obtenir informació sobre els tractaments
           de les dades personals fetes per SeqSaa. Es poden exercir els drets
           daccés, rectificació, supressió, portabilitat de les dades i els de
@@ -51,9 +51,9 @@ const TermesPage = (): JSX.Element => {
           exercir els seus drets d'accés, rectificació, supressió i portabilitat
           de dades de caràcter personal, així com de limitació i oposició al seu
           tractament, de conformitat amb el que disposa el Reglament General de
-          Protecció de Dades, davant d'aquesta SeqSaac (c – industria núm. 5
-          25300 Tàrrega), o a l'adreça de correu electrònic seqsaac@gmail.com,
-          de conformitat amb el que disposa el Reglament General de Protecció de
+          Protecció de Dades, davant d'aquesta SeqSaac (c industria núm. 5 25300
+          Tàrrega), o a l'adreça de correu electrònic seqsaac@gmail.com, de
+          conformitat amb el que disposa el Reglament General de Protecció de
           Dades. Podrà consultar informació addicional i detallada al Registre,
           identificant la següent activitat de tractament: “SeqSaac”. També es
           pot presentar una reclamació davant l'Agència Espanyola de Protecció
@@ -96,25 +96,23 @@ const TermesPage = (): JSX.Element => {
           sota la qual es distribueix Llicència Creative Commons BY-NC-SA
         </p>
         <h3>Com citar la llicència ARASAAC</h3>
-        <p>
-          Hi ha dues maneres d'atribuir l'autoria:
-          <p className="fs-5">
-            Els símbols pictogràfics utilitzats són propietat del Govern d'Aragó
-            i han estat creats per Sergio Palao per a ARASAAC
-            (http://www.arasaac.org), que els distribueix a Llicència Creative
-            Commons BY-NC-SA.
-          </p>
-          <p className="fs-5">
-            Autor dels pictogrames: Sergio Palao. Origen: ARASAAC
-            (http://www.arasaac.org). Llicència: CC (BY-NC-SA). Propietari:
-            Govern d'Aragó (Espanya) El logotip ARASAAC s'ha d'incloure a tots
-            els rètols, cartells i plaques quan els pictogrames s'utilitzen per
-            a la senyalització d'espais públics, serveis, botigues, etc.
-          </p>
-          <p className="fs-5">
-            Per a altres usos i qualsevol consulta, poseu-vos en contacte amb
-            (http://www.arasaac.org/contact-us).
-          </p>
+        Hi ha dues maneres d'atribuir l'autoria:
+        <p className="fs-5">
+          - Els símbols pictogràfics utilitzats són propietat del Govern d'Aragó
+          i han estat creats per Sergio Palao per a ARASAAC
+          (http://www.arasaac.org), que els distribueix a Llicència Creative
+          Commons BY-NC-SA.
+        </p>
+        <p className="fs-5">
+          - Autor dels pictogrames: Sergio Palao. Origen: ARASAAC
+          (http://www.arasaac.org). Llicència: CC (BY-NC-SA). Propietari: Govern
+          d'Aragó (Espanya) El logotip ARASAAC s'ha d'incloure a tots els
+          rètols, cartells i plaques quan els pictogrames s'utilitzen per a la
+          senyalització d'espais públics, serveis, botigues, etc.
+        </p>
+        <p className="fs-5">
+          Per a altres usos i qualsevol consulta, poseu-vos en contacte amb
+          (http://www.arasaac.org/contact-us).
         </p>
         <h3>Renúncia</h3>
         <p className="fs-5">

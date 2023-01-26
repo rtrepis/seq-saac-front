@@ -1,7 +1,7 @@
 import { Navbar } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import ForgotFormik from "../../components/ForgotFormik/ForgotFormik";
-import ResetFormik from "../../components/ResetFormik/RestFormik";
+import ForgotFormik from "../../components/user/ForgotFormik/ForgotFormik";
+import ResetFormik from "../../components/user/ResetFormik/RestFormik";
 
 const ForgotPage = (): JSX.Element => {
   const { code: confirmationCode } = useParams();

@@ -1,8 +1,8 @@
 import { SyntheticEvent, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import useUser from "../../hooks/useUser";
-import { NamePasswordUserData } from "../../models/userInterface";
+import useUser from "../../../hooks/useUser";
+import { NamePasswordUserData } from "../../../models/userInterface";
 import RegisterFormStyled from "./RegisterFormStyled";
 
 const RegisterForm = () => {

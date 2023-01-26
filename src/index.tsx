@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./sass/custom.scss";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "react-bootstrap";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -15,7 +16,12 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <ThemeProvider
+          breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+          minBreakpoint="xxs"
+        >
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

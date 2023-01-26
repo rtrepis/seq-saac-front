@@ -3,8 +3,8 @@ import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { Formik } from "formik";
 import RegisterFormikStyled from "./RegisterFormikStyled";
-import useUser from "../../hooks/useUser";
 import { Nav } from "react-bootstrap";
+import useUser from "../../../hooks/useUser";
 
 const schema = yup.object().shape({
   userName: yup

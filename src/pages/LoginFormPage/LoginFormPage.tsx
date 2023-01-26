@@ -1,5 +1,5 @@
-import LoginFormik from "../../components/LoginFormik/LoginFormik";
-import Navigation from "../../components/Navigation/Navigation";
+import LoginFormik from "../../components/user/LoginFormik/LoginFormik";
+import Navigation from "../../components/ui/Navigation/Navigation";
 
 const LoginFormPage = (): JSX.Element => {
   return (
