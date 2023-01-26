@@ -1,8 +1,13 @@
 import { SequencesI } from "../../models/sequencesInterface";
-import { PreloadedState } from "../../Types/interfaceTest";
-import { previousUiPayload } from "../../utils/test/payloads/previousUiPayload";
 import { render, screen } from "../../utils/test/test-utils-Logout";
 import SequencesCardList from "./SequencesCardList";
+
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+afterEach(() => {
+  jest.useRealTimers();
+});
 
 describe("Give a component SequencesCardList", () => {
   describe("When it receive whit a array for props", () => {
@@ -24,18 +29,13 @@ describe("Give a component SequencesCardList", () => {
     });
   });
 
-  describe("When state.ui loading is true", () => {
-    test("Then should show the loading component", () => {
-      const preloadedState: PreloadedState = {
-        ui: { ...previousUiPayload, loading: true },
-      };
-      const expectLoading = "Loading...";
-      const sequencesProps: SequencesI[] = [];
+  describe("When receive whit array empty", () => {
+    test("Then should show expect test", async () => {
+      const expectText = "No s'ha trobat cap seqüència";
+      const sequencesProps: SequencesI[] = await [];
 
-      render(<SequencesCardList sequences={sequencesProps} />, {
-        preloadedState,
-      });
-      const text = screen.getByText(expectLoading);
+      render(<SequencesCardList sequences={sequencesProps} />);
+      const text = screen.getByText(expectText);
 
       expect(text).toBeInTheDocument();
     });

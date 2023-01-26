@@ -30,7 +30,7 @@ export const handlers = [
       {
         id: "",
         name: "",
-        pictograms: [0, 0],
+        pictograms: [0, 1],
         privately: true,
         owner: "235",
       },
@@ -56,7 +56,7 @@ export const handlers = [
         {
           id: "345",
           name: "owner",
-          pictograms: [0, 0],
+          pictograms: [0, 1],
           privately: true,
           owner: "235",
         },
@@ -85,7 +85,7 @@ export const handlers = [
           {
             id: "63199e9c8aa067d2f0931a4e",
             name: "",
-            pictograms: [0, 0],
+            pictograms: [0, 1],
             privately: true,
             owner: "235",
           },
@@ -137,7 +137,7 @@ export const handlers = [
       {
         id: "",
         name: "",
-        pictograms: [0, 0],
+        pictograms: [0, 1],
         privately: true,
         owner: "235",
       },

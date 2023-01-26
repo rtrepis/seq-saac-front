@@ -8,6 +8,8 @@ import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
 import { sequencesReducer } from "../../app/slice/sequencesSlice";
 import { act } from "react-dom/test-utils";
 import { ThemeProvider } from "react-bootstrap";
+import { showPictogramsReducer } from "../../app/slice/showPictogramsSlice";
+import { selectPictogramsReducer } from "../../app/slice/selectPictogramsSlice";
 
 const renderUser = (
   ui: JSX.Element,
@@ -17,6 +19,8 @@ const renderUser = (
         user: userReducer,
         ui: uiReducer,
         sequences: sequencesReducer,
+        showPictograms: showPictogramsReducer,
+        selectPictograms: selectPictogramsReducer,
       },
       preloadedState: {
         user: {

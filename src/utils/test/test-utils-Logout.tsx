@@ -11,6 +11,7 @@ import { showPictogramsReducer } from "../../app/slice/showPictogramsSlice";
 import { selectPictogramsReducer } from "../../app/slice/selectPictogramsSlice";
 import { act } from "react-dom/test-utils";
 import { ThemeProvider } from "react-bootstrap";
+import mockSequenceArray from "../../mocks/mockSequenceArray";
 
 const render = (
   ui: JSX.Element,
@@ -24,7 +25,21 @@ const render = (
         showPictograms: showPictogramsReducer,
         selectPictograms: selectPictogramsReducer,
       },
-      preloadedState,
+      preloadedState: {
+        sequences: mockSequenceArray,
+        ui: {
+          nav: {
+            allSequencesPublic: { itemsTotal: 20, pageCurrent: 2 },
+            show: true,
+          },
+          loading: false,
+          modal: {
+            message: "",
+            show: false,
+            type: "ok",
+          },
+        },
+      },
     }),
     ...renderOptions
   }: { preloadedState?: any; store?: any } = {}
@@ -37,8 +52,9 @@ const render = (
             breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
             minBreakpoint="xxs"
           >
+            {" "}
             {children}
-          </ThemeProvider>
+          </ThemeProvider>{" "}
         </BrowserRouter>
       </Provider>
     );

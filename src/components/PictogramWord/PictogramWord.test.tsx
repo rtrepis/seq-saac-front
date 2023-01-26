@@ -1,4 +1,4 @@
-import { render } from "../../utils/test/test-utils-Logout";
+import { act, render, waitFor } from "../../utils/test/test-utils-Logout";
 import PictogramWord from "./PictogramWord";
 import React from "react";
 
@@ -8,7 +8,10 @@ describe("Give a pictogram word component", () => {
       const pictogramNumber = 1234;
       let wordPictogram = jest.spyOn(React, "useState");
 
-      render(<PictogramWord pictogram={pictogramNumber} />);
+      await waitFor(() =>
+        // eslint-disable-next-line testing-library/no-unnecessary-act
+        act(() => render(<PictogramWord pictogram={pictogramNumber} />))
+      );
 
       expect(wordPictogram).toBeCalled();
     });

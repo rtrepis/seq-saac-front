@@ -1,25 +1,20 @@
-import { render, screen } from "../../utils/test/test-utils-Logout";
+import {
+  act,
+  render,
+  screen,
+  waitFor,
+} from "../../utils/test/test-utils-Logout";
 import HomePage from "./HomePage";
-import mockSequenceArray from "../../mocks/mockSequenceArray";
-import store from "../../mocks/mockStore";
 
 describe("Given a HomePage component", () => {
-  const preloadedState = {
-    sequences: mockSequenceArray,
-    ui: {
-      nav: {
-        allSequencesPublic: { itemsTotal: 20, pageCurrent: 2 },
-        show: true,
-      },
-    },
-  };
   describe("When rendered it should", () => {
-    test.only("Then display a navigation with the page title", () => {
+    test.only("Then display a navigation with the page title", async () => {
       const pageTitle = "SEQ-SAAC";
       const expectNavigation = "";
       const expectSearchBar = "searchSequences";
 
-      render(<HomePage />, { preloadedState });
+      // eslint-disable-next-line testing-library/no-unnecessary-act
+      await waitFor(() => act(() => render(<HomePage />)));
       const title = screen.getByRole("heading", { level: 1, name: pageTitle });
       const navigation = screen.getByRole("navigation", {
         name: expectNavigation,
