@@ -182,4 +182,18 @@ export const handlers = [
   rest.get(`${apiAraSaacUrl}pictograms/ca/NaN`, async (req, res, ctx) => {
     return res(ctx.status(400));
   }),
+
+  rest.get(
+    `${apiUrl}users/email-verify/inValidConfirmationCode`,
+    async (req, res, ctx) => {
+      return res(ctx.status(403));
+    }
+  ),
+
+  rest.get(
+    `${apiUrl}users/email-verify/ValidConfirmationCode`,
+    async (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
 ];

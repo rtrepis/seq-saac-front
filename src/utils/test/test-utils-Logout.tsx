@@ -10,6 +10,7 @@ import { sequencesReducer } from "../../app/slice/sequencesSlice";
 import { showPictogramsReducer } from "../../app/slice/showPictogramsSlice";
 import { selectPictogramsReducer } from "../../app/slice/selectPictogramsSlice";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "react-bootstrap";
 
 const render = (
   ui: JSX.Element,
@@ -31,7 +32,14 @@ const render = (
   const Wrapper = ({ children }: WrapperProps): JSX.Element => {
     return (
       <Provider store={store}>
-        <BrowserRouter>{children}</BrowserRouter>
+        <BrowserRouter>
+          <ThemeProvider
+            breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+            minBreakpoint="xxs"
+          >
+            {children}
+          </ThemeProvider>
+        </BrowserRouter>
       </Provider>
     );
   };
@@ -43,7 +51,14 @@ const render = (
 const Wrapper = ({ children }: WrapperProps): JSX.Element => {
   return (
     <Provider store={store}>
-      <BrowserRouter>{children}</BrowserRouter>
+      <BrowserRouter>
+        <ThemeProvider
+          breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+          minBreakpoint="xxs"
+        >
+          {children}
+        </ThemeProvider>
+      </BrowserRouter>
     </Provider>
   );
 };

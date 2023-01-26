@@ -11,7 +11,7 @@ const Slider = (): JSX.Element => {
       >
         <Carousel.Item className="text-center">
           <img
-            src="/img/cta/crea-200px.jpg"
+            src="/img/ui/cta/crea-200px.jpg"
             alt="crea"
             height="200"
             width="200"
@@ -21,8 +21,8 @@ const Slider = (): JSX.Element => {
         </Carousel.Item>
         <Carousel.Item className="text-center">
           <img
-            src="/img/cta/compartir-200px.jpg"
-            alt="crea"
+            src="/img/ui/cta/compartir-200px.jpg"
+            alt="comparteix"
             height="200"
             width="200"
             className="border border-4 border-primary rounded-4"
@@ -31,8 +31,8 @@ const Slider = (): JSX.Element => {
         </Carousel.Item>
         <Carousel.Item className="text-center">
           <img
-            src="/img/cta/sequencies-200px.jpg"
-            alt="crea"
+            src="/img/ui/cta/sequencies-200px.jpg"
+            alt="seqüències"
             height="200"
             width="200"
             className="border border-4 border-primary rounded-4"

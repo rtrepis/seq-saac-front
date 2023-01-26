@@ -42,16 +42,14 @@ const SequenceCard = ({
         >
           <Card.Body className="d-flex flex-nowrap">
             {pictograms.slice(0, 3).map((pictogram, index) => (
-              <>
-                <img
-                  src={`https://api.arasaac.org/api/pictograms/${pictogram.toString()}`}
-                  className="img-thumbnail me-1"
-                  alt="pictograma"
-                  height="92px"
-                  width="92px"
-                  key={new Date().getMilliseconds() + "_" + pictogram}
-                />
-              </>
+              <img
+                src={`https://api.arasaac.org/api/pictograms/${pictogram.toString()}`}
+                className="img-thumbnail me-1"
+                alt="pictograma"
+                height="92px"
+                width="92px"
+                key={new Date().getMilliseconds() + "_" + pictogram}
+              />
             ))}
           </Card.Body>
         </Nav.Link>

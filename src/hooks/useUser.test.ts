@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { waitFor, renderHook } from "@testing-library/react";
 import { NamePasswordUserData } from "../models/userInterface";
 import useUser from "./useUser";
 import { Wrapper } from "../utils/test/test-utils-Logout";
@@ -15,7 +15,9 @@ describe("Given the useUser hook", () => {
       });
       const expectIsUserCreate = true;
 
-      const resultPost = await result.current.postRegister(userHook);
+      const resultPost = await waitFor(() =>
+        result.current.postRegister(userHook)
+      );
 
       expect(resultPost).toBe(expectIsUserCreate);
     });
@@ -32,7 +34,9 @@ describe("Given the useUser hook", () => {
       });
       const expectIsUserCreate = false;
 
-      const resultPost = await result.current.postRegister(userHook);
+      const resultPost = await waitFor(() =>
+        result.current.postRegister(userHook)
+      );
 
       expect(resultPost).toBe(expectIsUserCreate);
     });
@@ -49,7 +53,9 @@ describe("Given the useUser hook", () => {
       });
       const expectIsUserLogin = true;
 
-      const resultPost = await result.current.postLogin(userHook);
+      const resultPost = await waitFor(() =>
+        result.current.postLogin(userHook)
+      );
 
       expect(resultPost).toBe(expectIsUserLogin);
     });
@@ -66,7 +72,9 @@ describe("Given the useUser hook", () => {
       });
       const expectIsUserLogin = false;
 
-      const resultPost = await result.current.postLogin(userHook);
+      const resultPost = await waitFor(() =>
+        result.current.postLogin(userHook)
+      );
 
       expect(resultPost).toBe(expectIsUserLogin);
     });
@@ -79,7 +87,7 @@ describe("Given the useUser hook", () => {
       });
       localStorage.setItem("userToken", "UserNameTest");
 
-      await result.current.userLogout();
+      await waitFor(() => result.current.userLogout());
       const localStoreState = localStorage.getItem("userToken");
 
       expect(localStoreState).toBe(null);
@@ -92,8 +100,8 @@ describe("Given the useUser hook", () => {
       const { result } = renderHook(() => useUser(), { wrapper: Wrapper });
       const expectReturn = true;
 
-      const resultGetValidationCode = await result.current.getConfirmationCode(
-        confirmationCode
+      const resultGetValidationCode = await waitFor(() =>
+        result.current.getConfirmationCode(confirmationCode)
       );
 
       expect(resultGetValidationCode).toBe(expectReturn);
@@ -106,8 +114,8 @@ describe("Given the useUser hook", () => {
       const { result } = renderHook(() => useUser(), { wrapper: Wrapper });
       const expectReturn = false;
 
-      const resultGetValidationCode = await result.current.getConfirmationCode(
-        confirmationCode
+      const resultGetValidationCode = await waitFor(() =>
+        result.current.getConfirmationCode(confirmationCode)
       );
 
       expect(resultGetValidationCode).toBe(expectReturn);

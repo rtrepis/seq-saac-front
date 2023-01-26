@@ -7,6 +7,7 @@ import { uiReducer } from "../../app/slice/uiSlice";
 import { PreloadedState, WrapperProps } from "../../Types/interfaceTest";
 import { sequencesReducer } from "../../app/slice/sequencesSlice";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "react-bootstrap";
 
 const renderUser = (
   ui: JSX.Element,
@@ -31,7 +32,14 @@ const renderUser = (
   const Wrapper = ({ children }: WrapperProps): JSX.Element => {
     return (
       <Provider store={store}>
-        <BrowserRouter>{children}</BrowserRouter>
+        <BrowserRouter>
+          <ThemeProvider
+            breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+            minBreakpoint="xxs"
+          >
+            {children}
+          </ThemeProvider>
+        </BrowserRouter>
       </Provider>
     );
   };

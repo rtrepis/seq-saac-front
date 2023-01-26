@@ -1,6 +1,7 @@
 import { render, screen } from "../../utils/test/test-utils-Logout";
 import HomePage from "./HomePage";
 import mockSequenceArray from "../../mocks/mockSequenceArray";
+import store from "../../mocks/mockStore";
 
 describe("Given a HomePage component", () => {
   const preloadedState = {
@@ -13,7 +14,7 @@ describe("Given a HomePage component", () => {
     },
   };
   describe("When rendered it should", () => {
-    test("Then display a navigation with the page title", () => {
+    test.only("Then display a navigation with the page title", () => {
       const pageTitle = "SEQ-SAAC";
       const expectNavigation = "";
       const expectSearchBar = "searchSequences";

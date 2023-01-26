@@ -3,7 +3,7 @@ const Cta = (): JSX.Element => {
     <div className="d-none bg-primary bg-opacity-25 p-4 d-md-flex justify-content-around align-items-center">
       <div className="text-center">
         <img
-          src="/img/cta/crea-200px.jpg"
+          src="/img/ui/cta/crea-200px.jpg"
           alt="crea"
           height="200"
           width="200"
@@ -15,7 +15,7 @@ const Cta = (): JSX.Element => {
       </div>
       <div className="text-center">
         <img
-          src="/img/cta/compartir-200px.jpg"
+          src="/img/ui/cta/compartir-200px.jpg"
           alt="compartir"
           height="200"
           width="200"
@@ -27,7 +27,7 @@ const Cta = (): JSX.Element => {
       </div>
       <div className="text-center">
         <img
-          src="/img/cta/sequencies-200px.jpg"
+          src="/img/ui/cta/sequencies-200px.jpg"
           alt="seqüències"
           height="200"
           width="200"
