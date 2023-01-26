@@ -1,4 +1,4 @@
-import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/ui/Navigation/Navigation";
 import TermesPageStyled from "./TemesPageStyled";
 
 const TermesPage = (): JSX.Element => {

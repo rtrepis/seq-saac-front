@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import Cta from "../../components/Cta/Cta";
-import Navigation from "../../components/Navigation/Navigation";
+import Cta from "../../components/ui/Cta/Cta";
+import Navigation from "../../components/ui/Navigation/Navigation";
 import PaginationNav from "../../components/PaginationNav/PaginationNav";
 import SearchSequence from "../../components/SearchSequence/SearchSequence";
 import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
+import Slider from "../../components/ui/Carousel/Carousel";
 import useApi from "../../hooks/useApi";
 
 const HomePage = (): JSX.Element => {
@@ -22,6 +23,7 @@ const HomePage = (): JSX.Element => {
     <>
       <Navigation page="SEQ-SAAC" linkPage="home" />
       <Cta />
+      <Slider />
       <Row className="justify-content-center m-3">
         <Col xs="12" sm="10" md="8" lg="6" xl="4">
           <SearchSequence />

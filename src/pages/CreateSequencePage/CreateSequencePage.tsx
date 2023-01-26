@@ -1,5 +1,5 @@
 import CreateSequenceForm from "../../components/CreateSequenceForm/CreateSequenceForm";
-import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/ui/Navigation/Navigation";
 
 const CreateSequencePage = () => {
   return (

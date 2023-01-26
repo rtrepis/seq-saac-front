@@ -1,7 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { uiModalCloseActionCreator } from "../../app/slice/uiSlice";
-import { ModalType } from "../../Types/interface";
+import { uiModalCloseActionCreator } from "../../../app/slice/uiSlice";
+import { ModalType } from "../../../Types/interface";
 import "./ModalCenter.css";
 
 interface ModalCenterProps {

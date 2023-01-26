@@ -25,11 +25,7 @@ const SequenceCard = ({
   };
   return (
     <Col className="d-flex flex-wrap justify-content-around align-items-center">
-      <Card
-        style={{ width: "16.2em" }}
-        border="primary"
-        className="flex-nowrap"
-      >
+      <Card style={{ width: "16.2em" }} border="primary" className="col-12">
         <Card.Header className="p-2 ps-3">
           <Nav.Link
             className="sequence-link"
@@ -44,7 +40,7 @@ const SequenceCard = ({
           as={NavLink}
           to={`/details-sequence/${id}`}
         >
-          <Card.Body className="flex-nowrap">
+          <Card.Body className="d-flex flex-nowrap">
             {pictograms.slice(0, 3).map((pictogram, index) => (
               <>
                 <img

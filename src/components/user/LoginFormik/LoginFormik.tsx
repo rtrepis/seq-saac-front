@@ -3,41 +3,38 @@ import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { Formik } from "formik";
 import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
-import useUser from "../../hooks/useUser";
+import useUser from "../../../hooks/useUser";
+import { NavLink } from "react-bootstrap";
 
 const schema = yup.object().shape({
+  userName: yup
+    .string()
+    .min(3, "Requrit min 3 caracters")
+    .max(30, "Exedit max 30 caracters")
+    .required("Nom d'usuari és requirit"),
   password: yup
     .string()
     .min(3, "Requrit min 3 caracters")
     .max(30, "Requrit min 3 caracters")
     .required("Contrasenya és requerit"),
-  confirmPassword: yup
-    .string()
-    .required("Confirmació contrasenya és requerit")
-    .oneOf([yup.ref("password"), null], "No coincideix amb la contrasenya"),
 });
 
-interface ResetFormikProps {
-  code?: string;
-}
-
-const ResetFormik = ({ code }: ResetFormikProps): JSX.Element => {
-  const { putReset } = useUser();
+const LoginFormik = (): JSX.Element => {
+  const { postLogin } = useUser();
   return (
     <RegisterFormStyled>
       <Formik
         validationSchema={schema}
         onSubmit={(values) => {
-          const dataPutForgot = {
+          const dataPostLogin = {
+            userName: values.userName,
             password: values.password,
-            code: values.code,
           };
-          putReset(dataPutForgot);
+          postLogin(dataPostLogin);
         }}
         initialValues={{
+          userName: "",
           password: "",
-          confirmPassword: "",
-          code: code,
         }}
       >
         {({
@@ -54,62 +51,60 @@ const ResetFormik = ({ code }: ResetFormikProps): JSX.Element => {
             onSubmit={handleSubmit}
             className="register-form mt-5"
           >
+            <Form.Group className="mb-3" controlId="userNameGroup">
+              <Form.Label>Usuari</Form.Label>
+
+              <Form.Control
+                type="text"
+                name="userName"
+                placeholder="Nom d'usuari"
+                className=" register-form__input"
+                value={values.userName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={touched.userName && !!errors.userName}
+              />
+
+              <Form.Control.Feedback type="invalid">
+                {errors.userName}
+              </Form.Control.Feedback>
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="passwordGroup">
               <Form.Label>Contrasenya</Form.Label>
 
               <Form.Control
                 type="password"
                 name="password"
-                placeholder=""
+                placeholder="***"
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isValid={touched.password && !errors.password}
                 isInvalid={touched.password && !!errors.password}
               />
-              <Form.Control.Feedback>
-                Validat correctament!
-              </Form.Control.Feedback>
+
               <Form.Control.Feedback type="invalid">
                 {errors.password}
               </Form.Control.Feedback>
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="confirmPasswordGroup">
-              <Form.Label>Confirmació Contrasenya</Form.Label>
-
-              <Form.Control
-                type="password"
-                name="confirmPassword"
-                placeholder=""
-                value={values.confirmPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isValid={touched.confirmPassword && !errors.confirmPassword}
-                isInvalid={touched.confirmPassword && !!errors.confirmPassword}
-              />
-              <Form.Control.Feedback>
-                Validat correctament!
-              </Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">
-                {errors.confirmPassword}
-              </Form.Control.Feedback>
-            </Form.Group>
-
             <div className="register-form__footer">
               <Button
                 type="submit"
                 disabled={!isValid}
                 className="register-form__button"
               >
-                Restablir
+                Iniciar sessió
               </Button>
             </div>
           </Form>
         )}
       </Formik>
+      <div className="text-center fs-6 m-3 d-flex col gap-2 text-muted">
+        <NavLink href="register">Registear-se </NavLink> -{" "}
+        <NavLink href="forgot"> No recordes la contrasenya</NavLink>
+      </div>
     </RegisterFormStyled>
   );
 };
 
-export default ResetFormik;
+export default LoginFormik;

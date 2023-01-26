@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Slider from "./Slider";
+import Slider from "./Carousel";
 
 describe("Given a slider component", () => {
   describe("When is rendered with n images", () => {

@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { Formik } from "formik";
 import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
-import useUser from "../../hooks/useUser";
+import useUser from "../../../hooks/useUser";
 
 const schema = yup.object().shape({
   email: yup
