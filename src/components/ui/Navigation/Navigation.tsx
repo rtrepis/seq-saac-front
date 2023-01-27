@@ -78,60 +78,6 @@ const Navigation = ({ linkPage, isNotPrint }: NavigationProps): JSX.Element => {
           </NavDropdown>
         )}
       </Nav>
-
-      {/* 
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="m-0 p-0">
-        <IoLogIn />
-      </Navbar.Toggle>
-
-      {userName === "" ? (
-        <Navbar.Collapse
-          id="responsive-navbar-nav"
-          className="justify-content-end"
-        >
-          <Nav>
-            {linkPage !== "login" && (
-              <Nav.Item>
-                <Nav.Link as={NavLink} to="/login">
-                  <IoLogInOutline />
-                </Nav.Link>
-              </Nav.Item>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      ) : (
-        <Navbar.Collapse id="responsive-navbar-nav" className="">
-          <Nav>
-            <NavDropdown
-              title={userName}
-              id="nav-dropdown"
-              align={{ lg: "start" }}
-              drop="down"
-            >
-              {linkPage !== "mySequences" && (
-                <NavDropdown.Item as={NavLink} to="/my-sequences">
-                  Les meves seqüències
-                </NavDropdown.Item>
-              )}
-              {linkPage !== "createSequence" && (
-                <NavDropdown.Item as={NavLink} to="/create-sequence">
-                  Crear la seqüència
-                </NavDropdown.Item>
-              )}
-            </NavDropdown>
-            {linkPage !== "home" && (
-              <Nav.Item>
-                <Nav.Link as={NavLink} to="/home">
-                  Inici
-                </Nav.Link>
-              </Nav.Item>
-            )}
-            <Nav.Item>
-              <Nav.Link onClick={userLogout}>Tanca sessió</Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      )} */}
     </Navbar>
   );
 };
