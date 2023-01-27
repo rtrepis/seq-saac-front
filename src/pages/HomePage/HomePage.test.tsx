@@ -1,3 +1,4 @@
+import pagesName from "../../language/ca";
 import {
   act,
   render,
@@ -9,7 +10,7 @@ import HomePage from "./HomePage";
 describe("Given a HomePage component", () => {
   describe("When rendered it should", () => {
     test.only("Then display a navigation with the page title", async () => {
-      const pageTitle = "SEQ-SAAC";
+      const pageTitle = pagesName.home;
       const expectNavigation = "";
       const expectSearchBar = "searchSequences";
 

@@ -4,7 +4,7 @@ import TermesPageStyled from "./TemesPageStyled";
 const TermesPage = (): JSX.Element => {
   return (
     <>
-      <Navigation page="Termes i condicions" linkPage="login" />
+      <Navigation linkPage="terms" />
       <TermesPageStyled>
         <h2>Política de privacitat</h2>
         <p className="fs-5">

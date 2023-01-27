@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../../utils/test/test-utils-Logout";
 import Footer from "./Footer";
 
 describe("Give a component Footer", () => {

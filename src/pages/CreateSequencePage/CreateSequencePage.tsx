@@ -4,10 +4,7 @@ import Navigation from "../../components/ui/Navigation/Navigation";
 const CreateSequencePage = () => {
   return (
     <>
-      <Navigation
-        linkPage="create-sequence"
-        page="Crear la seqüència"
-      ></Navigation>
+      <Navigation linkPage="createSequence"></Navigation>
       <CreateSequenceForm />
     </>
   );

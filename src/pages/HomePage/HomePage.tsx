@@ -9,7 +9,6 @@ import SearchSequence from "../../components/SearchSequence/SearchSequence";
 import SequencesCardList from "../../components/SequencesCardList/SequencesCardList";
 import Slider from "../../components/ui/Carousel/Carousel";
 import useApi from "../../hooks/useApi";
-import Footer from "../../components/ui/Footer/Footer";
 
 const HomePage = (): JSX.Element => {
   const { getAllPublicSequence } = useApi();
@@ -22,7 +21,7 @@ const HomePage = (): JSX.Element => {
 
   return (
     <>
-      <Navigation page="SEQ-SAAC" linkPage="home" />
+      <Navigation linkPage="home" />
       <Cta />
       <Slider />
       <Row className="justify-content-center m-3">
@@ -35,7 +34,6 @@ const HomePage = (): JSX.Element => {
         uiNavHomePage.show && (
           <PaginationNav pageNav={uiNavHomePage.allSequencesPublic} />
         )}
-      <Footer />
     </>
   );
 };

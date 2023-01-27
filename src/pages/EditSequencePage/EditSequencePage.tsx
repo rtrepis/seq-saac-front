@@ -19,7 +19,7 @@ const EditSequencePage = (): JSX.Element => {
 
   return (
     <>
-      <Navigation linkPage="edit-sequence" page="Editar la seqüència" />
+      <Navigation linkPage="editSequence" />
       {sequences[0] && <CreateSequenceForm sequence={sequences[0]} />}
     </>
   );

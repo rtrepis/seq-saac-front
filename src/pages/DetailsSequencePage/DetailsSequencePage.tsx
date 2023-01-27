@@ -51,11 +51,7 @@ const DetailsSequencePage = (): JSX.Element => {
 
   return (
     <>
-      <Navigation
-        page="Seqüència"
-        linkPage="details-sequence"
-        isNotPrint={true}
-      />
+      <Navigation linkPage="detailsSequence" isNotPrint={true} />
 
       {sequences[0] && (
         <>

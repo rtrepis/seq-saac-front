@@ -4,7 +4,7 @@ import Navigation from "../../components/ui/Navigation/Navigation";
 const RegisterFormPage = (): JSX.Element => {
   return (
     <>
-      <Navigation page="Registrar-se" linkPage="register" />
+      <Navigation linkPage="register" />
       <RegisterFormik />
     </>
   );
