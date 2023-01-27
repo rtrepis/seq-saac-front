@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import ValidateEmailPage from "./pages/ValidateEmailPage/ValidateEmailPage";
 import TermesPage from "./pages/TermesPage/TermesPage";
 import ForgotPage from "./pages/ForgotPage/ForgotPage";
+import Footer from "./components/ui/Footer/Footer";
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const App = (): JSX.Element => {
         <Route path="/terms" element={<TermesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </>
   );
 };

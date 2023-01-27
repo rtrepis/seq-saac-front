@@ -4,7 +4,7 @@ import Navigation from "../../components/ui/Navigation/Navigation";
 const LoginFormPage = (): JSX.Element => {
   return (
     <>
-      <Navigation page="Inicia sessió" linkPage="login" />
+      <Navigation linkPage="login" />
       <LoginFormik />
     </>
   );

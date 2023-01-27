@@ -15,7 +15,7 @@ const MySequencePage = (): JSX.Element => {
 
   return (
     <>
-      <Navigation page="Les meves seqüències" linkPage="my-sequences" />
+      <Navigation linkPage="mySequences" />
       <SequencesCardList sequences={sequenceOwner} owner={true} />
     </>
   );
