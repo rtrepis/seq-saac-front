@@ -17,11 +17,17 @@ $grid-breakpoints: (
 
 $font-size-base: 0.8rem;
 $white: rgb(255, 255, 255);
+$red: rgb(255, 0, 0);
 
 // NavBar //
-$navbar-dark-color: rgba($white, 0.75);
-$navbar-dark-hover-color: rgba($white, 0.75);
+$navbar-dark-color: rgba($white, 0.85);
+$navbar-dark-hover-color: rgba($white, 1);
 $navbar-dark-toggler-border-color: rgba($white, 0);
+$navbar-dark-active-color: #1b7d20;
+
+// Nav //
+$nav-tabs-border-color: $white;
+$nav-tabs-border-width: 2px;
 
 $component-active-bg: #1b7d20;
 $form-feedback-valid-color: #070;

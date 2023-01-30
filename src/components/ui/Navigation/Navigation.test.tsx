@@ -51,30 +51,24 @@ describe("Given a navigation component", () => {
     });
   });
 
-  describe("When user Logged to be home page and click linkDrop", () => {
+  describe("When user Logged to be home page", () => {
     test("Then should show links logged and navigate", async () => {
       const pageLink = "home";
-      const linkDropExpect = "UserTest";
       const expectLink_1_click = pagesName.mySequences;
       const expectLink_2_click = pagesName.createSequence;
       const expectLink_3 = navigationText.logout;
 
       renderUser(<Navigation linkPage={pageLink} />);
 
-      const linkDrop = screen.getByRole("button", { name: linkDropExpect });
+      const link1 = screen.getAllByRole("button", { name: expectLink_3 });
+      const link2 = screen.getAllByRole("link", { name: expectLink_1_click });
+      const link3 = screen.getAllByRole("link", { name: expectLink_2_click });
+      await userEvent.click(link2[0]);
+      await userEvent.click(link3[0]);
 
-      await userEvent.click(linkDrop);
-
-      const link1 = screen.getByRole("button", { name: expectLink_3 });
-      const link2 = screen.getByRole("link", { name: expectLink_1_click });
-      const link3 = screen.getByRole("link", { name: expectLink_2_click });
-      await userEvent.click(link2);
-      await userEvent.click(link3);
-
-      expect(linkDrop).toBeInTheDocument();
-      expect(link1).toBeInTheDocument();
-      expect(link2).toBeInTheDocument();
-      expect(link3).toBeInTheDocument();
+      expect(link1[0]).toBeInTheDocument();
+      expect(link2[0]).toBeInTheDocument();
+      expect(link3[0]).toBeInTheDocument();
     });
   });
 
@@ -83,21 +77,18 @@ describe("Given a navigation component", () => {
       const pageLink = "mySequences";
       const expectLink_2_Click = pagesName.home;
       const expectLink_3_Click = pagesName.createSequence;
-      const expectLink_2 = "UserTest";
 
       renderUser(<Navigation linkPage={pageLink} />);
 
-      const link2 = screen.getByRole("link", { name: expectLink_2_Click });
-      const linkDrop = screen.getByRole("button", { name: expectLink_2 });
+      const link2 = screen.getAllByRole("link", { name: expectLink_2_Click });
 
-      await userEvent.click(link2);
-      await userEvent.click(linkDrop);
-      const link3 = screen.getByRole("link", { name: expectLink_3_Click });
+      await userEvent.click(link2[0]);
+      const link3 = screen.getAllByRole("link", { name: expectLink_3_Click });
 
-      await userEvent.click(link3);
+      await userEvent.click(link3[0]);
 
-      expect(link2).toBeInTheDocument();
-      expect(link3).toBeInTheDocument();
+      expect(link2[0]).toBeInTheDocument();
+      expect(link3[0]).toBeInTheDocument();
     });
   });
 });
