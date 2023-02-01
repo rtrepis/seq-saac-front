@@ -34,24 +34,25 @@ const Navigation = ({ linkPage, isNotPrint }: NavigationProps): JSX.Element => {
       collapseOnSelect
       expand="md"
       bg="primary"
-      variant="dark"
-      className={`p-4 pt-2 pb-2 pb-md-0 pe-md-0 border-bottom border-3 border-white justify-content-between ${
+      variant="light"
+      className={`p-4 pt-2 pb-2 pb-md-0 ps-xxl-5 pe-xxl-5 border-bottom border-3 border-white justify-content-between ${
         isNotPrint && "not-print"
       }`}
     >
       <Navbar.Brand
-        className="d-flex m-0 p-0"
+        className="d-flex m-0 p-0 align-items-center"
         as={NavLink}
         to="/home"
         aria-label={pagesName.home}
       >
-        <IoHome className="m-0 mb-1" aria-label={`icon ${pagesName.home}`} />
+        <IoHome
+          className="fs-2 me-2 text-white align-self-bottom"
+          aria-label={`icon ${pagesName.home}`}
+        />
         <h1 className="m-0 fw-bolder d-md-none text-white">
           {pagesName[linkPage]}
         </h1>
-        <h1 className="m-0 mb-2 fw-bolder d-none d-md-block text-white">
-          SeqSaac
-        </h1>
+        <h1 className="m-0 fw-bolder d-none d-md-block text-white">SeqSaac</h1>
       </Navbar.Brand>
       {userName !== "" ? (
         <>
@@ -83,7 +84,7 @@ const Navigation = ({ linkPage, isNotPrint }: NavigationProps): JSX.Element => {
               </Nav.Link>
             </Nav>
 
-            <Nav variant="tabs" className="d-none d-md-flex">
+            <Nav variant="tabs" className="d-none d-md-flex border-bottom-0">
               <Nav.Link
                 as={NavLink}
                 to="/my-sequences"
