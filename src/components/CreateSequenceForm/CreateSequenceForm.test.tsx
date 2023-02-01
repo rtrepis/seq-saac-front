@@ -48,7 +48,7 @@ describe("Give a CreateSequenceForm component", () => {
     });
   });
 
-  describe("When user change amountPictgorams with + - buttons", () => {
+  describe("When user change amountPictograms with + - buttons", () => {
     test("Then should show many buttons as amount pictograms", async () => {
       const labelAmountPictograms = "Quantitat de pictogrames";
       const amount = 4;
@@ -60,17 +60,17 @@ describe("Give a CreateSequenceForm component", () => {
       const restAmount = screen.getByRole("button", { name: "-" });
       const plusAmount = screen.getByRole("button", { name: "+" });
 
-      await userEvent.type(amountPictograms, "3");
+      await userEvent.type(amountPictograms, amount.toString());
       await userEvent.click(plusAmount);
       await userEvent.click(restAmount);
       await userEvent.click(plusAmount);
 
-      const button_1 = screen.getByRole("button", { name: "Pictograma 1" });
-      const button = screen.getAllByRole("button");
+      const button_1 = screen.getByRole("button", { name: "1" });
+      const images = screen.getAllByRole("img", { name: "pictograma" });
 
       await userEvent.click(button_1);
 
-      expect(button).toHaveLength(amount);
+      expect(images).toHaveLength(amount);
       expect(mockDispatch).toHaveBeenCalled();
     });
   });

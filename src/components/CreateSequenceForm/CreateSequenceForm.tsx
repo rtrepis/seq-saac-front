@@ -191,7 +191,15 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
             <Row>
               {amountPictograms.amount > 0 &&
                 [...Array(amountPictograms.amount)].map((element, index) => (
-                  <Col xs={12} sm={6} md={12} lg={6} xl={4} xxl={3}>
+                  <Col
+                    xs={12}
+                    sm={6}
+                    md={12}
+                    lg={6}
+                    xl={4}
+                    xxl={3}
+                    key={`selectPictogram-${index}`}
+                  >
                     <Nav.Link>
                       <Card
                         className="mb-2 pb-2 border-0"
