@@ -1,5 +1,5 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
-import { Button, Card, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { SyntheticEvent, useEffect, useState } from "react";
+import { Button, Card, Col, Form, InputGroup, Nav, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
@@ -15,6 +15,7 @@ import { ProtoSequences, SequencesI } from "../../models/sequencesInterface";
 import { ISelectPictogram } from "../../Types/interface";
 import PictogramShow from "../PictogramShow/PictogramShow";
 import SelectPictogram from "../SelectPictogram/SelectPictogram";
+import "./CreateSequenceForm.css";
 
 interface CreateSequenceFormsProps {
   sequence?: SequencesI;
@@ -115,12 +116,17 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
       : dispatch(deleteSelectPictogramActionCreator());
   };
 
+  const initialActiveSelection: number = 0;
+  const [activeSelection, setActiveSelection] = useState(
+    initialActiveSelection
+  );
+
   const handleSelectPictogram = (indexArray: number) => {
     setAmountPictograms({
       ...amountPictograms,
       index: indexArray,
     });
-
+    setActiveSelection(indexArray);
     document.getElementById("searchPictogramWord")?.focus();
   };
 
@@ -128,7 +134,7 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
     <>
       <Row>
         <Col md={6}>
-          <Form className="create-sequence-form p-3">
+          <Form className="create-sequence-form pt-4 ps-4 pe-4 p-xxl-5">
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Nom</Form.Label>
               <Form.Control
@@ -153,7 +159,7 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="amount">
               <Form.Label>Quantitat de pictogrames</Form.Label>
-              <InputGroup className="mb-3">
+              <InputGroup className="m-0">
                 <Button
                   variant="primary"
                   id="button-amount-rest"
@@ -179,39 +185,54 @@ const CreateSequenceForm = ({ sequence }: CreateSequenceFormsProps) => {
                 Selecciona la quantitat de pictogrames de la nova seqüència
               </Form.Text>
             </Form.Group>
+            <Form.Label className="mb-3">
+              Escull i busca cada un dels pictogrames
+            </Form.Label>
             <Row>
               {amountPictograms.amount > 0 &&
                 [...Array(amountPictograms.amount)].map((element, index) => (
-                  <Col sx={6} className="justify-content-center" key={index}>
-                    <Card style={{ width: "13rem" }} className="m-1">
-                      <Card.Body className="p-1">
-                        {selectPictograms[index] !== undefined && (
-                          <PictogramShow
-                            pictogram={selectPictograms[index].pictogram}
-                            size="small"
-                          />
-                        )}
-                        <Button
-                          className="m-1"
-                          onClick={() => handleSelectPictogram(index)}
-                          id={`button-select-${index}`}
+                  <Col xs={12} sm={6} md={12} lg={6} xl={4} xxl={3}>
+                    <Nav.Link>
+                      <Card
+                        className="mb-2 pb-2 border-0"
+                        onClick={() => handleSelectPictogram(index)}
+                      >
+                        <Card.Body
+                          className={`p-1 text-center align-items-center ${
+                            index === activeSelection && "active-selection"
+                          }`}
                         >
-                          Pictograma {index + 1}
-                        </Button>
-                      </Card.Body>
-                    </Card>
+                          <div>
+                            <Button
+                              className="m-1 rounded-circle p-2 ps-3 pe-3"
+                              onClick={() => handleSelectPictogram(index)}
+                              id={`button-select-${index}`}
+                            >
+                              {index + 1}
+                            </Button>
+                          </div>
+                          {selectPictograms[index] !== undefined && (
+                            <PictogramShow
+                              pictogram={selectPictograms[index].pictogram}
+                              size="small"
+                              border={`${
+                                index !== activeSelection
+                                  ? "secondary"
+                                  : "primary"
+                              }`}
+                            />
+                          )}
+                        </Card.Body>
+                      </Card>
+                    </Nav.Link>
                   </Col>
                 ))}
             </Row>
-            <div>
-              Busca i escull cada un dels pictogrames abans de guardar la
-              seqüència
-            </div>
-            <div className="text-center m-3">
+            <Row className="text-center m-3">
               <Button type="button" onClick={handleSubmit}>
                 Desar la seqüència
               </Button>
-            </div>
+            </Row>
           </Form>
         </Col>
         <Col md={6}>
