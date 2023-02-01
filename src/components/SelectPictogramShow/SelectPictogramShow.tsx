@@ -1,3 +1,4 @@
+import { Nav } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { updateSelectPictogramActionCreator } from "../../app/slice/selectPictogramsSlice";
 import { SelectPictogram } from "../../models/sequencesInterface";
@@ -27,14 +28,16 @@ const SelectPictogramShow = ({
   };
 
   return (
-    <SelectPictogramShowStyled
-      src={`https://api.arasaac.org/api/pictograms/${pictogram.toString()}`}
-      className=""
-      alt="pictograma"
-      height="100px"
-      width="100px"
-      onClick={selectPictogramIndexArray}
-    />
+    <Nav.Link>
+      <SelectPictogramShowStyled
+        src={`https://api.arasaac.org/api/pictograms/${pictogram.toString()}`}
+        className=""
+        alt="pictograma"
+        height="100px"
+        width="100px"
+        onClick={selectPictogramIndexArray}
+      />
+    </Nav.Link>
   );
 };
 

@@ -14,11 +14,12 @@ const SelectPictogramsListShow = ({
   return (
     <>
       {showPictograms.map((element) => (
-        <SelectPictogramShow
-          pictogram={element}
-          key={element}
-          indexArrayPictograms={indexArrayPictograms}
-        />
+        <div className="m-3" key={element}>
+          <SelectPictogramShow
+            pictogram={element}
+            indexArrayPictograms={indexArrayPictograms}
+          />
+        </div>
       ))}
     </>
   );
