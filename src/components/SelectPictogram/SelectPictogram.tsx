@@ -34,7 +34,7 @@ const SelectPictogram = ({
   };
 
   return (
-    <div className="shadow-lg p-3 mb-5 bg-body rounded">
+    <div className="shadow-lg mt-4 me-4 ms-4  p-3 bg-body rounded">
       <h2 className="text-center mt-3">
         Pictograma{" "}
         <span className="bg-primary rounded-circle p-2 ps-3 pe-3 text-white">
@@ -54,7 +54,9 @@ const SelectPictogram = ({
           <Form.Text className="mt-3">Buscador de pictogrames</Form.Text>
         </Form.Group>
       </Form>
-      <SelectPictogramsListShow indexArrayPictograms={indexArrayPictograms} />
+      <div className="d-flex flex-wrap">
+        <SelectPictogramsListShow indexArrayPictograms={indexArrayPictograms} />
+      </div>
     </div>
   );
 };
