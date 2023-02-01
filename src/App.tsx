@@ -17,6 +17,7 @@ import ValidateEmailPage from "./pages/ValidateEmailPage/ValidateEmailPage";
 import TermesPage from "./pages/TermesPage/TermesPage";
 import ForgotPage from "./pages/ForgotPage/ForgotPage";
 import Footer from "./components/ui/Footer/Footer";
+import RequireAuth from "./components/user/RequireAuth/RequireAuth";
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -29,7 +30,10 @@ const App = (): JSX.Element => {
     }
   }, [dispatch]);
 
-  const { modal } = useSelector((state: RootState) => state.ui);
+  const {
+    ui: { modal },
+    user: { userName },
+  } = useSelector((state: RootState) => state);
 
   return (
     <>
@@ -43,10 +47,32 @@ const App = (): JSX.Element => {
         <Route path="/home" element={<HomePage />} />
         <Route path="/register" element={<RegisterFormPage />} />
         <Route path="/login" element={<LoginFormPage />} />
-        <Route path="/my-sequences" element={<MySequencePage />} />
+        <Route
+          path="/my-sequences"
+          element={
+            <RequireAuth isLogged={userName}>
+              <MySequencePage />
+            </RequireAuth>
+          }
+        />
+
         <Route path="/details-sequence/:id" element={<DetailsSequencePage />} />
-        <Route path="/create-sequence" element={<CreateSequencePage />} />
-        <Route path="/edit-sequence/:id" element={<EditSequencePage />} />
+        <Route
+          path="/create-sequence"
+          element={
+            <RequireAuth isLogged={userName}>
+              <CreateSequencePage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/edit-sequence/:id"
+          element={
+            <RequireAuth isLogged={userName}>
+              <EditSequencePage />
+            </RequireAuth>
+          }
+        />
         <Route path="/email-verify/:code" element={<ValidateEmailPage />} />
         <Route path="/forgot/:code" element={<ForgotPage />} />
         <Route path="/forgot" element={<ForgotPage />} />
