@@ -35,7 +35,7 @@ const Navigation = ({ linkPage, isNotPrint }: NavigationProps): JSX.Element => {
       expand="md"
       bg="primary"
       variant="light"
-      className={`p-4 pt-2 pb-2 pb-md-0 ps-xxl-5 pe-xxl-5 border-bottom border-3 border-white justify-content-between ${
+      className={`p-2 p-md-3 pt-md-2 pb-md-0 p-xl-4 pt-xl-2 pb-xl-0  p-xxl-5 pt-xxl-3 pb-xxl-0 border-bottom border-3 border-white justify-content-between ${
         isNotPrint && "not-print"
       }`}
     >
@@ -46,7 +46,7 @@ const Navigation = ({ linkPage, isNotPrint }: NavigationProps): JSX.Element => {
         aria-label={pagesName.home}
       >
         <IoHome
-          className="fs-2 me-2 text-white align-self-bottom"
+          className="fs-2 me-2 flex-grow-1 text-white align-self-bottom"
           aria-label={`icon ${pagesName.home}`}
         />
         <h1 className="m-0 fw-bolder d-md-none text-white">
@@ -56,7 +56,7 @@ const Navigation = ({ linkPage, isNotPrint }: NavigationProps): JSX.Element => {
       </Navbar.Brand>
       {userName !== "" ? (
         <>
-          <Navbar.Toggle>
+          <Navbar.Toggle className="p-0">
             <IoPerson className="fs-2" aria-label={userName} />
           </Navbar.Toggle>
 
