@@ -12,4 +12,11 @@ export const pagesName = {
 export const navigationText = {
   logout: "Sortir",
 };
-export default pagesName;
+
+export const messageText = {
+  errorServer: "error en la lectura del servidor. Torna ha provar-ho més tard",
+  createSequence: "seqüència creada",
+  deleteSequenceId: "seqüència esborrada correctament",
+  upDateSequenceId: "seqüència editada correctament",
+  notFoundSequences: "No s'ha trobat cap seqüència, prova una altra text",
+};

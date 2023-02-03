@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { RootState } from "../../../app/store";
 import useUser from "../../../hooks/useUser";
-import pagesName, { navigationText } from "../../../language/ca";
+import { pagesName, navigationText } from "../../../language/ca";
 
 interface NavigationProps {
   linkPage:

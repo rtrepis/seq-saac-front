@@ -11,11 +11,13 @@ export interface SequencesI extends ProtoSequences {
   privately: boolean;
   owner: string;
 }
-export interface SequenceStateI {
-  count: number;
-  sequences: SequencesI;
-}
+
 export interface SelectPictogram {
   index: number;
   pictogram: number;
+}
+
+export interface SettingsDetailsSequence {
+  keyWords: boolean;
+  size: "small" | "big" | number;
 }

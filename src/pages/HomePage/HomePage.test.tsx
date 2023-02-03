@@ -1,4 +1,4 @@
-import pagesName from "../../language/ca";
+import { pagesName } from "../../language/ca";
 import {
   act,
   render,
