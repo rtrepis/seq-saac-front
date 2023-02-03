@@ -168,6 +168,11 @@ export const handlers = [
     return res(ctx.status(403));
   }),
 
+  rest.get(`${apiUrl}sequences/search/asdfadsf`, async (req, res, ctx) => {
+    const data = { sequences: [] };
+    return res(ctx.status(200), ctx.json(data));
+  }),
+
   rest.delete(
     `${apiUrl}sequences/delete/mockIdError`,
     async (req, res, ctx) => {

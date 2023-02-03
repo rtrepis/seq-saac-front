@@ -8,7 +8,7 @@ import Navigation from "../../components/ui/Navigation/Navigation";
 import PictogramShow from "../../components/PictogramShow/PictogramShow";
 import PictogramWord from "../../components/PictogramWord/PictogramWord";
 import useApi from "../../hooks/useApi";
-import { SettingsDetailsSequence } from "../../models/pictogramsInterface";
+import { SettingsDetailsSequence } from "../../models/sequencesInterface";
 
 const DetailsSequencePage = (): JSX.Element => {
   const { sequences } = useSelector((state: RootState) => state);

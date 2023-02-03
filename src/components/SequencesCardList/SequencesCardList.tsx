@@ -21,24 +21,22 @@ const SequencesCardList = ({
     <>
       {loading && <Loading />}
 
-      {sequences.length === 0 && (
-        <div className="justify-content-center p-5 row">
-          No s'ha trobat cap seqüència
-        </div>
+      {sequences.length === 0 ? (
+        <h2 className="m-4 fs-3 text-center ">No hem trobat cap seqüència</h2>
+      ) : (
+        <Row xs={1} md={2} lg={3} xxl={4} className="g-3 mx-auto mt-3">
+          {sequences.map((sequence) => (
+            <SequenceCard
+              name={sequence.name}
+              pictograms={sequence.pictograms}
+              id={sequence.id}
+              key={sequence.id}
+              owner={owner}
+              privately={sequence.privately}
+            />
+          ))}
+        </Row>
       )}
-
-      <Row xs={1} md={2} lg={3} xxl={4} className="g-3 mx-auto mt-3">
-        {sequences.map((sequence) => (
-          <SequenceCard
-            name={sequence.name}
-            pictograms={sequence.pictograms}
-            id={sequence.id}
-            key={sequence.id}
-            owner={owner}
-            privately={sequence.privately}
-          />
-        ))}
-      </Row>
     </>
   );
 };
