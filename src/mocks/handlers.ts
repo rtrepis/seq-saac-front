@@ -13,16 +13,25 @@ export const handlers = [
   rest.post(`${apiUrl}users/login`, async (req, res, ctx) => {
     const { userName, password } = await req.json();
 
-    const status = userName === "Test" && password === "1234" ? 200 : 400;
-    return res(
-      ctx.status(status),
-      ctx.json({
+    let returnStatus = 400;
+    let data: any = { error: "User or password invalid" };
+
+    if (userName === "Test" && password === "1234") {
+      returnStatus = 200;
+      data = {
         user: {
           token:
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTA2NmNjNGJhMzgzOWNlYmFjMmI0MiIsInVzZXJOYW1lIjoiTWFyaWEiLCJpYXQiOjE2NjIyOTI5NTF9.30S4d21bbdSxb3g6Hes387gReNgjbIXYm3dyVd8UAdM",
         },
-      })
-    );
+      };
+    }
+
+    if (userName === "Test" && password === "notVerifyEmail") {
+      returnStatus = 403;
+      data = { error: "verify email, please" };
+    }
+
+    return res(ctx.status(returnStatus), ctx.json(data));
   }),
 
   rest.get(`${apiUrl}sequences`, async (req, res, ctx) => {
@@ -201,4 +210,18 @@ export const handlers = [
       return res(ctx.status(200));
     }
   ),
+
+  rest.post(`${apiUrl}users/forgot`, async (req, res, ctx) => {
+    const { email } = await req.json();
+    let status = email === "valid@email.com" ? 200 : 400;
+
+    return res(ctx.status(status));
+  }),
+
+  rest.patch(`${apiUrl}users/reset`, async (req, res, ctx) => {
+    const { code } = await req.json();
+    let status = code === "validCode" ? 200 : 400;
+
+    return res(ctx.status(status));
+  }),
 ];

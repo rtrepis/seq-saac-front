@@ -22,7 +22,7 @@ interface ResetFormikProps {
 }
 
 const ResetFormik = ({ code }: ResetFormikProps): JSX.Element => {
-  const { putReset } = useUser();
+  const { patchReset: putReset } = useUser();
   return (
     <RegisterFormStyled>
       <Formik
