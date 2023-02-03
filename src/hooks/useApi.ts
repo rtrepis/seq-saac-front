@@ -7,7 +7,6 @@ import {
 } from "../app/slice/sequencesSlice";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import {
-  UiInitialState,
   uiLoadingCloseActionCreator,
   uiLoadingShowActionCreator,
   uiModalShowActionCreator,
@@ -16,45 +15,15 @@ import {
   uiPageNItemsActionCreator,
 } from "../app/slice/uiSlice";
 import { ProtoSequences } from "../models/sequencesInterface";
-import { UiPayload } from "../Types/interface";
+import {
+  createMessage,
+  deleteSequenceIdMessage,
+  errorMessage,
+  notFoundSequencesMessage,
+  updateSequenceIdMessage,
+} from "../utils/modals";
 
 const apiURL = process.env.REACT_APP_API_URL;
-
-const errorMessage: UiPayload = {
-  ...UiInitialState,
-  modal: {
-    show: true,
-    message: "error en la lectura del servidor. Torna ha provar-ho més tard",
-    type: "error",
-  },
-};
-
-const createMessage: UiPayload = {
-  ...UiInitialState,
-  modal: {
-    show: true,
-    message: "seqüència creada",
-    type: "ok",
-  },
-};
-
-const deleteSequenceIdMessage: UiPayload = {
-  ...UiInitialState,
-  modal: {
-    show: true,
-    message: "seqüència esborrada correctament",
-    type: "ok",
-  },
-};
-
-const updateSequenceIdMessage: UiPayload = {
-  ...UiInitialState,
-  modal: {
-    show: true,
-    message: "seqüència editada correctament",
-    type: "ok",
-  },
-};
 
 const useApi = () => {
   const dispatch = useDispatch();
@@ -207,7 +176,9 @@ const useApi = () => {
           data: { sequences },
         } = await axios.get(`${apiURL}sequences/search/${word}`);
 
-        dispatch(loadSequencesActionCreator(sequences));
+        sequences.length === 0
+          ? dispatch(uiModalShowActionCreator(notFoundSequencesMessage))
+          : dispatch(loadSequencesActionCreator(sequences));
       } catch {
         dispatch(uiModalShowActionCreator(errorMessage));
       }

@@ -367,6 +367,27 @@ describe("Given a useApi hook", () => {
     });
   });
 
+  describe("When getSearchSequences it's called with word and empty result", () => {
+    test("Then should called dispatch expectDispatch", async () => {
+      const expectDispatchModal = {
+        payload: {
+          ...previousUiPayload,
+          modal: {
+            message: "No s'ha trobat cap seqüència, prova una altra text",
+            show: true,
+            type: "ok",
+          },
+        },
+        type: "ui/uiModalShow",
+      };
+      const { result } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await result.current.getSearchSequences("asdfadsf");
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectDispatchModal);
+    });
+  });
+
   describe("When getSearchSequences it's called with invalid word", () => {
     test("Then should called dispatch expectDispatch", async () => {
       const expectDispatchModal = {
