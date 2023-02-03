@@ -38,24 +38,16 @@ const useUser = () => {
   };
 
   const postRegister = async (dataForm: NamePasswordUserData) => {
-    let isUserCreate;
-
     try {
       await axios.post(`${apiUrl}users/register`, dataForm);
       navigate("/login");
-      isUserCreate = true;
       modalShow(true, "Si us plau, valideu el vostre correu electrònic.", "ok");
     } catch (error) {
       modalShow(true, "Usuari o contrasenya invàlids", "error");
-      isUserCreate = false;
-      return isUserCreate;
     }
-    return isUserCreate;
   };
 
   const postLogin = async (dataForm: NamePasswordUserData) => {
-    let isUserLogin;
-
     try {
       const {
         data: { user },
@@ -65,16 +57,13 @@ const useUser = () => {
 
       const userLogged = decodeToken(user.token);
       dispatch(userLoginActionCreator(userLogged));
-
-      isUserLogin = true;
+      modalShow(true, "Usuari creat correctament", "ok");
       navigate("/home");
-    } catch (error) {
-      modalShow(true, "Usuari o contrasenya invàlids", "error");
-      isUserLogin = false;
-      return isUserLogin;
+    } catch (error: any) {
+      error.response.data.error === "verify email, please"
+        ? modalShow(true, "Reviseu el correu, si us plau", "ok")
+        : modalShow(true, "Usuari o contrasenya invàlids", "error");
     }
-
-    return isUserLogin;
   };
 
   const userLogout = () => {
@@ -84,59 +73,48 @@ const useUser = () => {
   };
 
   const getConfirmationCode = async (code: string) => {
-    let isValidConfirmationCode;
     try {
       await axios.get(`${apiUrl}users/email-verify/${code}`);
       modalShow(true, "El correu electònic s'ha validat correctament", "ok");
       navigate("/login");
-      isValidConfirmationCode = true;
     } catch (error) {
       modalShow(true, "Error en la validació del correu", "error");
       navigate("/home");
-      isValidConfirmationCode = false;
     }
-    return isValidConfirmationCode;
   };
 
   const postForgot = async (dataForgot: { email: string }) => {
-    let isForgot;
     try {
       await axios.post(`${apiUrl}users/forgot`, dataForgot);
+
       modalShow(
         true,
         "Si us plau, restabliu la vostra contrasenya desde l'enllaç al vostre correu electrònic.",
         "ok"
       );
       navigate("/login");
-      isForgot = true;
-    } catch (error) {
-      modalShow(true, "Error en restablir", "error");
-      navigate("/home");
-      isForgot = false;
-    }
-    return isForgot;
-  };
-
-  const patchReset = async (dataForgot: PasswordCodeData) => {
-    let isReset;
-    try {
-      await axios.patch(`${apiUrl}users/reset`, dataForgot);
-      modalShow(true, "Contrasenya restablerta correctament", "ok");
-      navigate("/login");
-      isReset = true;
     } catch (error) {
       modalShow(true, "Error en restablir la contrasenya", "error");
       navigate("/home");
-      isReset = false;
     }
-    return isReset;
+  };
+
+  const patchReset = async (dataReset: PasswordCodeData) => {
+    try {
+      await axios.patch(`${apiUrl}users/reset`, dataReset);
+      modalShow(true, "Contrasenya s'ha restablerta correctament", "ok");
+      navigate("/login");
+    } catch (error) {
+      modalShow(true, "Error en restablir la contrasenya", "error");
+      navigate("/home");
+    }
   };
   return {
     postRegister,
     getConfirmationCode,
     postLogin,
     userLogout,
-    putReset: patchReset,
+    patchReset,
     postForgot,
   };
 };
