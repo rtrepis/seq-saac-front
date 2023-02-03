@@ -373,7 +373,7 @@ describe("Given a useApi hook", () => {
         payload: {
           ...previousUiPayload,
           modal: {
-            message: "No s'ha trobat cap seqüència, prova una altra text",
+            message: "No s'ha trobat cap seqüència, prova un altre text",
             show: true,
             type: "ok",
           },

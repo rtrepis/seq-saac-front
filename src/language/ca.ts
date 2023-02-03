@@ -18,5 +18,5 @@ export const messageText = {
   createSequence: "seqüència creada",
   deleteSequenceId: "seqüència esborrada correctament",
   upDateSequenceId: "seqüència editada correctament",
-  notFoundSequences: "No s'ha trobat cap seqüència, prova una altra text",
+  notFoundSequences: "No s'ha trobat cap seqüència, prova un altre text",
 };
