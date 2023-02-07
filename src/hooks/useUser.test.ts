@@ -10,6 +10,10 @@ const mockedUsedNavigate = jest.fn();
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockDispatch,
+}));
+
+jest.mock("react-router-dom", () => ({
+  ...(jest.requireActual("react-router-dom") as any),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -76,23 +80,13 @@ describe("Given the useUser hook", () => {
         userName: "Test",
         password: "1234",
       };
-      const expectPayLoadModalShow = {
-        payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Usuari creat correctament",
-            show: true,
-            type: "ok",
-          },
-        },
-        type: "ui/uiModalShow",
-      };
+      const expectRedirectPath = "/home";
       const expectPayLoadLogin = {
         payload: {
-          id: "631066cc4ba3839cebac2b42",
+          id: "63dd8d7566b51ee0f8d7befd",
           token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTA2NmNjNGJhMzgzOWNlYmFjMmI0MiIsInVzZXJOYW1lIjoiTWFyaWEiLCJpYXQiOjE2NjIyOTI5NTF9.30S4d21bbdSxb3g6Hes387gReNgjbIXYm3dyVd8UAdM",
-          userName: "Maria",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4ZDc1NjZiNTFlZTBmOGQ3YmVmZCIsInVzZXJOYW1lIjoiVGVzdCIsImlhdCI6MTY3NTQ2NDE3OX0.bnTMLJmkapoRjeYzuFEeyrDCjN9QiJDemH8qnLVeZPg",
+          userName: "Test",
         },
         type: "user/userLoginAction",
       };
@@ -103,8 +97,8 @@ describe("Given the useUser hook", () => {
 
       await waitFor(() => result.current.postLogin(userHook));
 
-      expect(mockDispatch).toHaveBeenNthCalledWith(1, expectPayLoadLogin);
-      expect(mockDispatch).toHaveBeenNthCalledWith(2, expectPayLoadModalShow);
+      expect(mockDispatch).toHaveBeenCalledWith(expectPayLoadLogin);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(expectRedirectPath);
     });
   });
 
