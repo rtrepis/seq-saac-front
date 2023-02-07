@@ -151,10 +151,10 @@ const DetailsSequencePage = (): JSX.Element => {
             </Row>
           </Collapse>
           <div className="m-4 page-print d-flex flex-wrap gap-4 text-center align-items-center">
-            {sequences[0].pictograms.map((element: number) => (
+            {sequences[0].pictograms.map((element: number, index: number) => (
               <div
                 className="d-flex flex-column align-items-center"
-                key={element}
+                key={sequences[0].id + "_" + index + "_" + element}
               >
                 <PictogramShow
                   pictogram={element}

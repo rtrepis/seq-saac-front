@@ -21,7 +21,7 @@ export const handlers = [
       data = {
         user: {
           token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTA2NmNjNGJhMzgzOWNlYmFjMmI0MiIsInVzZXJOYW1lIjoiTWFyaWEiLCJpYXQiOjE2NjIyOTI5NTF9.30S4d21bbdSxb3g6Hes387gReNgjbIXYm3dyVd8UAdM",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4ZDc1NjZiNTFlZTBmOGQ3YmVmZCIsInVzZXJOYW1lIjoiVGVzdCIsImlhdCI6MTY3NTQ2NDE3OX0.bnTMLJmkapoRjeYzuFEeyrDCjN9QiJDemH8qnLVeZPg",
         },
       };
     }

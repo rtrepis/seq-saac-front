@@ -57,7 +57,6 @@ const useUser = () => {
 
       const userLogged = decodeToken(user.token);
       dispatch(userLoginActionCreator(userLogged));
-      modalShow(true, "Usuari creat correctament", "ok");
       navigate("/home");
     } catch (error: any) {
       error.response.data.error === "verify email, please"
