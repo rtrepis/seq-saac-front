@@ -9,7 +9,6 @@ import PictogramShow from "../../components/PictogramShow/PictogramShow";
 import PictogramWord from "../../components/PictogramWord/PictogramWord";
 import useApi from "../../hooks/useApi";
 import { SettingsDetailsSequence } from "../../models/sequencesInterface";
-import { isElementOfType } from "react-dom/test-utils";
 
 const DetailsSequencePage = (): JSX.Element => {
   const { sequences } = useSelector((state: RootState) => state);
