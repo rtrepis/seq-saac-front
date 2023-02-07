@@ -48,7 +48,7 @@ const SequenceCard = ({
             ))}
           </Card.Body>
         </Nav.Link>
-        {isOwner && (
+        {isOwner ? (
           <Card.Footer className="d-flex justify-content-end p-0 ps-3 pe-3">
             <Nav.Link as={NavLink} to={`/edit-sequence/${id}`}>
               <IoPencilOutline className="ms-3" />
@@ -60,6 +60,10 @@ const SequenceCard = ({
                 <span hidden>Brosa per borrar la seqüència</span>
               </Nav.Link>
             )}
+          </Card.Footer>
+        ) : (
+          <Card.Footer className="fs-6">
+            Nº pictogrames : {pictograms.length}
           </Card.Footer>
         )}
       </Card>

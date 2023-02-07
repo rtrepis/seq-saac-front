@@ -70,4 +70,16 @@ describe("Give a component SequenceCard", () => {
       expect(iconPen).toBeInTheDocument();
     });
   });
+
+  describe("When rendered footer", () => {
+    test.only("Then should show display how many pictograms", () => {
+      const expectNumberPictograms = mockSequenceArray.pictograms.length;
+      const expectText = "Nº pictogrames : " + expectNumberPictograms;
+
+      renderUser(<SequenceCard sequence={mockSequenceArray} />);
+      const text = screen.getByText(expectText);
+
+      expect(text).toBeInTheDocument();
+    });
+  });
 });
