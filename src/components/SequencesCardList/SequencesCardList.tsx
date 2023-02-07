@@ -27,12 +27,9 @@ const SequencesCardList = ({
         <Row xs={1} md={2} lg={3} xxl={4} className="g-3 mx-auto mt-3">
           {sequences.map((sequence) => (
             <SequenceCard
-              name={sequence.name}
-              pictograms={sequence.pictograms}
-              id={sequence.id}
+              sequence={sequence}
               key={sequence.id}
-              owner={owner}
-              privately={sequence.privately}
+              isOwner={owner}
             />
           ))}
         </Row>

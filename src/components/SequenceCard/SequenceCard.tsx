@@ -3,20 +3,15 @@ import Card from "react-bootstrap/Card";
 import { NavLink } from "react-router-dom";
 import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
 import useApi from "../../hooks/useApi";
+import { SequencesI } from "../../models/sequencesInterface";
 interface SequenceCardProps {
-  name: string;
-  pictograms: number[];
-  id: string;
-  owner?: boolean;
-  privately?: boolean;
+  sequence: SequencesI;
+  isOwner?: boolean;
 }
 
 const SequenceCard = ({
-  name,
-  pictograms,
-  id,
-  owner,
-  privately,
+  sequence: { name, pictograms, id, owner, privately },
+  isOwner,
 }: SequenceCardProps): JSX.Element => {
   const { deleteSequenceId } = useApi();
 
@@ -53,7 +48,7 @@ const SequenceCard = ({
             ))}
           </Card.Body>
         </Nav.Link>
-        {owner && (
+        {isOwner ? (
           <Card.Footer className="d-flex justify-content-end p-0 ps-3 pe-3">
             <Nav.Link as={NavLink} to={`/edit-sequence/${id}`}>
               <IoPencilOutline className="ms-3" />
@@ -65,6 +60,10 @@ const SequenceCard = ({
                 <span hidden>Brosa per borrar la seqüència</span>
               </Nav.Link>
             )}
+          </Card.Footer>
+        ) : (
+          <Card.Footer className="fs-6">
+            Nº pictogrames : {pictograms.length}
           </Card.Footer>
         )}
       </Card>
