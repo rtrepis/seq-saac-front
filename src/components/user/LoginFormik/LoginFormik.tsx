@@ -2,9 +2,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { Formik } from "formik";
-import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
 import useUser from "../../../hooks/useUser";
-import { NavLink } from "react-bootstrap";
+import { Col, Container, NavLink, Row } from "react-bootstrap";
 
 const schema = yup.object().shape({
   userName: yup
@@ -22,7 +21,7 @@ const schema = yup.object().shape({
 const LoginFormik = (): JSX.Element => {
   const { postLogin } = useUser();
   return (
-    <RegisterFormStyled>
+    <Container className="border border-2 border-primary rounded-4 mt-3">
       <Formik
         validationSchema={schema}
         onSubmit={(values) => {
@@ -46,32 +45,27 @@ const LoginFormik = (): JSX.Element => {
           isValid,
           errors,
         }) => (
-          <Form
-            noValidate
-            onSubmit={handleSubmit}
-            className="register-form mt-5"
-          >
-            <Form.Group className="mb-3" controlId="userNameGroup">
-              <Form.Label>Usuari</Form.Label>
+          <Form noValidate onSubmit={handleSubmit} className="mt-5">
+            <Form.Group className="mb-4" controlId="userNameGroup">
+              <Form.Label className="ps-2">Usuari</Form.Label>
 
               <Form.Control
                 type="text"
                 name="userName"
                 placeholder="Nom d'usuari"
-                className=" register-form__input"
                 value={values.userName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isInvalid={touched.userName && !!errors.userName}
               />
 
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" className="ps-2 fs-6">
                 {errors.userName}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="passwordGroup">
-              <Form.Label>Contrasenya</Form.Label>
+            <Form.Group className="mb-4" controlId="passwordGroup">
+              <Form.Label className="ps-2">Contrasenya</Form.Label>
 
               <Form.Control
                 type="password"
@@ -83,27 +77,31 @@ const LoginFormik = (): JSX.Element => {
                 isInvalid={touched.password && !!errors.password}
               />
 
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" className="ps-2 fs-6">
                 {errors.password}
               </Form.Control.Feedback>
             </Form.Group>
-            <div className="register-form__footer">
-              <Button
-                type="submit"
-                disabled={!isValid}
-                className="register-form__button"
-              >
-                Iniciar sessió
-              </Button>
-            </div>
+            <Row className="text-center">
+              <Col>
+                <Button type="submit" disabled={!isValid} className="m-3">
+                  Iniciar sessió
+                </Button>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>
-      <div className="text-center fs-6 m-3 d-flex col gap-2 text-muted">
-        <NavLink href="register">Registear-se </NavLink> -{" "}
-        <NavLink href="forgot"> No recordes la contrasenya</NavLink>
-      </div>
-    </RegisterFormStyled>
+      <Row className="text-center align-items-center fs-6 mt-4 mb-3 text-muted">
+        <Col>
+          <NavLink href="register" className="">
+            Registear-se{" "}
+          </NavLink>
+        </Col>
+        <Col>
+          <NavLink href="forgot"> No recordes la contrasenya</NavLink>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
