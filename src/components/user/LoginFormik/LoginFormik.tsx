@@ -47,26 +47,25 @@ const LoginFormik = (): JSX.Element => {
         }) => (
           <Form noValidate onSubmit={handleSubmit} className="mt-5">
             <Form.Group className="mb-4" controlId="userNameGroup">
-              <Form.Label>Usuari</Form.Label>
+              <Form.Label className="ps-2">Usuari</Form.Label>
 
               <Form.Control
                 type="text"
                 name="userName"
                 placeholder="Nom d'usuari"
-                className=" register-form__input"
                 value={values.userName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isInvalid={touched.userName && !!errors.userName}
               />
 
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" className="ps-2 fs-6">
                 {errors.userName}
               </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="passwordGroup">
-              <Form.Label>Contrasenya</Form.Label>
+              <Form.Label className="ps-2">Contrasenya</Form.Label>
 
               <Form.Control
                 type="password"
@@ -78,7 +77,7 @@ const LoginFormik = (): JSX.Element => {
                 isInvalid={touched.password && !!errors.password}
               />
 
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" className="ps-2 fs-6">
                 {errors.password}
               </Form.Control.Feedback>
             </Form.Group>
