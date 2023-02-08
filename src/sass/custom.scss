@@ -15,7 +15,7 @@ $grid-breakpoints: (
   xxl: 1400px,
 );
 
-$font-size-base: 0.8rem;
+$font-size-base: 1rem;
 $white: rgb(255, 255, 255);
 $red: rgb(255, 0, 0);
 
@@ -41,8 +41,6 @@ $form-feedback-icon-invalid: url("data:image/svg+xml,<svg xmlns='http://www.w3.o
 
 $input-focus-border-color: tint-color(#fff, 0%);
 
-$input-btn-font-size: 20px;
-
 $input-btn-focus-width: 0.1rem;
 $input-btn-focus-color-opacity: 0.25;
 $input-btn-focus-color: rgba(
@@ -52,9 +50,6 @@ $input-btn-focus-color: rgba(
 $input-btn-focus-blur: 0;
 $input-btn-focus-box-shadow: 0 0 $input-btn-focus-blur $input-btn-focus-width
   $input-btn-focus-color;
-
-$input-font-size: 20px;
-$input-font-weight: 500;
 
 $input-bg: #e9e9e9;
 $input-focus-bg: #ffff;

@@ -72,7 +72,7 @@ describe("Give a component SequenceCard", () => {
   });
 
   describe("When rendered footer", () => {
-    test.only("Then should show display how many pictograms", () => {
+    test("Then should show display how many pictograms", () => {
       const expectNumberPictograms = mockSequenceArray.pictograms.length;
       const expectText = "Nº pictogrames : " + expectNumberPictograms;
 
