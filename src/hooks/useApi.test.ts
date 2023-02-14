@@ -71,13 +71,10 @@ describe("Given a useApi hook", () => {
       const sequencesHook = {};
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -101,13 +98,10 @@ describe("Given a useApi hook", () => {
       ];
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -156,13 +150,10 @@ describe("Given a useApi hook", () => {
       const idCorrect = "63199e9";
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -188,13 +179,10 @@ describe("Given a useApi hook", () => {
       };
       const expectModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -221,12 +209,9 @@ describe("Given a useApi hook", () => {
       };
       const expectModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "seqüència creada",
-            show: true,
-            type: "ok",
-          },
+          message: "seqüència creada",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -263,13 +248,10 @@ describe("Given a useApi hook", () => {
 
       const expectDispatchModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -293,12 +275,9 @@ describe("Given a useApi hook", () => {
       };
       const expectDispatchModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "seqüència editada correctament",
-            show: true,
-            type: "ok",
-          },
+          message: "seqüència editada correctament",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -323,13 +302,10 @@ describe("Given a useApi hook", () => {
 
       const expectDispatchModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -371,12 +347,9 @@ describe("Given a useApi hook", () => {
     test("Then should called dispatch expectDispatch", async () => {
       const expectDispatchModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "No s'ha trobat cap seqüència, prova un altre text",
-            show: true,
-            type: "ok",
-          },
+          message: "No s'ha trobat cap seqüència, prova un altre text",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -392,13 +365,10 @@ describe("Given a useApi hook", () => {
     test("Then should called dispatch expectDispatch", async () => {
       const expectDispatchModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "error en la lectura del servidor. Torna ha provar-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message:
+            "error en la lectura del servidor. Torna ha provar-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };

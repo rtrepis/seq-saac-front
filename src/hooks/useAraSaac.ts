@@ -3,28 +3,22 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { loadShowPictogramsActionCreator } from "../app/slice/showPictogramsSlice";
 import { uiModalShowActionCreator } from "../app/slice/uiSlice";
-import { UiPayload, Pictograms } from "../Types/interface";
-import { previousUiPayload } from "../utils/test/payloads/previousUiPayload";
+import { ModalI, Pictograms } from "../Types/interface";
 
 const araSaacURL = process.env.REACT_APP_API_ARASAAC_URL;
 
-const NotFoundMessage: UiPayload = {
-  ...previousUiPayload,
-  modal: {
-    show: true,
-    message: "No hem trobat cap coincidència, prova un altre text",
-    type: "ok",
-  },
+const NotFoundMessage: ModalI = {
+  show: true,
+  message: "No hem trobat cap coincidència, prova un altre text",
+  type: "ok",
 };
 
-const ErrorServer: UiPayload = {
-  ...previousUiPayload,
-  modal: {
-    show: true,
-    message: "Error en la lectura del servidor, intenta-ho més tard",
-    type: "error",
-  },
+const ErrorServer: ModalI = {
+  show: true,
+  message: "Error en la lectura del servidor, intenta-ho més tard",
+  type: "error",
 };
+
 const useAraSaac = () => {
   const dispatch = useDispatch();
 
