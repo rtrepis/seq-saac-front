@@ -30,9 +30,9 @@ describe("Give a component SequencesCardList", () => {
   });
 
   describe("When receive whit array empty", () => {
-    test("Then should show expect test", async () => {
+    test("Then should show expect test", () => {
       const expectText = "No hem trobat cap seqüència";
-      const sequencesProps: SequencesI[] = await [];
+      const sequencesProps: SequencesI[] = [];
 
       render(<SequencesCardList sequences={sequencesProps} />);
       const text = screen.getByText(expectText);

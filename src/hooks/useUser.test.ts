@@ -27,12 +27,9 @@ describe("Given the useUser hook", () => {
 
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Si us plau, valideu el vostre correu electrònic.",
-            show: true,
-            type: "ok",
-          },
+          message: "Si us plau, valideu el vostre correu electrònic.",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -55,12 +52,9 @@ describe("Given the useUser hook", () => {
       };
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Usuari o contrasenya invàlids",
-            show: true,
-            type: "error",
-          },
+          message: "Usuari o contrasenya invàlids",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -110,12 +104,9 @@ describe("Given the useUser hook", () => {
       };
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Reviseu el correu, si us plau",
-            show: true,
-            type: "ok",
-          },
+          message: "Reviseu el correu, si us plau",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -137,12 +128,9 @@ describe("Given the useUser hook", () => {
       };
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Usuari o contrasenya invàlids",
-            show: true,
-            type: "error",
-          },
+          message: "Usuari o contrasenya invàlids",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -177,12 +165,9 @@ describe("Given the useUser hook", () => {
 
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "El correu electònic s'ha validat correctament",
-            show: true,
-            type: "ok",
-          },
+          message: "El correu electònic s'ha validat correctament",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -199,12 +184,9 @@ describe("Given the useUser hook", () => {
       const confirmationCode = "inValidConfirmationCode";
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Error en la validació del correu",
-            show: true,
-            type: "error",
-          },
+          message: "Error en la validació del correu",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -221,13 +203,10 @@ describe("Given the useUser hook", () => {
       const testEmail = "valid@email.com";
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message:
-              "Si us plau, restabliu la vostra contrasenya desde l'enllaç al vostre correu electrònic.",
-            show: true,
-            type: "ok",
-          },
+          message:
+            "Si us plau, restabliu la vostra contrasenya desde l'enllaç al vostre correu electrònic.",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -244,12 +223,9 @@ describe("Given the useUser hook", () => {
       const testEmail = "invalid@email.com";
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Error en restablir la contrasenya",
-            show: true,
-            type: "error",
-          },
+          message: "Error en restablir la contrasenya",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };
@@ -268,12 +244,9 @@ describe("Given the useUser hook", () => {
 
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Contrasenya s'ha restablerta correctament",
-            show: true,
-            type: "ok",
-          },
+          message: "Contrasenya s'ha restablerta correctament",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -294,12 +267,9 @@ describe("Given the useUser hook", () => {
 
       const expectPayLoadModalShow = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Error en restablir la contrasenya",
-            show: true,
-            type: "error",
-          },
+          message: "Error en restablir la contrasenya",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };

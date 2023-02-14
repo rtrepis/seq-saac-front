@@ -33,12 +33,9 @@ describe("Given a useAraSacc hook", () => {
       const wordSearchMock = "";
       const expectModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "No hem trobat cap coincidència, prova un altre text",
-            show: true,
-            type: "ok",
-          },
+          message: "No hem trobat cap coincidència, prova un altre text",
+          show: true,
+          type: "ok",
         },
         type: "ui/uiModalShow",
       };
@@ -70,12 +67,9 @@ describe("Given a useAraSacc hook", () => {
       const mockNumberPictogram = NaN;
       const expectModal = {
         payload: {
-          ...previousUiPayload,
-          modal: {
-            message: "Error en la lectura del servidor, intenta-ho més tard",
-            show: true,
-            type: "error",
-          },
+          message: "Error en la lectura del servidor, intenta-ho més tard",
+          show: true,
+          type: "error",
         },
         type: "ui/uiModalShow",
       };

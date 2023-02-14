@@ -176,9 +176,12 @@ const useApi = () => {
           data: { sequences },
         } = await axios.get(`${apiURL}sequences/search/${word}`);
 
-        sequences.length === 0
-          ? dispatch(uiModalShowActionCreator(notFoundSequencesMessage))
-          : dispatch(loadSequencesActionCreator(sequences));
+        if (sequences.length === 0) {
+          dispatch(uiModalShowActionCreator(notFoundSequencesMessage));
+          dispatch(uiPageNavShowActionCreator());
+        } else {
+          dispatch(loadSequencesActionCreator(sequences));
+        }
       } catch {
         dispatch(uiModalShowActionCreator(errorMessage));
       }
